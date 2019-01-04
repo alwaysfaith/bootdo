@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="bet_id" name="bet_id" th:value="${score.bet_id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">比赛周次：</label>
+								<div class="col-sm-8">
+									<input id="betWeek" name="betWeek" th:value="${score.betWeek}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">比赛赛事(英超)：</label>
+								<div class="col-sm-8">
+									<input id="betLeague" name="betLeague" th:value="${score.betLeague}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">比赛日期：</label>
+								<div class="col-sm-8">
+									<input id="betTime" name="betTime" th:value="${score.betTime}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">开始时间：</label>
+								<div class="col-sm-8">
+									<input id="startTime" name="startTime" th:value="${score.startTime}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">主队排名：</label>
+								<div class="col-sm-8">
+									<input id="hostRank" name="hostRank" th:value="${score.hostRank}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">主队：</label>
+								<div class="col-sm-8">
+									<input id="hostTeam" name="hostTeam" th:value="${score.hostTeam}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客队排名：</label>
+								<div class="col-sm-8">
+									<input id="guestRank" name="guestRank" th:value="${score.guestRank}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客队：</label>
+								<div class="col-sm-8">
+									<input id="guestTeam" name="guestTeam" th:value="${score.guestTeam}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">比分：</label>
+								<div class="col-sm-8">
+									<input id="betScore" name="betScore" th:value="${score.betScore}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">主队红牌：</label>
+								<div class="col-sm-8">
+									<input id="hostRedCard" name="hostRedCard" th:value="${score.hostRedCard}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客队红牌：</label>
+								<div class="col-sm-8">
+									<input id="guestRedCard" name="guestRedCard" th:value="${score.guestRedCard}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">主队黄牌：</label>
+								<div class="col-sm-8">
+									<input id="hostYellowCard" name="hostYellowCard" th:value="${score.hostYellowCard}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">客队黄牌：</label>
+								<div class="col-sm-8">
+									<input id="guestYellowCard" name="guestYellowCard" th:value="${score.guestYellowCard}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">半场比分：</label>
+								<div class="col-sm-8">
+									<input id="betScoreHalf" name="betScoreHalf" th:value="${score.betScoreHalf}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">平手盘：</label>
+								<div class="col-sm-8">
+									<input id="drawBall" name="drawBall" th:value="${score.drawBall}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">平手盘主队：</label>
+								<div class="col-sm-8">
+									<input id="drawWinOdds" name="drawWinOdds" th:value="${score.drawWinOdds}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">平手盘平手：</label>
+								<div class="col-sm-8">
+									<input id="drawDrowOdds" name="drawDrowOdds" th:value="${score.drawDrowOdds}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">平手盘客队：</label>
+								<div class="col-sm-8">
+									<input id="drawLoseOdds" name="drawLoseOdds" th:value="${score.drawLoseOdds}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">让球盘：</label>
+								<div class="col-sm-8">
+									<input id="letBall" name="letBall" th:value="${score.letBall}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">让球盘主队：</label>
+								<div class="col-sm-8">
+									<input id="letWinOdds" name="letWinOdds" th:value="${score.letWinOdds}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">让球盘平手：</label>
+								<div class="col-sm-8">
+									<input id="letDrowOdds" name="letDrowOdds" th:value="${score.letDrowOdds}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">让球盘客队：</label>
+								<div class="col-sm-8">
+									<input id="letLoseOdds" name="letLoseOdds" th:value="${score.letLoseOdds}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">平手盘打出3主队赢1平手0客队赢：</label>
+								<div class="col-sm-8">
+									<input id="drawActive" name="drawActive" th:value="${score.drawActive}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">让球盘打出3主队赢1平手0客队赢：</label>
+								<div class="col-sm-8">
+									<input id="letActive" name="letActive" th:value="${score.letActive}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">数据ID：</label>
+								<div class="col-sm-8">
+									<input id="dataId" name="dataId" th:value="${score.dataId}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/common/score/edit.js">
+	</script>
+</body>
+</html>
