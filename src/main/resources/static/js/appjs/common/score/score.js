@@ -6,8 +6,7 @@ $(function() {
 
 function load() {
 	$('#exampleTable')
-			.bootstrapTable(
-					{
+			.bootstrapTable({
 						method : 'get', // 服务器数据的请求方式 get or post
 						url : prefix + "/list", // 服务器数据的加载地址
 					//	showRefresh : true,
@@ -47,111 +46,190 @@ function load() {
 								{
 									checkbox : true
 								},
-																{
+								{
 									field : 'betId', 
-									title : '比赛ID' 
+									title : '比赛ID',
+									visible : false
 								},
-																{
+								{
 									field : 'betWeek', 
 									title : '比赛周次' 
 								},
-																{
+								{
 									field : 'betLeague', 
-									title : '比赛赛事(英超)' 
+									title : '比赛赛事'
 								},
-																{
+								{
 									field : 'betTime', 
 									title : '比赛日期' 
 								},
-																{
+								{
 									field : 'startTime', 
 									title : '开始时间' 
 								},
-																{
+								{
 									field : 'hostRank', 
-									title : '主队排名' 
+									title : '主队排名' ,
+                                    visible : false
 								},
-																{
+								{
+									field : 'hostRedCard',
+									title : '主队红牌' ,
+									visible : false
+								},
+								{
+									field : 'guestRedCard',
+									title : '客队红牌' ,
+									visible : false
+								},
+								{
+									field : 'hostYellowCard',
+									title : '主队黄牌' ,
+									visible : false
+								},
+								{
+									field : 'guestYellowCard',
+									title : '客队黄牌' ,
+									visible : false
+								},
+								{
+									field : 'guestRank',
+									title : '客队排名' ,
+									visible : false
+								},
+								{
 									field : 'hostTeam', 
-									title : '主队' 
+									title : '主队',
+                                    formatter: function (value, row) {
+                                        var a = '<span class="hostTeam"><i class="hostYellowCard">'+row.hostYellowCard+'</i><i class="hostRedCard">'+row.hostRedCard+'</i><i class="hostRank">'+row.hostRank+'</i>'+value+'</span>',
+                                        b = '<span class="hostTeam"><i class="hostYellowCard hidden">'+row.hostYellowCard+'</i><i class="hostRedCard">'+row.hostRedCard+'</i><i class="hostRank">'+row.hostRank+'</i>'+value+'</span>',
+                                        c = '<span class="hostTeam"><i class="hostYellowCard">'+row.hostYellowCard+'</i><i class="hostRedCard hidden">'+row.hostRedCard+'</i><i class="hostRank">'+row.hostRank+'</i>'+value+'</span>',
+										d='<span class="hostTeam"><i class="hostYellowCard hidden">'+row.hostYellowCard+'</i><i class="hostRedCard hidden">'+row.hostRedCard+'</i><i class="hostRank">'+row.hostRank+'</i>'+value+'</span>';
+                                        if (row.hostYellowCard!=0 && row.hostRedCard!=0) {
+                                            return a;
+                                        } else if(row.hostYellowCard==0 && row.hostRedCard !=0){
+                                            return b;
+                                        } else if(row.hostYellowCard!=0 && row.hostRedCard==0){
+                                            return c;
+                                        } else if(row.hostYellowCard==0 && row.hostRedCard==0){
+                                            return d;
+                                        }
+                                    }
 								},
-																{
-									field : 'guestRank', 
-									title : '客队排名' 
+								{
+									field : 'betScore',
+									title : '比分'
 								},
-																{
+								{
 									field : 'guestTeam', 
-									title : '客队' 
+									title : '客队',
+                                    formatter: function (value, row) {
+                                        var a = '<span class="guestTeam">'+value+'<i class="guestYellowCard">'+row.guestYellowCard+'</i><i class="guestRedCard">'+row.hostRedCard+'</i><i class="guestRank">'+row.guestRank+'</i></span>',
+                                            b = '<span class="guestTeam">'+value+'<i class="guestYellowCard hidden">'+row.guestYellowCard+'</i><i class="guestRedCard">'+row.hostRedCard+'</i><i class="guestRank">'+row.guestRank+'</i></span>',
+                                            c = '<span class="guestTeam">'+value+'<i class="guestYellowCard">'+row.guestYellowCard+'</i><i class="guestRedCard hidden">'+row.hostRedCard+'</i><i class="guestRank">'+row.guestRank+'</i></span>',
+                                            d='<span class="guestTeam">'+value+'<i class="guestYellowCard hidden">'+row.guestYellowCard+'</i><i class="guestRedCard hidden">'+row.hostRedCard+'</i><i class="guestRank">'+row.guestRank+'</i></span>';
+                                        if (row.guestYellowCard!=0 && row.guestRedCard!=0) {
+                                            return a;
+                                        } else if(row.guestYellowCard==0 && row.guestRedCard !=0){
+                                            return b;
+                                        } else if(row.guestYellowCard!=0 && row.guestRedCard==0){
+                                            return c;
+                                        } else if(row.guestYellowCard==0 && row.guestRedCard==0){
+                                            return d;
+                                        }
+                                    }
 								},
-																{
-									field : 'betScore', 
-									title : '比分' 
-								},
-																{
-									field : 'hostRedCard', 
-									title : '主队红牌' 
-								},
-																{
-									field : 'guestRedCard', 
-									title : '客队红牌' 
-								},
-																{
-									field : 'hostYellowCard', 
-									title : '主队黄牌' 
-								},
-																{
-									field : 'guestYellowCard', 
-									title : '客队黄牌' 
-								},
-																{
+								{
 									field : 'betScoreHalf', 
 									title : '半场比分' 
 								},
-																{
+								{
 									field : 'drawBall', 
-									title : '平手盘' 
+									title : '平手盘',
+                                    formatter: function (value, row) {
+                                        return '<div class="tdDiv"><p class="drawBall">'+row.drawBall+'</p><p class="letBall">'+row.letBall+'</p></div>';
+                                    }
 								},
-																{
+								{
+									field : 'letBall',
+									title : '让球盘',
+                                    visible : false
+								},
+								{
 									field : 'drawWinOdds', 
-									title : '平手盘主队' 
+									title : '平手盘主队',
+                                    formatter: function (value, row) {
+                                        var e = '<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
+                                            f = '<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
+                                            g =  '<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>',
+                                            h= '<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds ">'+row.letLoseOdds+'</i></p></div>',
+                                            i='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds    letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds ">'+row.letLoseOdds+'</i></p></div>',
+                                            j='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds    ">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>',
+                                            k='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
+                                            l='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds   letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
+                                            m='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>';
+                                        if (row.drawActive==3 && row.letActive==3) {
+                                            return e;
+                                        } else if(row.drawActive==3 && row.letActive !=1){
+                                            return f;
+                                        } else if(row.drawActive==3 && row.letActive==0){
+                                            return g;
+                                        } else if(row.drawActive==1 && row.letActive==3){
+                                            return h;
+                                        }else if(row.drawActive==1 && row.letActive==1){
+                                            return i;
+                                        }else if(row.drawActive==1 && row.letActive==0){
+                                            return j;
+                                        }else if(row.drawActive==0 && row.letActive==3){
+                                            return k;
+                                        }else if(row.drawActive==0 && row.letActive==1){
+                                            return l;
+                                        }else if(row.drawActive==0 && row.letActive==0){
+                                            return m;
+                                        }
+                                    }
 								},
-																{
+								{
 									field : 'drawDrowOdds', 
-									title : '平手盘平手' 
+									title : '平手盘平手' ,
+                                    visible : false
 								},
-																{
+								{
 									field : 'drawLoseOdds', 
-									title : '平手盘客队' 
+									title : '平手盘客队' ,
+                                    visible : false
 								},
-																{
-									field : 'letBall', 
-									title : '让球盘' 
-								},
-																{
+								{
 									field : 'letWinOdds', 
-									title : '让球盘主队' 
+									title : '让球盘主队' ,
+                                    visible : false
 								},
-																{
+								{
 									field : 'letDrowOdds', 
-									title : '让球盘平手' 
+									title : '让球盘平手' ,
+                                    visible : false
 								},
-																{
+								{
 									field : 'letLoseOdds', 
-									title : '让球盘客队' 
+									title : '让球盘客队' ,
+                                    visible : false
 								},
-																{
+								{
 									field : 'drawActive', 
-									title : '平手盘打出3主队赢1平手0客队赢' 
+									title : '平手盘打出3主队赢1平手0客队赢' ,
+                                    visible : false
 								},
-																{
+								{
 									field : 'letActive', 
-									title : '让球盘打出3主队赢1平手0客队赢' 
+									title : '让球盘打出3主队赢1平手0客队赢' ,
+                                    visible : false
 								},
-																{
+								{
 									field : 'dataId', 
-									title : '数据ID' 
+									title : '数据ID' ,
+									visible:false
 								},
-																{
+								{
 									title : '操作',
 									field : 'id',
 									align : 'center',
@@ -167,12 +245,23 @@ function load() {
 												+ '\')"><i class="fa fa-key"></i></a> ';
 										return e + d ;
 									}
-								} ]
+								}],
+                onPostBody: function () {
+                    //改变复选框样式
+                    $('#exampleTable').find("input:checkbox").each(function (i) {
+                        var $check = $(this);
+                        if ($check.attr("id") && $check.next("label")) {
+                            return;
+                        }
+                        var name = $check.attr("name");
+                        var id = name + "-" + i;
+                        var $label = $('<label for="' + id + '"></label>');
+                        $check.attr("id", id).parent().addClass("bella-checkbox").append($label);
+                    });
+                }
 					});
 }
-function reLoad() {
-	$('#exampleTable').bootstrapTable('refresh');
-}
+
 function add() {
 	layer.open({
 		type : 2,
@@ -215,8 +304,33 @@ function remove(id) {
 	})
 }
 
-function resetPwd(id) {
+function reLoad() {
+    var opt = {
+        queryParams: function (params) {
+            return {
+                //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
+                limit: params.limit,
+                offset: params.offset,
+                workId: $('#workId').val(),
+                department: $('#department').val(),
+                workProvince: $('#workProvince').val(),
+                workCity: $('#workCity').val()
+            };
+        }
+    };
+    // load();
+    $("#exampleTable").bootstrapTable('refreshOptions', {pageNumber: 1});
+    $('#exampleTable').bootstrapTable('refresh', opt);
 }
+
+//重置搜索
+function resetSearch() {
+    $('#query-form').find('[name]').each(function () {
+        $(this).val('');
+    });
+    reLoad();
+}
+
 function batchRemove() {
 	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {

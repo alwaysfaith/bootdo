@@ -2,27 +2,106 @@
 <html>
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
+<style>
+	#exampleTable tr th{
+		font-weight:normal;
+		font-size:14px;
+		background-color: #EFEFEF;
+	}
+</style>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content ">
 		<div class="col-sm-12">
 			<div class="ibox">
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
-						<div class="columns pull-left">
-							<button shiro:hasPermission="common:score:add" type="button" class="btn  btn-primary" onclick="add()">
-								<i class="fa fa-plus" aria-hidden="true"></i>添加
-							</button>
-							<button shiro:hasPermission="common:score:batchRemove" type="button" class="btn  btn-danger"
-								onclick="batchRemove()">
-								<i class="fa fa-trash" aria-hidden="true"></i>删除
-							</button>
-						</div>
-						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="reLoad()">查询</button>
-						</div>
-						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control"
-								placeholder="">
+						<div class="layui-form" id="query-form">
+							<div class="layui-form-item">
+
+								<div class="layui-input-inline">
+									<input type="text" name="workId" onkeyup="reLoad()" class="layui-input"
+										   id="workId" v-model="workId"
+										   placeholder="请输入工号">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="name" onkeyup="reLoad()" class="layui-input"
+										   id="name" v-model="name"
+										   placeholder="请输入姓名">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="department" onkeyup="reLoad()" class="layui-input"
+										   id="department" v-model="department"
+										   placeholder="请输入部门">
+								</div>
+								<div class="layui-input-inline">
+									<select class="layui-input" onchange="reLoadProvince()" id="workProvince"
+											name="workProvince">
+									</select>
+								</div>
+								<div class="layui-input-inline">
+									<select class="layui-input" onchange="reLoad()" id="workCity"
+											name="workCity">
+									</select>
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<div class="layui-input-inline">
+									<select class="layui-input" onchange="reLoad()" id="userType" name="userType">
+										<option value="">—请选择会员类型—</option>
+										<option value="1">内部会员</option>
+										<option value="2">外部会员</option>
+									</select>
+								</div>
+
+								<div class="layui-input-inline">
+									<select class="layui-input" onchange="reLoad()" id="sex" name="sex">
+										<option value="">—请选择性别—</option>
+										<option value="男">男</option>
+										<option value="女">女</option>
+									</select>
+								</div>
+
+								<div class="layui-input-inline">
+									<select class="layui-input" onchange="reLoad()" id="maritalStatus" name="maritalStatus">
+										<option value="">—请选择婚姻状况—</option>
+										<!--        婚姻状态 1.未婚 2已婚 3离异 4丧偶-->
+										<option value="1">未婚</option>
+										<option value="3">离异</option>
+										<option value="4">丧偶</option>
+									</select>
+								</div>
+
+								<div class="layui-input-inline">
+									<input id="createStartTime" name="createStartTime" type="text" class="layui-input"
+										   placeholder="开始注册时间">
+								</div>
+								<div class=" layui-input-inline">
+									<input id="createEndTime" name="createEndTime" type="text" class="layui-input"
+										   placeholder="结束注册时间">
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<div class="layui-input-inline" style="width: 50%;">
+									<button id="btn_search" onclick="reLoad()" type="button"
+											class="layui-btn">
+										<span class="fa fa-search" aria-hidden="true">查询</span>
+									</button>
+									<button id="btn_reset" onclick="resetSearch()" type="button"
+											class="layui-btn">
+										<span class="fa fa-eraser" aria-hidden="true">重置</span>
+									</button>
+									<button type="button" class="layui-btn" onclick="add()">
+										<i class="fa fa-plus" aria-hidden="true"></i> 添加
+									</button>
+									<button type="button" class="layui-btn"
+											onclick="batchRemoveLimit()">
+										<i class="fa fa-trash" aria-hidden="true"></i>删除
+									</button>
+								</div>
+							</div>
+
 						</div>
 					</div>
 					<table id="exampleTable" data-mobile-responsive="true">
