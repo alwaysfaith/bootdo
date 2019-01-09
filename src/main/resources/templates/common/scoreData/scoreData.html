@@ -2,6 +2,14 @@
 <html>
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
+<style type="text/css">
+	.table {table-layout:fixed;}
+	#expertsTd{display:none!important;}
+	.rt_no_border{display:none!important;}
+	.expertsNumTd{display:none!important;}
+	table>thead>tr>td:nth-child(5){width:360px!important;}
+	.btn {border-radius: 0px;}
+</style>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content ">
 		<div class="col-sm-12">
@@ -18,18 +26,17 @@
 							</button>
 						</div>
 						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="reLoad()">查询</button>
-						</div>
-						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control"
-								placeholder="">
+							<div class="form-inline">
+								<input class="form-control input-outline" name="dataId" id="dataId" type="text" placeholder="数据ID">
+								<input class="form-control input-outline" name="dataTime" id="dataTime"  type="text" placeholder="数据时间">
+								<input class="form-control input-outline"  name="dataTable" id="dataTable"  type="text" placeholder="数据HTML">
+								<button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+								<button class="btn btn-info" onclick="reSearch()"><i class="fa fa-eraser" aria-hidden="true"></i>重置</button>
+							</div>
 						</div>
 					</div>
-
-					<table id="exampleTable" class="text-left text-nowrap" data-mobile-responsive="true"
-						   data-resizable-columns-id="demo-table">
+					<table id="exampleTable" class="text-nowrap">
 					</table>
-
 				</div>
 			</div>
 		</div>

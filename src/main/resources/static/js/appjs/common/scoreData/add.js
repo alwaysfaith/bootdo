@@ -29,8 +29,18 @@ function save() {
 			}
 		}
 	});
-
 }
+
+function generator(){
+    var index=parent.layer.open({
+        type : 1,
+        area : [ '100%', '100%' ],
+        shadeClose : false, // 点击遮罩关闭层
+        content :$('#dataTable').val()
+    });
+    layer.full(index);
+}
+
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({

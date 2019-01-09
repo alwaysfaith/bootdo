@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+/**
+ * @author ECHO
+ */
 @EnableAutoConfiguration(exclude = {
         org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
 })

@@ -31,9 +31,10 @@ function load() {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
-								offset:params.offset
-					           // name:$('#searchName').val(),
-					           // username:$('#searchName').val()
+								offset:params.offset,
+                                dataId:$('#dataId').val(),
+                                dataTime:$('#dataTime').val(),
+                                dataTable:$('#dataTable').val()
 							};
 						},
 						// //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -48,24 +49,25 @@ function load() {
 								},
 								{
 									field : 'dataId', 
-									title : '数据主键',
-                                    width: 80
+									title : '数据ID',
+                                    width: 128
 								},
 								{
 									field : 'dataTime', 
 									title : '数据时间',
-                                     width: 8000
+                                    width: 100,
+									visible:false
 								},
 								{
 									field : 'dataTable', 
-									title : '数据html',
-									width: 400
+									title : '数据HTML',
+									width: 800
 								},
 								{
 									title : '操作',
 									field : 'id',
 									align : 'center',
-                                    width: 400,
+                                    width: 100,
 									formatter : function(value, row, index) {
 										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
 												+ row.dataId
@@ -82,27 +84,26 @@ function load() {
 					});
 }
 function reLoad() {
+
 	$('#exampleTable').bootstrapTable('refresh');
 }
 function add() {
-	layer.open({
+   var index= layer.open({
 		type : 2,
-		title : '增加',
-		maxmin : true,
+        area : [ '100%', '100%' ],
 		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
 		content : prefix + '/add' // iframe的url
 	});
+    layer.full(index);
 }
 function edit(id) {
-	layer.open({
-		type : 2,
-		title : '编辑',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : prefix + '/edit/' + id // iframe的url
-	});
+    var index = layer.open({
+        type : 2,
+        area : [ '100%', '100%' ],
+        shadeClose : false, // 点击遮罩关闭层
+        content : prefix + '/edit/' + id // iframe的url
+    });
+    layer.full(index);
 }
 function remove(id) {
 	layer.confirm('确定要删除选中的记录？', {
@@ -126,7 +127,8 @@ function remove(id) {
 	})
 }
 
-function resetPwd(id) {
+function reSearch() {
+
 }
 function batchRemove() {
 	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组

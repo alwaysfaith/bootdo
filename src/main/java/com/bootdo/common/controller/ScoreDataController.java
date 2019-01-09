@@ -3,7 +3,11 @@ package com.bootdo.common.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.bootdo.common.generator.IdWorkerInstance;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -75,6 +79,13 @@ public class ScoreDataController {
 	@PostMapping("/save")
 	@RequiresPermissions("common:scoreData:add")
 	public R save( ScoreDataDO scoreData){
+		scoreData.setDataId(IdWorkerInstance.getId());
+		String dataTable = scoreData.getDataTable();
+		Document doc = Jsoup.parse(dataTable);
+		Elements thead = doc != null ? doc.select("tbody:eq(1)") : null;
+		Elements tr = thead != null ? thead.select("tr:eq(0)") : null;
+		Elements td = tr != null ? tr.select("td:eq(0)") : null;
+		scoreData.setDataTime(td != null ? td.text() : null);
 		if(scoreDataService.save(scoreData)>0){
 			return R.ok();
 		}
