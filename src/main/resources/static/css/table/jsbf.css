@@ -358,10 +358,10 @@ td.rt_no_border { border-right:none!important;}
 .smallAdCell { height:44px; overflow:hidden;}
 
 /*20140401 add*/
-.tdDiv p {
-    height: 24px;
-    line-height: 24px;
-}
+/*.tdDiv p {*/
+    /*height: 24px;*/
+    /*line-height: 24px;*/
+/*}*/
 .tdDiv p i{padding:0 3px;}
 .cenDiv i{display:inline-block;width:25px;}
 .cenDiv i .text999{color:#999;}

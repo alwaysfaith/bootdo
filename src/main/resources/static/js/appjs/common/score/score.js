@@ -14,7 +14,7 @@ function load() {
 					//	showColumns : true,
 						iconSize : 'outline',
 						toolbar : '#exampleToolbar',
-						striped : true, // 设置为true会有隔行变色效果
+						// striped : true, // 设置为true会有隔行变色效果
 						dataType : "json", // 服务器返回的数据类型
 						pagination : true, // 设置为true会在底部显示分页条
 						// queryParamsType : "limit",
@@ -101,53 +101,83 @@ function load() {
 									field : 'hostTeam', 
 									title : '主队',
                                     formatter: function (value, row) {
-                                        var a = '<span class="hostTeam"><i class="hostYellowCard">'+row.hostYellowCard+'</i><i class="hostRedCard">'+row.hostRedCard+'</i><i class="hostRank">'+row.hostRank+'</i>'+value+'</span>',
-                                        b = '<span class="hostTeam"><i class="hostYellowCard hidden">'+row.hostYellowCard+'</i><i class="hostRedCard">'+row.hostRedCard+'</i><i class="hostRank">'+row.hostRank+'</i>'+value+'</span>',
-                                        c = '<span class="hostTeam"><i class="hostYellowCard">'+row.hostYellowCard+'</i><i class="hostRedCard hidden">'+row.hostRedCard+'</i><i class="hostRank">'+row.hostRank+'</i>'+value+'</span>',
-										d='<span class="hostTeam"><i class="hostYellowCard hidden">'+row.hostYellowCard+'</i><i class="hostRedCard hidden">'+row.hostRedCard+'</i><i class="hostRank">'+row.hostRank+'</i>'+value+'</span>';
-                                        if (row.hostYellowCard!=0 && row.hostRedCard!=0) {
+                                        var a = '<span class="hostTeam"><i class="hostYellowCard" title="黄牌">'+row.hostYellowCard+'</i><i class="hostRedCard"  title="红牌">'+row.hostRedCard+'</i><i class="hostRank"  title="排名" >'+row.hostRank+'</i>'+row.hostTeam+'</span>',
+                                        b = '<span class="hostTeam"><i class="hostYellowCard"  title="黄牌">'+row.hostYellowCard+'</i><i class="hostRedCard"  title="红牌">'+row.hostRedCard+'</i><i class="hostRank hidden"  title="排名">'+row.hostRank+'</i>'+row.hostTeam+'</span>',
+                                        c = '<span class="hostTeam"><i class="hostYellowCard"  title="黄牌">'+row.hostYellowCard+'</i><i class="hostRedCard hidden"  title="红牌">'+row.hostRedCard+'</i><i class="hostRank"  title="排名">'+row.hostRank+'</i>'+row.hostTeam+'</span>',
+										d='<span class="hostTeam"><i class="hostYellowCard "  title="黄牌">'+row.hostYellowCard+'</i><i class="hostRedCard hidden"  title="红牌">'+row.hostRedCard+'</i><i class="hostRank hidden"  title="排名">'+row.hostRank+'</i>'+row.hostTeam+'</span>',
+                                        e='<span class="hostTeam"><i class="hostYellowCard hidden"  title="黄牌">'+row.hostYellowCard+'</i><i class="hostRedCard "  title="红牌">'+row.hostRedCard+'</i><i class="hostRank"  title="排名">'+row.hostRank+'</i>'+row.hostTeam+'</span>',
+                                        f='<span class="hostTeam"><i class="hostYellowCard hidden"  title="黄牌">'+row.hostYellowCard+'</i><i class="hostRedCard " title="红牌">'+row.hostRedCard+'</i><i class="hostRank hidden"  title="排名">'+row.hostRank+'</i>'+row.hostTeam+'</span>',
+                                        g='<span class="hostTeam"><i class="hostYellowCard hidden"  title="黄牌">'+row.hostYellowCard+'</i><i class="hostRedCard hidden"  title="红牌">'+row.hostRedCard+'</i><i class="hostRank"  title="排名">'+row.hostRank+'</i>'+row.hostTeam+'</span>',
+                                        h='<span class="hostTeam"><i class="hostYellowCard hidden" title="黄牌">'+row.hostYellowCard+'</i><i class="hostRedCard hidden"  title="红牌">'+row.hostRedCard+'</i><i class="hostRank hidden"  title="排名">'+row.hostRank+'</i>'+row.hostTeam+'</span>';
+                                        if (row.hostYellowCard!=0 && row.hostRedCard!=0 && row.hostRank!=0) {
                                             return a;
-                                        } else if(row.hostYellowCard==0 && row.hostRedCard !=0){
+                                        } else if(row.hostYellowCard!=0 && row.hostRedCard!=0 && row.hostRank==0) {
                                             return b;
-                                        } else if(row.hostYellowCard!=0 && row.hostRedCard==0){
+                                        } else if(row.hostYellowCard!=0 && row.hostRedCard==0 && row.hostRank!=0) {
                                             return c;
-                                        } else if(row.hostYellowCard==0 && row.hostRedCard==0){
+                                        } else if(row.hostYellowCard!=0 && row.hostRedCard==0 && row.hostRank==0) {
                                             return d;
+                                        } else if(row.hostYellowCard==0 && row.hostRedCard!=0 && row.hostRank!=0) {
+                                            return e;
+                                        } else if(row.hostYellowCard==0 && row.hostRedCard!=0 && row.hostRank==0) {
+                                            return f;
+                                        } else if(row.hostYellowCard==0 && row.hostRedCard==0 && row.hostRank!=0) {
+                                            return g;
+                                        } else if(row.hostYellowCard==0 && row.hostRedCard==0 && row.hostRank==0) {
+                                            return h;
                                         }
                                     }
 								},
 								{
 									field : 'betScore',
-									title : '比分'
+									title : '比分',
+                                    formatter: function (value, row) {
+                                        return '<span class="betScore">'+row.betScore+'</span>';
+                                    }
 								},
 								{
 									field : 'guestTeam', 
 									title : '客队',
                                     formatter: function (value, row) {
-                                        var a = '<span class="guestTeam">'+value+'<i class="guestYellowCard">'+row.guestYellowCard+'</i><i class="guestRedCard">'+row.hostRedCard+'</i><i class="guestRank">'+row.guestRank+'</i></span>',
-                                            b = '<span class="guestTeam">'+value+'<i class="guestYellowCard hidden">'+row.guestYellowCard+'</i><i class="guestRedCard">'+row.hostRedCard+'</i><i class="guestRank">'+row.guestRank+'</i></span>',
-                                            c = '<span class="guestTeam">'+value+'<i class="guestYellowCard">'+row.guestYellowCard+'</i><i class="guestRedCard hidden">'+row.hostRedCard+'</i><i class="guestRank">'+row.guestRank+'</i></span>',
-                                            d='<span class="guestTeam">'+value+'<i class="guestYellowCard hidden">'+row.guestYellowCard+'</i><i class="guestRedCard hidden">'+row.hostRedCard+'</i><i class="guestRank">'+row.guestRank+'</i></span>';
-                                        if (row.guestYellowCard!=0 && row.guestRedCard!=0) {
+                                        var a = '<span class="guestTeam">'+row.guestTeam+'<i class="guestRank"  title="排名">'+row.guestRank+'</i><i class="guestRedCard" title="红牌">'+row.guestRedCard+'</i><i class="guestYellowCard"  title="黄牌">'+row.guestYellowCard+'</i></span>',
+                                            b = '<span class="guestTeam">'+row.guestTeam+'<i class="guestRank hidden"  title="排名">\'+row.guestRank+\'</i><i class="guestRedCard" title="红牌">'+row.guestRedCard+'</i><i class="guestYellowCard"  title="黄牌">\'+row.guestYellowCard+\'</i></span>',
+                                            c = '<span class="guestTeam">'+row.guestTeam+'<i class="guestRank"  title="排名">\'+row.guestRank+\'</i><i class="guestRedCard hidden" title="红牌">'+row.guestRedCard+'</i><i class="guestYellowCard"  title="黄牌">\'+row.guestYellowCard+\'</i></span>',
+                                            d='<span class="guestTeam">'+row.guestTeam+'<i class="guestRank hidden"  title="排名">\'+row.guestRank+\'</i><i class="guestRedCard hidden" title="红牌">'+row.guestRedCard+'</i><i class="guestYellowCard "  title="黄牌">\'+row.guestYellowCard+\'</i></span>',
+                                            e='<span class="guestTeam">'+row.guestTeam+'<i class="guestRank"  title="排名">\'+row.guestRank+\'</i><i class="guestRedCard " title="红牌">'+row.guestRedCard+'</i><i class="guestYellowCard hidden"  title="黄牌">\'+row.guestYellowCard+\'</i></span>',
+                                            f='<span class="guestTeam">'+row.guestTeam+'<i class="guestRank hidden"  title="排名">\'+row.guestRank+\'</i><i class="guestRedCard " title="红牌">'+row.guestRedCard+'</i><i class="guestYellowCard hidden"  title="黄牌">\'+row.guestYellowCard+\'</i></span>',
+                                            g='<span class="guestTeam">'+row.guestTeam+'<i class="guestRank"  title="排名">\'+row.guestRank+\'</i><i class="guestRedCard hidden" title="红牌">'+row.guestRedCard+'</i><i class="guestYellowCard hidden"  title="黄牌">\'+row.guestYellowCard+\'</i></span>',
+                                            h='<span class="guestTeam">'+row.guestTeam+'<i class="guestRank hidden"  title="排名">\'+row.guestRank+\'</i><i class="guestRedCard hidden" title="红牌">'+row.guestRedCard+'</i><i class="guestYellowCard hidden"  title="黄牌">\'+row.guestYellowCard+\'</i></span>';
+                                        if (row.guestYellowCard!=0 && row.guestRedCard!=0 && row.guestRank!=0) {
                                             return a;
-                                        } else if(row.guestYellowCard==0 && row.guestRedCard !=0){
+                                        } else if(row.guestYellowCard!=0 && row.guestRedCard!=0 && row.guestRank==0) {
                                             return b;
-                                        } else if(row.guestYellowCard!=0 && row.guestRedCard==0){
+                                        } else if(row.guestYellowCard!=0 && row.guestRedCard==0 && row.guestRank!=0) {
                                             return c;
-                                        } else if(row.guestYellowCard==0 && row.guestRedCard==0){
+                                        } else if(row.guestYellowCard!=0 && row.guestRedCard==0 && row.guestRank==0) {
                                             return d;
+                                        } else if(row.guestYellowCard==0 && row.guestRedCard!=0 && row.guestRank!=0) {
+                                            return e;
+                                        } else if(row.guestYellowCard==0 && row.guestRedCard!=0 && row.guestRank==0) {
+                                            return f;
+                                        } else if(row.guestYellowCard==0 && row.guestRedCard==0 && row.guestRank!=0) {
+                                            return g;
+                                        } else if(row.guestYellowCard==0 && row.guestRedCard==0 && row.guestRank==0) {
+                                            return h;
                                         }
                                     }
 								},
 								{
 									field : 'betScoreHalf', 
-									title : '半场比分' 
+									title : '半场比分',
+                                    formatter: function (value, row) {
+                                        return '<span class="betScore">'+row.betScore+'</span>';
+                                    }
 								},
 								{
 									field : 'drawBall', 
 									title : '平手盘',
                                     formatter: function (value, row) {
-                                        return '<div class="tdDiv"><p class="drawBall">'+row.drawBall+'</p><p class="letBall">'+row.letBall+'</p></div>';
+                                        return '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;">&nbsp;'+row.drawBall+'</p><p class="letBall">'+row.letBall+'</p></div>';
                                     }
 								},
 								{
@@ -159,15 +189,15 @@ function load() {
 									field : 'drawWinOdds', 
 									title : '平手盘主队',
                                     formatter: function (value, row) {
-                                        var e = '<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
-                                            f = '<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
-                                            g =  '<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>',
-                                            h= '<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds ">'+row.letLoseOdds+'</i></p></div>',
-                                            i='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds    letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds ">'+row.letLoseOdds+'</i></p></div>',
-                                            j='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds    ">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>',
-                                            k='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
-                                            l='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds   letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
-                                            m='<div class="tdDiv"><p class="drawBall"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>';
+                                        var e = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
+                                            f = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
+                                            g =  '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds drawActive">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>',
+                                            h= '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds ">'+row.letLoseOdds+'</i></p></div>',
+                                            i='<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds    letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds ">'+row.letLoseOdds+'</i></p></div>',
+                                            j='<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds drawActive">'+row.drawDrowOdds+'</i><i class="drawLoseOdds">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds    ">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>',
+                                            k='<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds letActive">'+row.letWinOdds+'</i><i class="letDrowOdds ">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
+                                            l='<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds   letActive">'+row.letDrowOdds+'</i><i class="letLoseOdds">'+row.letLoseOdds+'</i></p></div>',
+                                            m='<div class="tdDiv"><p class="drawBall"style="border-bottom: 1px solid #e4eaec;"><i class="drawWinOdds">'+row.drawWinOdds+'</i><i class="drawDrowOdds">'+row.drawDrowOdds+'</i><i class="drawLoseOdds drawActive">'+row.drawLoseOdds+'</i></p><p class="letBall"><i class="letWinOdds">'+row.letWinOdds+'</i><i class="letDrowOdds">'+row.letDrowOdds+'</i><i class="letLoseOdds letActive">'+row.letLoseOdds+'</i></p></div>';
                                         if (row.drawActive==3 && row.letActive==3) {
                                             return e;
                                         } else if(row.drawActive==3 && row.letActive !=1){
@@ -246,19 +276,19 @@ function load() {
 										return e + d ;
 									}
 								}],
-                onPostBody: function () {
-                    //改变复选框样式
-                    $('#exampleTable').find("input:checkbox").each(function (i) {
-                        var $check = $(this);
-                        if ($check.attr("id") && $check.next("label")) {
-                            return;
-                        }
-                        var name = $check.attr("name");
-                        var id = name + "-" + i;
-                        var $label = $('<label for="' + id + '"></label>');
-                        $check.attr("id", id).parent().addClass("bella-checkbox").append($label);
-                    });
-                }
+						onPostBody: function () {
+							//改变复选框样式
+							$('#exampleTable').find("input:checkbox").each(function (i) {
+								var $check = $(this);
+								if ($check.attr("id") && $check.next("label")) {
+									return;
+								}
+								var name = $check.attr("name");
+								var id = name + "-" + i;
+								var $label = $('<label for="' + id + '"></label>');
+								$check.attr("id", id).parent().addClass("bella-checkbox").append($label);
+							});
+						}
 					});
 }
 

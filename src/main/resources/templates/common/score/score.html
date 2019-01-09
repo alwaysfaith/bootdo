@@ -3,10 +3,71 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <style>
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+		padding:0;
+	}
+	.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+		padding:0;
+	}
+	.bootstrap-table .table, .bootstrap-table .table>tbody>tr>td, .bootstrap-table .table>tbody>tr>th, .bootstrap-table .table>tfoot>tr>td, .bootstrap-table .table>tfoot>tr>th, .bootstrap-table .table>thead>tr>td{
+		padding:0!important;
+	}
+	#exampleTable tr th:focus{
+		outline:none;
+	}
+
 	#exampleTable tr th{
+		text-align: center;
 		font-weight:normal;
-		font-size:14px;
-		background-color: #EFEFEF;
+		vertical-align: middle!important;
+		font-size:15px;
+		background-color: #f5f5f5;
+	}
+	#exampleTable tr td{
+		text-align: center;
+		background: #fff;
+		font-size:15px;
+		padding-left:0!important;
+		padding-right:0!important;
+		font-weight:normal;
+	}
+	#exampleTable tr:hover td{
+		background: #f5f5f5;
+	}
+	p.drawBall i:nth-child(1),p.letBall i:nth-child(1){
+		border-left: none;
+	}
+	p.drawBall i,p.letBall i{
+		display: inline-block;
+		padding:0px 10px;
+		border-left:1px solid #e4eaec;
+	}
+	.hostTeam .hostRedCard,.hostTeam .hostYellowCard,.hostTeam .hostRank,.guestTeam .guestRedCard,.guestTeam .guestYellowCard,.guestTeam .guestRank{
+		margin-bottom:10px;
+		margin-right:3px;
+		display: inline-block;
+		padding:1px 2px;
+		font-size:10px;
+		color: #fff;
+		text-align: center;
+		line-height:12px;
+		vertical-align: middle;
+		background: #FF0000;
+	}
+	.guestTeam .guestRedCard,.guestTeam .guestYellowCard,.guestTeam .guestRank{
+		margin-left:3px;
+		margin-right:0;
+	}
+	.hostTeam .hostYellowCard,.guestTeam .guestYellowCard{
+		background: #FF9900;
+	}
+	.hostTeam .hostRank,.guestTeam .guestRank{
+		background: #0000FF;
+	}
+	.betScore{
+		font-weight:600;
+		color:red;
+		font-family:"Microsoft YaHei UI Light";
 	}
 </style>
 <body class="gray-bg">
