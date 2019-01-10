@@ -186,4 +186,67 @@
 		</foreach>
 	</delete>
 
+	<insert id="batchSave" parameterType="java.util.List">
+		INSERT INTO
+		`tf_score`
+		(
+			`bet_id`,
+			`bet_week`,
+			`bet_league`,
+			`bet_time`,
+			`start_time`,
+			`host_rank`,
+			`host_team`,
+			`guest_rank`,
+			`guest_team`,
+			`bet_score`,
+			`host_red_card`,
+			`guest_red_card`,
+			`host_yellow_card`,
+			`guest_yellow_card`,
+			`bet_score_half`,
+			`draw_ball`,
+			`draw_win_odds`,
+			`draw_drow_odds`,
+			`draw_lose_odds`,
+			`let_ball`,
+			`let_win_odds`,
+			`let_drow_odds`,
+			`let_lose_odds`,
+			`draw_active`,
+			`let_active`,
+			`data_id`
+		)
+		VALUES
+		<foreach collection="list" item="score" index="index" separator=",">
+			(
+			#{score.betId},
+			#{score.betWeek},
+			#{score.betLeague},
+			#{score.betTime},
+			#{score.startTime},
+			#{score.hostRank},
+			#{score.hostTeam},
+			#{score.guestRank},
+			#{score.guestTeam},
+			#{score.betScore},
+			#{score.hostRedCard},
+			#{score.guestRedCard},
+			#{score.hostYellowCard},
+			#{score.guestYellowCard},
+			#{score.betScoreHalf},
+			#{score.drawBall},
+			#{score.drawWinOdds},
+			#{score.drawDrowOdds},
+			#{score.drawLoseOdds},
+			#{score.letBall},
+			#{score.letWinOdds},
+			#{score.letDrowOdds},
+			#{score.letLoseOdds},
+			#{score.drawActive},
+			#{score.letActive},
+			#{score.dataId}
+			)
+		</foreach>
+	</insert>
 </mapper>

@@ -4,24 +4,25 @@
 <mapper namespace="com.bootdo.common.dao.ScoreDataDao">
 
 	<select id="get" resultType="com.bootdo.common.domain.ScoreDataDO">
-		select `data_id`,`data_time`,`data_table` from tf_score_data where data_id = #{value}
+		select `data_id`,`data_time`,`data_table`,`data_status` from tf_score_data where data_id = #{value}
 	</select>
 
 	<select id="list" resultType="com.bootdo.common.domain.ScoreDataDO">
-		select `data_id`,`data_time`,`data_table` from tf_score_data
-        <where>  
-		  		  <if test="dataId != null and dataId != ''"> and data_id = #{dataId} </if>
-		  		  <if test="dataTime != null and dataTime != ''"> and data_time = #{dataTime} </if>
-		  		  <if test="dataTable != null and dataTable != ''"> and data_table = #{dataTable} </if>
-		  		</where>
-        <choose>
-            <when test="sort != null and sort.trim() != ''">
-                order by ${sort} ${order}
-            </when>
+		select `data_id`,`data_time`,`data_table`,`data_status` from tf_score_data
+		<where>
+			<if test="dataId != null and dataId != ''"> and data_id = #{dataId} </if>
+			<if test="dataTime != null and dataTime != ''"> and data_time = #{dataTime} </if>
+			<if test="dataTable != null and dataTable != ''"> and data_table = #{dataTable} </if>
+			<if test="dataStatus != null and dataStatus != ''"> and data_status = #{dataStatus} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
 			<otherwise>
-                order by data_id desc
+				order by data_id desc
 			</otherwise>
-        </choose>
+		</choose>
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
@@ -33,6 +34,7 @@
 		  		  <if test="dataId != null and dataId != ''"> and data_id = #{dataId} </if>
 		  		  <if test="dataTime != null and dataTime != ''"> and data_time = #{dataTime} </if>
 		  		  <if test="dataTable != null and dataTable != ''"> and data_table = #{dataTable} </if>
+			 	  <if test="dataStatus != null and dataStatus != ''"> and data_status = #{dataStatus} </if>
 		  		</where>
 	</select>
 	 
@@ -41,13 +43,15 @@
 		(
 			`data_id`, 
 			`data_time`, 
-			`data_table`
+			`data_table`,
+			`data_status`
 		)
 		values
 		(
 			#{dataId}, 
 			#{dataTime}, 
-			#{dataTable}
+			#{dataTable},
+			#{dataStatus}
 		)
 	</insert>
 	 
@@ -56,6 +60,7 @@
 		<set>
 			<if test="dataTime != null">`data_time` = #{dataTime}, </if>
 			<if test="dataTable != null">`data_table` = #{dataTable}</if>
+			<if test="dataStatus != null">`data_status` = #{dataStatus}</if>
 		</set>
 		where data_id = #{dataId}
 	</update>

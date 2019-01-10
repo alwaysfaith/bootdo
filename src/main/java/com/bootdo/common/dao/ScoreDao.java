@@ -29,4 +29,6 @@ public interface ScoreDao {
 	int remove(Long bet_id);
 	
 	int batchRemove(Long[] betIds);
+
+    int batchSave(List<ScoreDO> score);
 }

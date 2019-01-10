@@ -1,22 +1,16 @@
 package com.bootdo.common.controller;
 
 import com.bootdo.common.domain.ScoreDO;
-import com.bootdo.common.generator.IdWorkerInstance;
 import com.bootdo.common.service.ScoreService;
-import com.bootdo.common.utils.*;
+import com.bootdo.common.utils.PageUtils;
+import com.bootdo.common.utils.Query;
+import com.bootdo.common.utils.R;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -45,8 +39,7 @@ public class ScoreController {
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 //        String format = dateFormat.format(date);
 //        System.out.println(format);
-        String format2="2019-01-03";
-        String html="<table class=\"table_stys_01\" id=\"jq_jsbf_body\">\n" +
+        String html = "<table class=\"table_stys_01\" id=\"jq_jsbf_body\">\n" +
                 "                 <thead>\n" +
                 "                  <tr>\n" +
                 "                  \t<td width=\"30\">显示</td>\n" +
@@ -83,7 +76,7 @@ public class ScoreController {
                 "\t\t\t\t</td>\n" +
                 "\t\t\t\t<td class=\"duiz_box\">\n" +
                 "\t\t\t\t\t<span class=\"left_line\">\n" +
-                "\t\t\t\t\t\t\t<s id=\"jq_hostredcard_1576211\" class=\"red_card_num jq_redcard\" title=\"红牌\" style=\"display:none;\">0</s>\n" +
+                "\t\t\t\t\t\t\t<s id=\"jq_hostredcard_1576211\" class=\"red_card_num jq_redcard\" title=\"红牌\">0</s>\n" +
                 "\t\t\t\t\t\t\t<s id=\"jq_hostyellowcard_1576211\" class=\"yellow_card_num jq_yellowcard\" title=\"黄牌\" style=\"display: none;\">2</s>\n" +
                 "\t\t\t\t\t\t<span title=\"球队排名\" class=\"gray_11 jq_rank\" id=\"jq_hostrank_1576211\">\n" +
                 "\t\t\t\t\t\t[18]\n" +
@@ -330,107 +323,170 @@ public class ScoreController {
                 "\n" +
                 "</table>";
 
-        Document doc = Jsoup.parse(html);
-        Elements thead = doc != null ? doc.select("tbody:eq(0)") : null;
-        Elements table = doc != null ? doc.select("tbody:eq(1)") : null;
-//        Element table = doc.getElementById("jq_jsbf_body");
-        // 使用选择器选择该table内所有的<tr> <tr/>
-        Elements trs = table != null ? table.select("tr") : null;
-        Long aLong = IdWorkerInstance.getId();
-        Long aLong1 = IdWorkerInstance.getId();
-        Long aLong2 = IdWorkerInstance.getId();
-        System.out.println(aLong);
-        System.out.println(aLong1);
-        System.out.println(aLong2);
-        //遍历该表格内的所有的<tr> <tr/>
-        if (trs != null) {
-            for (Element tr : trs) {
-                // 获取一个tr
-                // 获取该行的所有td节点
-                Elements tds = tr.select("td");
-                // 选择某一个td节点
-                for (Element td : tds) {
-                    // 获取td节点的所有div
-                    //获取比赛周次
-                    String betWeek = tds.get(1).text();
-                    //比赛赛事(英超)
-                    String betEvent = tds.get(2).text();
-                    Elements spans3 = tds.get(3).select("span");
-                    for (Element span3 : spans3) {
-                        //取这两个时间
-                        String text1 = spans3.get(0).text();
-                        String text2 = spans3.get(1).text();
-                        System.out.println(text1);
-                        System.out.println(text2);
-                    }
-                    //主队信息hostTeam
-                    Elements spans4 = tds.get(4).select("span");
-                    for (Element span4 : spans4) {
-
-                    }
-
-                    String text1 = tds.get(4).text();
-                    String text2 = tds.get(5).text();
-                    String text3 = tds.get(6).text();
-                    System.out.println(text1);
-                    System.out.println(text2);
-                    System.out.println(text3);
-
-
-                    Elements divs = td.select("div");
-                    // 选择一个div
-                    for (Element div : divs) {
-                        //获取文本信息
-                        String text = div.text();
-                        //输出到控制台
-                        System.out.println(text);
-                    }
-                }
-            }
-        }
-    }
-
-//    @ResponseBody
-//    @GetMapping("/export")
-//    @RequiresPermissions("common:score:score")
-//    public PageInfoUtils export() {
-//        Document doc = null;
-//        try {
-//            doc = Jsoup.connect("https://live.aicai.com/").get();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        // 根据id获取table
-//        Date date = new Date();
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        String format = dateFormat.format(date);
-//        System.out.println(format);
-//        Elements table = doc != null ? doc.getElementsByClass("tbody_body jq_match_" + format + "_tbody jq_match_bodyHead") : null;
+//        Document doc = Jsoup.parse(html);
+//        Elements table = doc != null ? doc.select("tbody:eq(2)") : null;
 ////        Element table = doc.getElementById("jq_jsbf_body");
 //        // 使用选择器选择该table内所有的<tr> <tr/>
 //        Elements trs = table != null ? table.select("tr") : null;
+//        List<ScoreDO> scoreDOS = new ArrayList<>();
 //        //遍历该表格内的所有的<tr> <tr/>
 //        if (trs != null) {
 //            for (Element tr : trs) {
+//                ScoreDO scoreDO = new ScoreDO();
+//                scoreDO.setBetId(IdWorkerInstance.getId());
 //                // 获取一个tr
 //                // 获取该行的所有td节点
 //                Elements tds = tr.select("td");
 //                // 选择某一个td节点
-//                for (Element td : tds) {
+//                for (Element ignore : tds) {
 //                    // 获取td节点的所有div
-//                    Elements divs = td.select("div");
-//                    // 选择一个div
-//                    for (Element div : divs) {
-//                        //获取文本信息
-//                        String text = div.text();
-//                        //输出到控制台
-//                        System.out.println(text);
+//                    //获取比赛周次
+//                    String betWeek = tds.get(1).text();
+//                    scoreDO.setBetWeek(betWeek);
+//                    //比赛赛事(英超)
+//                    String betLeague = tds.get(2).text();
+//                    scoreDO.setBetLeague(betLeague);
+//                    Elements spans3 = tds.get(3).select("span");
+//                    for (Element ignored : spans3) {
+//                        String betTime = spans3.get(0).text();
+//                        String startTime = spans3.get(1).text();
+//                        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
+//                        SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
+//                        try {
+//                            Date betTimeParse = format.parse(betTime);
+//                            //matchTime
+//                            Date startTimeParse = format2.parse(startTime);
+//                            scoreDO.setBetTime(betTimeParse);
+//                            //startTime
+//                            scoreDO.setStartTime(startTimeParse);
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                    //主队信息hostTeam
+//                    Elements spans4 = tds.get(4).select("span");
+//                    for (Element ignoring : spans4) {
+//                        Elements ss = spans4.get(0).select("s");
+//                        for (Element ignored : ss) {
+//                            //主队红牌
+//                            boolean hasAttr = ss.get(0).hasAttr("style");
+//                            if (hasAttr) {
+//                                scoreDO.setHostRedCard(0);
+//                            } else {
+//                                String hostRedCard = ss.get(0).text();
+//                                scoreDO.setHostRedCard(Integer.valueOf(hostRedCard.trim()));
+//                            }
+//                            boolean hasAttr2 = ss.get(1).hasAttr("style");
+//                            if (hasAttr2) {
+//                                scoreDO.setHostYellowCard(0);
+//                            } else {
+//                                //主队黄牌
+//                                String hostYellowCard = ss.get(1).text();
+//                                scoreDO.setHostYellowCard(Integer.valueOf(hostYellowCard.trim()));
+//                            }
+//                        }
+//                        //主队排名
+//                        String hostRank = spans4.get(1).text();
+//                        String replaceAll = hostRank.trim().replace("[", "");
+//                        String replace = replaceAll.replace("]", "");
+//                        scoreDO.setHostRank(Integer.valueOf(replace.trim()));
+//                        //主队名车
+//                        String hostTeam = spans4.get(2).text();
+//                        scoreDO.setHostTeam(hostTeam);
+//                        //完场比分
+//                        String betScore = spans4.get(3).text();
+//                        scoreDO.setBetScore(betScore);
+//                        Elements select = spans4.get(4).select("s");
+//                        for (Element ignored : select) {
+//                            //客队红牌
+//                            boolean style = select.get(0).hasAttr("style");
+//                            if (style) {
+//                                scoreDO.setGuestRedCard(0);
+//                            } else {
+//                                String guestRedCard = select.get(0).text();
+//                                scoreDO.setGuestRedCard(Integer.valueOf(guestRedCard.trim()));
+//                            }
+//                            boolean style2 = select.get(1).hasAttr("style");
+//                            if (style2) {
+//                                scoreDO.setGuestYellowCard(0);
+//                            } else {
+//                                //客队黄牌
+//                                String guestYellowCard = select.get(1).text();
+//                                scoreDO.setGuestYellowCard(Integer.valueOf(guestYellowCard.trim()));
+//                            }
+//                        }
+//                        //客队排名
+//                        String guestRank = spans4.get(6).text();
+//                        String replaceAll2 = guestRank.trim().replace("[", "");
+//                        String replace2 = replaceAll2.replace("]", "");
+//                        scoreDO.setGuestRank(Integer.valueOf(replace2.trim()));
+//                        //客队名车
+//                        String guestTeam = spans4.get(5).text();
+//                        scoreDO.setGuestTeam(guestTeam);
+//                    }
+//                    //半场比分
+//                    String betHalf = tds.get(6).select("span").get(0).text();
+//                    scoreDO.setBetScoreHalf(betHalf);
+//                    Elements elements = tds.get(7).select("div").select("p");
+//                    for (Element ignored : elements) {
+//                        //平手
+//                        String drawBall = elements.get(0).text();
+//                        scoreDO.setDrawBall(Integer.valueOf(drawBall.trim()));
+//                        //让q
+//                        String letBall = elements.get(1).text();
+//                        scoreDO.setLetBall(Integer.valueOf(letBall.trim()));
+//                    }
+//                    Elements ps = tds.get(8).select("div").select("p");
+//                    for (Element ignored : ps) {
+//                        Elements is = ps.get(0).select("i");
+//                        for (Element ignor : is) {
+//                            //平主队
+//                            String drawWinOdds = is.get(0).text();
+//                            scoreDO.setDrawWinOdds(drawWinOdds);
+//                            //平平
+//                            String drawDrowOdds = is.get(1).text();
+//                            scoreDO.setDrawDrowOdds(drawDrowOdds);
+//                            //平客
+//                            String drawLoseOdds = is.get(2).text();
+//                            scoreDO.setDrawLoseOdds(drawLoseOdds);
+//
+//                            //设置打出属性
+//                            if(is.get(0).hasAttr("style")){
+//                                scoreDO.setDrawActive(String.valueOf(3));
+//                            }else if(is.get(1).hasAttr("style")){
+//                                scoreDO.setDrawActive(String.valueOf(1));
+//                            }else if(is.get(2).hasAttr("style")){
+//                                scoreDO.setDrawActive(String.valueOf(0));
+//                            }
+//                        }
+//                        Elements i2s = ps.get(1).select("i");
+//                        for (Element ignor : i2s) {
+//                            //让主
+//                            String letWinOdds = i2s.get(0).text();
+//                            scoreDO.setLetWinOdds(letWinOdds);
+//                            //让平
+//                            String letDrowOdds = i2s.get(1).text();
+//                            scoreDO.setLetDrowOdds(letDrowOdds);
+//                            //让客
+//                            String letLoseOdds = i2s.get(2).text();
+//                            scoreDO.setLetLoseOdds(letLoseOdds);
+//
+//                            //设置打出属性
+//                            if(i2s.get(0).hasAttr("style")){
+//                                scoreDO.setLetActive(String.valueOf(3));
+//                            }else if(i2s.get(1).hasAttr("style")){
+//                                scoreDO.setLetActive(String.valueOf(1));
+//                            }else if(i2s.get(2).hasAttr("style")){
+//                                scoreDO.setLetActive(String.valueOf(0));
+//                            }
+//                        }
 //                    }
 //                }
+//                scoreDOS.add(scoreDO);
 //            }
+//            System.out.println(scoreDOS);
 //        }
-//        return null;
-//    }
+    }
 
 
     @GetMapping()
@@ -443,14 +499,11 @@ public class ScoreController {
     @GetMapping("/list")
     @RequiresPermissions("common:score:score")
     public PageUtils list(@RequestParam Map<String, Object> params) {
-        params.put("offset", 0);
-        params.put("limit", 100);
         //查询列表数据
         Query query = new Query(params);
         List<ScoreDO> scoreList = scoreService.list(query);
         int total = scoreService.count(query);
-        PageUtils pageUtils = new PageUtils(scoreList, total);
-        return pageUtils;
+        return new PageUtils(scoreList, total);
     }
 
     @GetMapping("/add")
@@ -481,6 +534,18 @@ public class ScoreController {
     }
 
     /**
+     * 批量保存
+     */
+    @ResponseBody
+    @PostMapping("/batchSave")
+    public R batchSave(List<ScoreDO> scoreDOS) {
+        if (scoreService.batchSave(scoreDOS)>0) {
+            return R.ok();
+        }
+        return R.error();
+    }
+
+    /**
      * 修改
      */
     @ResponseBody
@@ -496,9 +561,8 @@ public class ScoreController {
      */
     @PostMapping("/remove")
     @ResponseBody
-    @RequiresPermissions("common:score:remove")
-    public R remove(Long eventId) {
-        if (scoreService.remove(eventId) > 0) {
+    public R remove(Long betId) {
+        if (scoreService.remove(betId) > 0) {
             return R.ok();
         }
         return R.error();
@@ -509,9 +573,8 @@ public class ScoreController {
      */
     @PostMapping("/batchRemove")
     @ResponseBody
-    @RequiresPermissions("common:score:batchRemove")
-    public R remove(@RequestParam("ids[]") Long[] eventIds) {
-        scoreService.batchRemove(eventIds);
+    public R remove(@RequestParam("ids[]") Long[] betIds) {
+        scoreService.batchRemove(betIds);
         return R.ok();
     }
 

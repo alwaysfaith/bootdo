@@ -10,8 +10,9 @@ import com.bootdo.common.dao.ScoreDao;
 import com.bootdo.common.domain.ScoreDO;
 import com.bootdo.common.service.ScoreService;
 
-
-
+/**
+ * @author Administrator
+ */
 @Service
 public class ScoreServiceImpl implements ScoreService {
 	@Autowired
@@ -51,5 +52,9 @@ public class ScoreServiceImpl implements ScoreService {
 	public int batchRemove(Long[] betIds){
 		return scoreDao.batchRemove(betIds);
 	}
-	
+
+	@Override
+	public int batchSave(List<ScoreDO> scoreDOS) {
+		return scoreDao.batchSave(scoreDOS);
+	}
 }

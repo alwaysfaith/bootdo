@@ -50,7 +50,13 @@ function load() {
 								{
 									field : 'dataId', 
 									title : '数据ID',
-                                    width: 128
+                                    width: 160,
+								},
+								{
+									field : 'dataStatus',
+									title : '数据状态',
+									width: 100,
+                                    visible:false
 								},
 								{
 									field : 'dataTime', 
@@ -68,24 +74,40 @@ function load() {
 									field : 'id',
 									align : 'center',
                                     width: 100,
-									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.dataId
-												+ '\')"><i class="fa fa-edit"></i></a> ';
+									formatter : function(value, row) {
 										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
 												+ row.dataId
 												+ '\')"><i class="fa fa-remove"></i></a> ';
-										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
+										var f = '<a class="btn btn-success btn-sm" href="#" title="解析"  mce_href="#" onclick="resetPwd(\''
 												+ row.dataId
-												+ '\')"><i class="fa fa-key"></i></a> ';
-										return e + d ;
+												+ '\')"><i class="fa fa-futbol-o"></i></a> ';
+										if(row.dataStatus==0){
+											return f+d;
+										}else if(row.dataStatus==1){
+                                            return d;
+										}
 									}
 								} ]
 					});
 }
-function reLoad() {
 
-	$('#exampleTable').bootstrapTable('refresh');
+function reLoad() {
+    var opt = {
+        queryParams: function (params) {
+            return {
+                //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
+                limit: params.limit,
+                offset: params.offset,
+                workId: $('#workId').val(),
+                department: $('#department').val(),
+                workProvince: $('#workProvince').val(),
+                workCity: $('#workCity').val()
+            };
+        }
+    };
+    // load();
+    $("#exampleTable").bootstrapTable('refreshOptions', {pageNumber: 1});
+    $('#exampleTable').bootstrapTable('refresh', opt);
 }
 function add() {
    var index= layer.open({
@@ -127,9 +149,33 @@ function remove(id) {
 	})
 }
 
-function reSearch() {
-
+function resetPwd(id){
+    $.ajax({
+        type : 'POST',
+        data : {
+            "dataId" : id
+        },
+        url : prefix + '/resolve',
+        success : function(r) {
+            if (r.code == 0) {
+                layer.msg(r.msg);
+                reLoad();
+            } else {
+                layer.msg(r.msg);
+            }
+        }
+    });
 }
+
+
+//重置搜索
+function resetSearch() {
+    $('#query-form').find('[name]').each(function () {
+        $(this).val('');
+    });
+    reLoad();
+}
+
 function batchRemove() {
 	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {

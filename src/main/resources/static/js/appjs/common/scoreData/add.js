@@ -45,14 +45,14 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			name : {
+            dataTable : {
 				required : true
 			}
 		},
 		messages : {
-			name : {
-    required : icon + "请输入姓名"
-}
-}
+            dataTable : {
+        required : icon + "请导入数据"
+     }
+   }
 })
 }

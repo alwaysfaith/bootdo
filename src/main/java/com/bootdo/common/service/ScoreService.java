@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
- * 
+ *
  * @author chglee
  * @email 1992lcg@163.com
  * @date 2019-01-04 14:59:46
@@ -27,4 +26,6 @@ public interface ScoreService {
 	int remove(Long betId);
 	
 	int batchRemove(Long[] betIds);
+
+	int batchSave(List<ScoreDO> scoreDOS);
 }

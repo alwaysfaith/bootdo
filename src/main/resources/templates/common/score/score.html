@@ -3,6 +3,24 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <style>
+	.fixed-table-container {
+		border: 1px solid #D9D9D9;
+	}
+	.bootstrap-table .table {
+		border-bottom: 1px solid #D9D9D9;
+	}
+	.bootstrap-table .table>thead>tr>th {
+		border-bottom: 1px solid #D9D9D9;
+	}
+	.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+		border-top: 1px solid #D9D9D9;
+	}
+	.fixed-table-container tbody td {
+		border-left: 1px solid #D9D9D9;
+	}
+	.fixed-table-container thead th {
+		border-left: 1px solid #D9D9D9;
+	}
 	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
 		padding:0;
 	}
@@ -10,23 +28,24 @@
 		padding:0;
 	}
 	.bootstrap-table .table, .bootstrap-table .table>tbody>tr>td, .bootstrap-table .table>tbody>tr>th, .bootstrap-table .table>tfoot>tr>td, .bootstrap-table .table>tfoot>tr>th, .bootstrap-table .table>thead>tr>td{
-		padding:0!important;
+		padding:0px!important;
 	}
 	#exampleTable tr th:focus{
 		outline:none;
 	}
-
 	#exampleTable tr th{
 		text-align: center;
 		font-weight:normal;
 		vertical-align: middle!important;
 		font-size:15px;
+		color: #555;
 		background-color: #f5f5f5;
 	}
 	#exampleTable tr td{
 		text-align: center;
 		background: #fff;
 		font-size:15px;
+		color: #555;
 		padding-left:0!important;
 		padding-right:0!important;
 		font-weight:normal;
@@ -39,20 +58,25 @@
 	}
 	p.drawBall i,p.letBall i{
 		display: inline-block;
-		padding:0px 10px;
-		border-left:1px solid #e4eaec;
+		padding: 6px 12px;
+		font-size:14px;
+		border-left:1px solid #D9D9D9;
 	}
-	.hostTeam .hostRedCard,.hostTeam .hostYellowCard,.hostTeam .hostRank,.guestTeam .guestRedCard,.guestTeam .guestYellowCard,.guestTeam .guestRank{
+	p.drawBall i span,p.letBall i span{
+		display: inline-block;
+		padding: 0 6px;
+	}
+	.hostTeam .hostRedCard,.hostTeam .hostYellowCard,.guestTeam .guestRedCard,.guestTeam .guestYellowCard{
 		margin-bottom:10px;
 		margin-right:3px;
 		display: inline-block;
-		padding:1px 2px;
+		padding: 2px 3.5px;
 		font-size:10px;
 		color: #fff;
 		text-align: center;
 		line-height:12px;
 		vertical-align: middle;
-		background: #FF0000;
+		background: #E60012;
 	}
 	.guestTeam .guestRedCard,.guestTeam .guestYellowCard,.guestTeam .guestRank{
 		margin-left:3px;
@@ -62,11 +86,17 @@
 		background: #FF9900;
 	}
 	.hostTeam .hostRank,.guestTeam .guestRank{
-		background: #0000FF;
+		font-size:10px;
+		line-height:12px;
+		vertical-align: middle;
+		display: inline-block;
+		color: #999;
+		margin: 0 2px 10px 2px;
 	}
 	.betScore{
 		font-weight:600;
-		color:red;
+		color:#E60012;
+		font-size: 13px;
 		font-family:"Microsoft YaHei UI Light";
 	}
 </style>
@@ -77,72 +107,136 @@
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="layui-form" id="query-form">
-							<div class="layui-form-item">
 
+							<div class="layui-form-item">
 								<div class="layui-input-inline">
-									<input type="text" name="workId" onkeyup="reLoad()" class="layui-input"
-										   id="workId" v-model="workId"
-										   placeholder="请输入工号">
+									<input type="text" name="betWeek" onkeyup="reLoad()" class="layui-input"
+										   id="betWeek"
+										   placeholder="比赛周次">
 								</div>
 								<div class="layui-input-inline">
-									<input type="text" name="name" onkeyup="reLoad()" class="layui-input"
-										   id="name" v-model="name"
-										   placeholder="请输入姓名">
+									<input type="text" name="betLeague" onkeyup="reLoad()" class="layui-input"
+										   id="betLeague"
+										   placeholder="比赛赛事">
 								</div>
 								<div class="layui-input-inline">
-									<input type="text" name="department" onkeyup="reLoad()" class="layui-input"
-										   id="department" v-model="department"
-										   placeholder="请输入部门">
+									<input type="text" name="betTime" onkeyup="reLoad()" class="layui-input"
+										   id="betTime"
+										   placeholder="比赛日期">
 								</div>
 								<div class="layui-input-inline">
-									<select class="layui-input" onchange="reLoadProvince()" id="workProvince"
-											name="workProvince">
-									</select>
+									<input type="text" name="hostTeam" onkeyup="reLoad()" class="layui-input"
+										   id="hostTeam"
+										   placeholder="主队">
 								</div>
 								<div class="layui-input-inline">
-									<select class="layui-input" onchange="reLoad()" id="workCity"
-											name="workCity">
-									</select>
+									<input type="text" name="hostRank" onkeyup="reLoad()" class="layui-input"
+										   id="hostRank"
+										   placeholder="主队排名">
 								</div>
 							</div>
 
 							<div class="layui-form-item">
 								<div class="layui-input-inline">
-									<select class="layui-input" onchange="reLoad()" id="userType" name="userType">
-										<option value="">—请选择会员类型—</option>
-										<option value="1">内部会员</option>
-										<option value="2">外部会员</option>
-									</select>
+									<input type="text" name="guestTeam" onkeyup="reLoad()" class="layui-input"
+										   id="guestTeam"
+										   placeholder="客队">
 								</div>
-
 								<div class="layui-input-inline">
-									<select class="layui-input" onchange="reLoad()" id="sex" name="sex">
-										<option value="">—请选择性别—</option>
-										<option value="男">男</option>
-										<option value="女">女</option>
-									</select>
+									<input type="text" name="guestRank" onkeyup="reLoad()" class="layui-input"
+										   id="guestRank"
+										   placeholder="客队排名">
 								</div>
-
 								<div class="layui-input-inline">
-									<select class="layui-input" onchange="reLoad()" id="maritalStatus" name="maritalStatus">
-										<option value="">—请选择婚姻状况—</option>
-										<!--        婚姻状态 1.未婚 2已婚 3离异 4丧偶-->
-										<option value="1">未婚</option>
-										<option value="3">离异</option>
-										<option value="4">丧偶</option>
-									</select>
+									<input type="text" name="betScore" onkeyup="reLoad()" class="layui-input"
+										   id="betScore"
+										   placeholder="完场比分">
 								</div>
-
 								<div class="layui-input-inline">
-									<input id="createStartTime" name="createStartTime" type="text" class="layui-input"
-										   placeholder="开始注册时间">
+									<input type="text" name="betScoreHalf" onkeyup="reLoad()" class="layui-input"
+										   id="betScoreHalf"
+										   placeholder="半场比分">
 								</div>
-								<div class=" layui-input-inline">
-									<input id="createEndTime" name="createEndTime" type="text" class="layui-input"
-										   placeholder="结束注册时间">
+								<div class="layui-input-inline">
+									<input type="text" name="hostRedCard" onkeyup="reLoad()" class="layui-input"
+										   id="hostRedCard"
+										   placeholder="主队红牌">
 								</div>
 							</div>
 
+							<div class="layui-form-item">
+								<div class="layui-input-inline">
+									<input type="text" name="hostYellowCard" onkeyup="reLoad()" class="layui-input"
+										   id="hostYellowCard"
+										   placeholder="主队黄牌">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="guestRedCard" onkeyup="reLoad()" class="layui-input"
+										   id="guestRedCard"
+										   placeholder="客队红牌">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="guestYellowCard" onkeyup="reLoad()" class="layui-input"
+										   id="guestYellowCard"
+										   placeholder="客队黄牌">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="drawBall" onkeyup="reLoad()" class="layui-input"
+										   id="drawBall"
+										   placeholder="平手盘">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="drawWinOdds" onkeyup="reLoad()" class="layui-input"
+										   id="drawWinOdds"
+										   placeholder="平手盘主队">
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<div class="layui-input-inline">
+									<input type="text" name="drawDrowOdds" onkeyup="reLoad()" class="layui-input"
+										   id="drawDrowOdds"
+										   placeholder="平手盘平手">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="drawLoseOdds" onkeyup="reLoad()" class="layui-input"
+										   id="drawLoseOdds"
+										   placeholder="平手盘客队">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="letBall" onkeyup="reLoad()" class="layui-input"
+										   id="letBall"
+										   placeholder="让球盘">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="letWinOdds" onkeyup="reLoad()" class="layui-input"
+										   id="letWinOdds"
+										   placeholder="让球盘主队">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="letDrowOdds" onkeyup="reLoad()" class="layui-input"
+										   id="letDrowOdds"
+										   placeholder="让球盘平手">
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<div class="layui-input-inline">
+									<input type="text" name="letLoseOdds" onkeyup="reLoad()" class="layui-input"
+										   id="letLoseOdds"
+										   placeholder="让球盘客队">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="drawActive" onkeyup="reLoad()" class="layui-input"
+										   id="drawActive"
+										   placeholder="平手盘3主队赢1平手0客队赢">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="letActive" onkeyup="reLoad()" class="layui-input"
+										   id="letActive"
+										   placeholder="让球盘3主队赢1平手0客队赢">
+								</div>
+							</div>
 							<div class="layui-form-item">
 								<div class="layui-input-inline" style="width: 50%;">
 									<button id="btn_search" onclick="reLoad()" type="button"
@@ -153,11 +247,8 @@
 											class="layui-btn">
 										<span class="fa fa-eraser" aria-hidden="true">重置</span>
 									</button>
-									<button type="button" class="layui-btn" onclick="add()">
-										<i class="fa fa-plus" aria-hidden="true"></i> 添加
-									</button>
 									<button type="button" class="layui-btn"
-											onclick="batchRemoveLimit()">
+											onclick="batchRemove()">
 										<i class="fa fa-trash" aria-hidden="true"></i>删除
 									</button>
 								</div>
