@@ -14,7 +14,7 @@ function load() {
 					//	showColumns : true,
 						iconSize : 'outline',
 						toolbar : '#exampleToolbar',
-						striped : true, // 设置为true会有隔行变色效果
+						// striped : true, // 设置为true会有隔行变色效果
 						dataType : "json", // 服务器返回的数据类型
 						pagination : true, // 设置为true会在底部显示分页条
 						// queryParamsType : "limit",
@@ -75,7 +75,7 @@ function load() {
 									align : 'center',
                                     width: 100,
 									formatter : function(value, row) {
-										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
+										var d = '<a class="btn-danger btn-sm" href="#" title="删除"  mce_href="#" onclick="remove(\''
 												+ row.dataId
 												+ '\')"><i class="fa fa-remove"></i></a> ';
 										var f = '<a class="btn btn-success btn-sm" href="#" title="解析"  mce_href="#" onclick="resetPwd(\''
@@ -87,7 +87,20 @@ function load() {
                                             return d;
 										}
 									}
-								} ]
+								}],
+                onPostBody: function () {
+                    //改变复选框样式
+                    $('#exampleTable').find("input:checkbox").each(function (i) {
+                        var $check = $(this);
+                        if ($check.attr("id") && $check.next("label")) {
+                            return;
+                        }
+                        var name = $check.attr("name");
+                        var id = name + "-" + i;
+                        var $label = $('<label for="' + id + '"></label>');
+                        $check.attr("id", id).parent().addClass("bella-checkbox").append($label);
+                    });
+                }
 					});
 }
 

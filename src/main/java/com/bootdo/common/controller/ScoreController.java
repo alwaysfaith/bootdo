@@ -491,7 +491,7 @@ public class ScoreController {
 
     @GetMapping()
     @RequiresPermissions("common:score:score")
-    String Score() {
+    public String score() {
         return "common/score/score";
     }
 
@@ -508,13 +508,13 @@ public class ScoreController {
 
     @GetMapping("/add")
     @RequiresPermissions("common:score:add")
-    String add() {
+    public String add() {
         return "common/score/add";
     }
 
     @GetMapping("/edit/{eventId}")
     @RequiresPermissions("common:score:edit")
-    String edit(@PathVariable("eventId") Long eventId, Model model) {
+    public String edit(@PathVariable("eventId") Long eventId, Model model) {
         ScoreDO score = scoreService.get(eventId);
         model.addAttribute("score", score);
         return "common/score/edit";

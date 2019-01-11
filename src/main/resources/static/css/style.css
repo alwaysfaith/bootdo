@@ -7487,7 +7487,7 @@ optgroup {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    max-height: 94px;
+    /*max-height: 94px;*/
 }
 
 .form-group .description-controller {

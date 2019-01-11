@@ -3,6 +3,37 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <style type="text/css">
+	.fixed-table-container {
+		border: 1px solid #D9D9D9;
+	}
+	.bootstrap-table .table {
+		border-bottom: 1px solid #D9D9D9;
+	}
+	.bootstrap-table .table>thead>tr>th {
+		border-bottom: 1px solid #D9D9D9;
+	}
+	.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+		border-top: 1px solid #D9D9D9;
+	}
+	.fixed-table-container tbody td {
+		border-left: 1px solid #D9D9D9;
+	}
+	.fixed-table-container thead th {
+		border-left: 1px solid #D9D9D9;
+	}
+	#exampleTable tr th:focus{
+		outline:none;
+	}
+	#exampleTable tr td{
+		background: #fff;
+		text-align: center;
+	}
+	#exampleTable tr th{
+		text-align: center;
+		font-weight:normal;
+		font-size: 15px;
+		background: #F2F2F2;
+	}
 	.table {table-layout:fixed;}
 	#expertsTd{display:none!important;}
 	.rt_no_border{display:none!important;}
@@ -17,22 +48,28 @@
 			<div class="ibox">
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
-						<div class="columns pull-left">
-							<button shiro:hasPermission="common:scoreData:add" type="button" class="btn  btn-primary" onclick="add()">
-								<i class="fa fa-plus" aria-hidden="true"></i>添加
-							</button>
-							<button shiro:hasPermission="common:scoreData:batchRemove" type="button" class="btn  btn-danger"
-								onclick="batchRemove()">
-								<i class="fa fa-trash" aria-hidden="true"></i>删除
-							</button>
-						</div>
-						<div class="columns pull-right">
-							<div class="form-inline">
-								<input class="form-control input-outline" name="dataId" id="dataId" type="text" placeholder="数据ID">
-								<input class="form-control input-outline" name="dataTime" id="dataTime"  type="text" placeholder="数据时间">
-								<input class="form-control input-outline"  name="dataTable" id="dataTable"  type="text" placeholder="数据HTML">
-								<button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
-								<button class="btn btn-info" onclick="resetSearch()"><i class="fa fa-eraser" aria-hidden="true"></i>重置</button>
+						<div class="layui-form" id="query-form">
+							<div class="layui-form-item">
+								<div class="layui-input-inline">
+									<input class="layui-input" name="dataId" id="dataId" type="text" placeholder="数据ID" onkeyup="reLoad()">
+								</div>
+								<div class="layui-input-inline">
+									<input class="layui-input" name="dataTime" id="dataTime"  type="text" placeholder="数据时间" onkeyup="reLoad()">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="betTime" onkeyup="reLoad()" class="layui-input"  id="betTime" placeholder="比赛日期">
+								</div>
+								<div class="layui-input-inline">
+									<input class="layui-input"  name="dataTable" id="dataTable"  type="text" placeholder="数据HTML" onkeyup="reLoad()">
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-input-inline" style="width: 50%;">
+									<button class="layui-btn" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+									<button class="layui-btn" onclick="resetSearch()"><i class="fa fa-eraser" aria-hidden="true"></i>重置</button>
+									<button  type="button" class="layui-btn" onclick="add()"><i class="fa fa-plus" aria-hidden="true"></i>添加</button>
+									<button type="button" class="layui-btn" onclick="batchRemove()"><i class="fa fa-trash" aria-hidden="true"></i>删除</button>
+								</div>
 							</div>
 						</div>
 					</div>

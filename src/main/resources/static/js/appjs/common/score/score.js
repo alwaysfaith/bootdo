@@ -31,29 +31,29 @@ function load() {
                     //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
                     limit: params.limit,
                     offset: params.offset,
-                    betWeek:$('#betWeek').val(),
-                    betLeague:$('#betLeague').val(),
-                    betTime:$('#betTime').val(),
-                    hostRank:$('#hostRank').val(),
-                    hostTeam:$('#hostTeam').val(),
-                    guestRank:$('#guestRank').val(),
-                    guestTeam:$('#guestTeam').val(),
-                    betScore:$('#betScore').val(),
-                    hostRedCard:$('#hostRedCard').val(),
-                    guestRedCard:$('#guestRedCard').val(),
-                    hostYellowCard:$('#hostYellowCard').val(),
-                    guestYellowCard:$('#guestYellowCard').val(),
-                    betScoreHalf:$('#betScoreHalf').val(),
-                    drawBall:$('#drawBall').val(),
-                    drawWinOdds:$('#drawWinOdds').val(),
-                    drawDrowOdds:$('#drawDrowOdds').val(),
-                    drawLoseOdds:$('#drawLoseOdds').val(),
-                    letBall:$('#letBall').val(),
-                    letWinOdds:$('#letWinOdds').val(),
-                    letDrowOdds:$('#letDrowOdds').val(),
-                    letLoseOdds:$('#letLoseOdds').val(),
-                    drawActive:$('#drawActive').val(),
-                    letActive:$('#letActive').val()
+                    betWeek: $('#betWeek').val(),
+                    betLeague: $('#betLeague').val(),
+                    betTime: $('#betTime').val(),
+                    hostRank: $('#hostRank').val(),
+                    hostTeam: $('#hostTeam').val(),
+                    guestRank: $('#guestRank').val(),
+                    guestTeam: $('#guestTeam').val(),
+                    betScore: $('#betScore').val(),
+                    hostRedCard: $('#hostRedCard').val(),
+                    guestRedCard: $('#guestRedCard').val(),
+                    hostYellowCard: $('#hostYellowCard').val(),
+                    guestYellowCard: $('#guestYellowCard').val(),
+                    betScoreHalf: $('#betScoreHalf').val(),
+                    drawBall: $('#drawBall').val(),
+                    drawWinOdds: $('#drawWinOdds').val(),
+                    drawDrowOdds: $('#drawDrowOdds').val(),
+                    drawLoseOdds: $('#drawLoseOdds').val(),
+                    letBall: $('#letBall').val(),
+                    letWinOdds: $('#letWinOdds').val(),
+                    letDrowOdds: $('#letDrowOdds').val(),
+                    letLoseOdds: $('#letLoseOdds').val(),
+                    drawActive: $('#drawActive').val(),
+                    letActive: $('#letActive').val()
                 };
             },
             // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -80,17 +80,32 @@ function load() {
                     title: '比赛赛事',
                     formatter: function (value, row) {
                         switch (row.betLeague) {
+                            case '亚洲杯':
+                                return '<span style="background: #37BE5A;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
+                                break;
+                            case '澳洲甲':
+                                return '<span style="background: #FF7000;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
+                                break;
+                            case '法甲':
+                                return '<span style="background: #663333;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
+                                break;
+                            case '法乙':
+                                return '<span style="background: #B1A7A7;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
+                                break;
                             case '葡超':
-                                return '<span class="puchao">' + row.betLeague + '</span>';
+                                return '<span style="background: #008888;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
                                 break;
-                            case '英超':
-                                return '<span class="yingchao">' + row.betLeague + '</span>';
+                            case '英冠':
+                                return '<span style="background: #cc3300;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
                                 break;
-                            case 3:
-                                return '<span class="yingchao">' + row.betLeague + '</span>';
+                            case '西甲':
+                                return '<span style="background: #006633;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
                                 break;
-                            case 4:
-                                return '<span class="yingchao">' + row.betLeague + '</span>';
+                            case '西杯':
+                                return '<span style="background:#006666;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
+                                break;
+                            default:
+                                return '<span style="background: #9999CC;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
                                 break;
                         }
                     }
@@ -195,30 +210,30 @@ function load() {
                     title: '客队',
                     formatter: function (value, row) {
                         var a = '<span class="guestTeam">' + row.guestTeam + '' +
-                            '<i class="guestRank"  title="排名">['+row.guestRank+']</i>' +
+                            '<i class="guestRank"  title="排名">[' + row.guestRank + ']</i>' +
                             '<i class="guestRedCard" title="红牌">' + row.guestRedCard + '</i>' +
                             '<i class="guestYellowCard"  title="黄牌">' + row.guestYellowCard + '</i>' +
                             '</span>',
                             b = '<span class="guestTeam">' + row.guestTeam + '' +
-                                '<i class="guestRedCard" title="红牌">'+row.guestRedCard + '</i>' +
-                                '<i class="guestYellowCard"  title="黄牌">'+row.guestYellowCard+'</i>' +
+                                '<i class="guestRedCard" title="红牌">' + row.guestRedCard + '</i>' +
+                                '<i class="guestYellowCard"  title="黄牌">' + row.guestYellowCard + '</i>' +
                                 '</span>',
                             c = '<span class="guestTeam">' + row.guestTeam + '' +
-                                '<i class="guestRank"  title="排名">['+row.guestRank+']</i>' +
-                                '<i class="guestYellowCard"  title="黄牌">'+row.guestYellowCard+'</i>' +
+                                '<i class="guestRank"  title="排名">[' + row.guestRank + ']</i>' +
+                                '<i class="guestYellowCard"  title="黄牌">' + row.guestYellowCard + '</i>' +
                                 '</span>',
                             d = '<span class="guestTeam">' + row.guestTeam + '' +
-                                '<i class="guestYellowCard "  title="黄牌">'+row.guestYellowCard+'</i>' +
+                                '<i class="guestYellowCard "  title="黄牌">' + row.guestYellowCard + '</i>' +
                                 '</span>',
                             e = '<span class="guestTeam">' + row.guestTeam + '' +
-                                '<i class="guestRank"  title="排名">['+row.guestRank+']</i>' +
+                                '<i class="guestRank"  title="排名">[' + row.guestRank + ']</i>' +
                                 '<i class="guestRedCard " title="红牌">' + row.guestRedCard + '</i>' +
                                 '</span>',
                             f = '<span class="guestTeam">' + row.guestTeam + '' +
                                 '<i class="guestRedCard " title="红牌">' + row.guestRedCard + '</i>' +
                                 '</span>',
                             g = '<span class="guestTeam">' + row.guestTeam + '' +
-                                '<i class="guestRank"  title="排名">['+row.guestRank+']</i>' +
+                                '<i class="guestRank"  title="排名">[' + row.guestRank + ']</i>' +
                                 '</span>',
                             h = '<span class="guestTeam">' + row.guestTeam + '</span>';
                         if (row.guestYellowCard != 0 && row.guestRedCard != 0 && row.guestRank != 0) {
@@ -251,7 +266,13 @@ function load() {
                     field: 'drawBall',
                     title: '平手盘',
                     formatter: function (value, row) {
-                        return '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #D9D9D9;">&nbsp;' + row.drawBall + '</p><p class="letBall">' + row.letBall + '</p></div>';
+                        var nbsp = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #D9D9D9;">' + row.drawBall + '</p><p class="letBall"><span class="let-space">' + row.letBall + '</span></p></div>',
+                            nonbsp = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #D9D9D9;">' + row.drawBall + '</p><p class="letBall">' + row.letBall + '</p></div>';
+                        if (row.letBall < 0) {
+                            return nbsp;
+                        } else {
+                            return nonbsp;
+                        }
                     }
                 },
                 {
@@ -265,14 +286,14 @@ function load() {
                     formatter: function (value, row) {
                         var e = '<div class="tdDiv">' +
                             '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
-                                '<i class="drawWinOdds"<span  style="background-color: rgb(21, 110, 202);color: #fff">>' + row.drawWinOdds + '</span></i>' +
-                                '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
-                                '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
+                            '<i class="drawWinOdds"><span  style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawWinOdds + '</span></i>' +
+                            '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
+                            '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                             '</p>' +
                             '<p class="letBall">' +
-                                '<i class="letWinOdds"  ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.letWinOdds + '</span></i>' +
-                                '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
-                                '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
+                            '<i class="letWinOdds"  ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letWinOdds + '</span></i>' +
+                            '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
+                            '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                             '</p>' +
                             '</div>',
                             f = '<div class="tdDiv">' +
@@ -295,22 +316,22 @@ function load() {
                                 '<p class="letBall">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
-                                '<i class="letLoseOdds"><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.letLoseOdds + '</span></i>' +
+                                '<i class="letLoseOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
                                 '</p>' +
                                 '</div>',
                             h = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
-                                '<i class="drawDrowOdds"><span style="background-color: rgb(218, 175, 2);color: #fff">' + row.drawDrowOdds + '</span></i>' +
+                                '<i class="drawDrowOdds"><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
                                 '<p class="letBall">' +
-                                '<i class="letWinOdds"  ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.letWinOdds + '</span></i>' +
+                                '<i class="letWinOdds"  ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds "><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds "><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
                             i = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
-                                '<i class="drawDrowOdds "><span  style="background-color: rgb(218, 175, 2);color: #fff">' + row.drawDrowOdds + '</span></i>' +
+                                '<i class="drawDrowOdds "><span  style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
                                 '<p class="letBall">' +
@@ -321,13 +342,13 @@ function load() {
                             j = '<div class="tdDiv">' +
                                 '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
-                                '<i class="drawDrowOdds " ><span style="background-color: rgb(218, 175, 2);color: #fff">' + row.drawDrowOdds + '</span></i>' +
+                                '<i class="drawDrowOdds " ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
                                 '<p class="letBall">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
-                                '<i class="letLoseOdds" ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.letLoseOdds + '</span></i>' +
+                                '<i class="letLoseOdds" ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
                                 '</p>' +
                                 '</div>',
                             k = '<div class="tdDiv">' +
@@ -337,7 +358,7 @@ function load() {
                                 '<i class="drawLoseOdds "  ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
                                 '<p class="letBall">' +
-                                '<i class="letWinOdds"  ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.letWinOdds + '</span></i>' +
+                                '<i class="letWinOdds"  ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds "><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
@@ -362,6 +383,39 @@ function load() {
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span  style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
+                                '</p></div>',
+                            n = '<div class="tdDiv">' +
+                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
+                                '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
+                                '<i class="drawLoseOdds "  ><span>' + row.drawLoseOdds + '</span></i>' +
+                                '</p>' +
+                                '<p class="letBall">' +
+                                '<i class="letWinOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letWinOdds + '</span></i>' +
+                                '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
+                                '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
+                                '</p></div>',
+                            o = '<div class="tdDiv">' +
+                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
+                                '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
+                                '<i class="drawLoseOdds "  ><span>' + row.drawLoseOdds + '</span></i>' +
+                                '</p>' +
+                                '<p class="letBall">' +
+                                '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
+                                '<i class="letDrowOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letDrowOdds + '</span></i>' +
+                                '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
+                                '</p></div>',
+                            p = '<div class="tdDiv">' +
+                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
+                                '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
+                                '<i class="drawLoseOdds "  ><span>' + row.drawLoseOdds + '</span></i>' +
+                                '</p>' +
+                                '<p class="letBall">' +
+                                '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
+                                '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
+                                '<i class="letLoseOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>';
                         if (row.drawActive == 3 && row.letActive == 3) {
                             return e;
@@ -381,6 +435,14 @@ function load() {
                             return l;
                         } else if (row.drawActive == 0 && row.letActive == 0) {
                             return m;
+                        } else if (row.drawWinOdds == "--" && row.drawDrowOdds == "--" && row.drawLoseOdds == "--") {
+                            if (row.letActive == 3) {
+                                return n;
+                            } else if (row.letActive == 1) {
+                                return o;
+                            } else if (row.letActive == 0) {
+                                return p;
+                            }
                         }
                     }
                 },
@@ -432,7 +494,7 @@ function load() {
                         var e = '<a class="btn btn-primary btn-sm " href="#" mce_href="#" title="编辑" onclick="edit(\''
                             + row.betId
                             + '\')"><i class="fa fa-edit"></i></a> ';
-                        var d = '<a class="btn btn-warning btn-sm" href="#" title="删除"  mce_href="#" onclick="remove(\''
+                        var d = '<a class="btn-danger btn-sm" href="#" title="删除"  mce_href="#" onclick="remove(\''
                             + row.betId
                             + '\')"><i class="fa fa-remove"></i></a> ';
                         var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
@@ -508,29 +570,29 @@ function reLoad() {
                 //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
                 limit: params.limit,
                 offset: params.offset,
-                betWeek:$('#betWeek').val(),
-                betLeague:$('#betLeague').val(),
-                betTime:$('#betTime').val(),
-                hostRank:$('#hostRank').val(),
-                hostTeam:$('#hostTeam').val(),
-                guestRank:$('#guestRank').val(),
-                guestTeam:$('#guestTeam').val(),
-                betScore:$('#betScore').val(),
-                hostRedCard:$('#hostRedCard').val(),
-                guestRedCard:$('#guestRedCard').val(),
-                hostYellowCard:$('#hostYellowCard').val(),
-                guestYellowCard:$('#guestYellowCard').val(),
-                betScoreHalf:$('#betScoreHalf').val(),
-                drawBall:$('#drawBall').val(),
-                drawWinOdds:$('#drawWinOdds').val(),
-                drawDrowOdds:$('#drawDrowOdds').val(),
-                drawLoseOdds:$('#drawLoseOdds').val(),
-                letBall:$('#letBall').val(),
-                letWinOdds:$('#letWinOdds').val(),
-                letDrowOdds:$('#letDrowOdds').val(),
-                letLoseOdds:$('#letLoseOdds').val(),
-                drawActive:$('#drawActive').val(),
-                letActive:$('#letActive').val()
+                betWeek: $('#betWeek').val(),
+                betLeague: $('#betLeague').val(),
+                betTime: $('#betTime').val(),
+                hostRank: $('#hostRank').val(),
+                hostTeam: $('#hostTeam').val(),
+                guestRank: $('#guestRank').val(),
+                guestTeam: $('#guestTeam').val(),
+                betScore: $('#betScore').val(),
+                hostRedCard: $('#hostRedCard').val(),
+                guestRedCard: $('#guestRedCard').val(),
+                hostYellowCard: $('#hostYellowCard').val(),
+                guestYellowCard: $('#guestYellowCard').val(),
+                betScoreHalf: $('#betScoreHalf').val(),
+                drawBall: $('#drawBall').val(),
+                drawWinOdds: $('#drawWinOdds').val(),
+                drawDrowOdds: $('#drawDrowOdds').val(),
+                drawLoseOdds: $('#drawLoseOdds').val(),
+                letBall: $('#letBall').val(),
+                letWinOdds: $('#letWinOdds').val(),
+                letDrowOdds: $('#letDrowOdds').val(),
+                letLoseOdds: $('#letLoseOdds').val(),
+                drawActive: $('#drawActive').val(),
+                letActive: $('#letActive').val()
             };
         }
     };

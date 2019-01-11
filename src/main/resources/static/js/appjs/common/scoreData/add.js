@@ -51,7 +51,7 @@ function validateRule() {
 		},
 		messages : {
             dataTable : {
-        required : icon + "请导入数据"
+        	required : icon + "请导入数据"
      }
    }
 })
