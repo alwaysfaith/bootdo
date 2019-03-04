@@ -149,6 +149,53 @@
 		</foreach>
 	</delete>
 
+	<insert id="batchSave" parameterType="java.util.List">
+		INSERT INTO sys_user
+		(
+		`username`,
+		`name`,
+		`password`,
+		`dept_id`,
+		`email`,
+		`mobile`,
+		`status`,
+		`user_id_create`,
+		`gmt_create`,
+		`gmt_modified`,
+		`sex`,
+		`birth`,
+		`pic_id`,
+		`live_address`,
+		`hobby`,
+		`province`,
+		`city`,
+		`district`
+		)
+		values
+		<foreach item="item" index="index" collection="list" separator=",">
+			(
+			#{item.username},
+			#{item.name},
+			#{item.password},
+			#{item.deptId},
+			#{item.email},
+			#{item.mobile},
+			#{item.status},
+			#{item.userIdCreate},
+			#{item.gmtCreate},
+			#{item.gmtModified},
+			#{item.sex},
+			#{item.birth},
+			#{item.picId},
+			#{item.liveAddress},
+			#{item.hobby},
+			#{item.province},
+			#{item.city},
+			#{item.district}
+			)
+		</foreach>
+	</insert>
+
 	<select id="listAllDept" resultType="long">
 				select DISTINCT dept_id from sys_user
 	</select>

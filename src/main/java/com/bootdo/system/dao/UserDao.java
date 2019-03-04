@@ -1,5 +1,6 @@
 package com.bootdo.system.dao;
 
+import com.bootdo.common.domain.ScoreDO;
 import com.bootdo.system.domain.UserDO;
 
 import java.util.List;
@@ -31,5 +32,7 @@ public interface UserDao {
 	int batchRemove(Long[] userIds);
 	
 	Long[] listAllDept();
+
+	int batchSave(List<UserDO> user);
 
 }

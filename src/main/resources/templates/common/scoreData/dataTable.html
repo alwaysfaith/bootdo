@@ -5,379 +5,471 @@
     <title>Title</title>
 </head>
 <body>
-<table class="table_stys_01" id="jq_jsbf_body">
-    <thead>
-    <tr>
-        <td width="30">显示</td>
-        <td width="50">场次</td>
-        <td width="65">赛事</td>
-        <td width="75">开赛时间</td>
-        <td>赛事信息</td>
-        <td id="expertsTd" width="80" style="display: table-cell;">专家推荐</td>
-        <td width="40">半场</td>
-        <td width="35">让球</td>
-        <td width="135"><select id="jq_select_data">
-            <option value="sp_val">竞彩sp值</option>
-            <option value="avg_euro_val">平均欧指</option>
-        </select></td>
-        <td width="75" class="rt_no_border">数据分析</td>
-    </tr>
-    </thead>
-    <tbody id="jq_match_bodyHead_2019-01-03_tbody" class="jq_match_bodyHead">
-    <tr>
-        <td colspan="10">2019-01-03 (11:00 -- 次日 11:00)</td>
-    </tr>
-    </tbody>
-    <tbody class="tbody_body jq_match_2019-01-03_tbody jq_match_bodyHead">
-    <tr class="otr_bg jq_match_matchId_1576211_tr jq_match_tr jq_match_leagueId_32_tr jq_match_status_-1_tr"
-        id="jq_match_1576211_tr">
-        <td><input type="checkbox" id="jq_1576211" class="jq_selectmatch input" checked="checked"></td>
-        <td class="txtbbb xx_bg_weekIndex" id="jq_matchindex_1576211_td">周四101</td>
-        <td style="color:#fff; background:#008888" id="jq_league_1576211_td" status="0"><a
-                href="http://league.aicai.com/league/32/" style="color:#fff;" target="_blank">葡超</a></td>
-        <td>
-            <span id="jq_league_matchTime_1576211">01-03 23:59</span>
-            <span id="jq_league_starttime_1576211" style="display:none;">23:59</span>
-        </td>
-        <td class="duiz_box">
-					 <span class="left_line">
-							<s id="jq_hostredcard_1576211" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_hostyellowcard_1576211" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">2</s>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_hostrank_1576211">
-						    [18]
-						</span>
-						<span id="jq_match_hostteam_1576211_span">
-                            <a href="http://league.aicai.com/team/866/" target="_blank">沙维什</a>
-                        </span>
-					</span>
-                    <span class="vs">
-							<a id="jq_timelyscore_1576211" class="wcbf_color">0:0</a>
-					</span>
+<div class="liveDataWrap">
+    <div class="controlBox clearfix">
+        <div class="calendar fl clearfix"><!-- 时间选择 -->
+            <div class="calendarBox">
+                <a href="javascript:;" class="calendarBtn" style="min-width: 135px;padding-right: 0;">
+                    <i class="calendarIcon sprite_live"></i>
+                    <input id="jq_date_start" type="text" readonly="readonly" onclick="WdatePicker({onpicked:tanchukuang,isShowClear:false,autoPickDate:true,readOnly:true,dateFmt:'yyyy-MM-dd',minDate:'#F{\'2013-01-30\'}',maxDate:'%y-%M-{%d+2}'});" class="Wdate">
+                    <em class="g-triangle"></em>
+                </a>
+                <script type="text/javascript">
+                    function tanchukuang(){
+                        var datePickertime =""+$dp.cal.date.y+"-"+limitTen($dp.cal.date.M)+"-"+limitTen($dp.cal.date.d)
+                        $('#jq_select_date_or_issue').trigger("change",datePickertime);
+                    }
+                    function limitTen(time){
+                        if(Number(time)<10){
+                            time="0"+time;
+                        }
+                        return time;
+                    }
+                </script>
 
-                    <span class="right_line">
-						<span id="jq_match_guestteam_1576211_span"><a href="http://league.aicai.com/team/1343/"
-                                                                      target="_blank">费伦斯</a></span>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_guestrank_1576211">
-						[17]
-						</span>
-							<s id="jq_guestredcard_1576211" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_guestyellowcard_1576211" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">3</s>
-					</span>
-                    <span class="time_box">
-                            <span class="time_wc">
-                                <span id="jq_status_1576211" rel="-1">完场</span>
-                            </span>
-                    </span>
-                    <span title="查看比赛进程" class="s_h_h jq_matchdetail_control jq_1576211_control" id="jq_1576211_control"></span>
-        </td>
-        <td class="expertsNumTd">
-            <a target="_blank" href="https://yq.aicai.com/matchPlanDetail/1576211-1?agentId=2335103"><span class="red">184</span>位专家推荐</a>
-        </td>
-        <td id="jq_halfscore_1576211">
-            <span class="red">0:0</span>
-        </td>
-        <td id="jq_rangqiu_1576211" letpoint="-1">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;">0</p>
-                <p>-1</p></div>
-        </td>
-        <td class="txtddd">
-            <div class="tdDiv">
-                <p style="border-bottom: 1px solid #DDDDDD;"><i id="jq_winOdds_1576211">1.83</i>|<i
-                    id="jq_drowOdds_1576211" style="background-color: rgb(218, 175, 2); color: white;">2.90</i>|<i
-                    id="jq_loseOdds_1576211">4.20</i>
-                </p>
-                <p><i id="jq_winOdds_let_1576211">3.80</i>|<i id="jq_drowOdds_let_1576211">3.40</i>|<i
-                        id="jq_loseOdds_let_1576211" style="background-color: rgb(21, 110, 202); color: white;">1.75</i>
-                </p>
+                <select id="jq_select_date_or_issue" style="display:none"> </select>
+                <div class="calendarCon"></div>
             </div>
-        </td>
-        <td class="rt_no_border">
-            <a href="/zc/xyo_1576211.html" target="_blank">析</a>&nbsp;
-            <a href="/zc/xyo_1576211_yazhi.html" target="_blank">亚</a>&nbsp;
-            <a href="/zc/xyo_1576211_ouzhi.html" target="_blank">欧</a>
-        </td>
-    </tr>
-    <tr class="jq_match_tr jq_match_matchId_1576215_tr jq_match_leagueId_32_tr jq_match_status_-1_tr"
-        id="jq_match_1576215_tr">
-        <td>
-            <input type="checkbox" id="jq_1576215" class="jq_selectmatch input" checked="checked">
-        </td>
-        <td class="txtbbb xx_bg_weekIndex" id="jq_matchindex_1576215_td">周四102</td>
-        <td style="color:#fff; background:#008888" id="jq_league_1576215_td" status="0"><a
-                href="http://league.aicai.com/league/32/" style="color:#fff;" target="_blank">葡超</a></td>
-        <td>
-            <span id="jq_league_matchTime_1576215">01-04 02:00</span>
-            <span id="jq_league_starttime_1576215" style="display:none;">02:00</span>
-        </td>
-        <td class="duiz_box">
-					<span class="left_line">
-							<s id="jq_hostredcard_1576215" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_hostyellowcard_1576215" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">3</s>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_hostrank_1576215">
-						[4]
-						</span>
-						<span id="jq_match_hostteam_1576215_span"><a href="http://league.aicai.com/team/461/"
-                                                                     target="_blank">里斯本竞</a></span>
-					</span>
-            <span class="vs">
-							<a id="jq_timelyscore_1576215" class="wcbf_color">2:1</a>
-					</span>
-            <span class="right_line">
-						<span id="jq_match_guestteam_1576215_span"><a href="http://league.aicai.com/team/840/"
-                                                                      target="_blank">比兰尼塞</a></span>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_guestrank_1576215">
-						[8]
-						</span>
-							<s id="jq_guestredcard_1576215" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_guestyellowcard_1576215" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">3</s>
-					</span>
-            <span class="time_box">
-					<span class="time_wc">
-						<span id="jq_status_1576215" rel="-1">完场</span>
-					</span>
+        </div>
+        <!-- 功能设置 -->
+        <div class="controlR fr clearfix">
+            <div class="controlLi"><!--添加show显示-->
+                <a href="javascript:;" onclick="funSet($(this))" class="controlBtn" id="jq_funcset_control"><i class="gnszIcon sprite_live"></i>功能设置<em class="g-triangle"></em></a>
+                <div class="tipWap function" id="jq_funcset_panel">
+                    <i class="triangle01"></i><i class="triangle02"></i>
+                    <ul>
+                        <li>
+                            <span>球队排名</span>
+                            <span class="switchBtn rank active" value="0">
+									<i></i>
+								</span>
+                        </li>
+                        <li>
+                            <span>红牌显示</span>
+                            <span class="switchBtn redcard active" value="1">
+									<i></i>
+								</span>
+                        </li>
+                        <li>
+                            <span>黄牌显示</span>
+                            <span class="switchBtn yellowcard" value="2">
+									<i></i>
+								</span>
+                        </li>
+                        <li>
+                            <span>进球红牌声音</span>
+                            <select class="ml15" id="jq_funcset_sound_tip_type">
+                                <option value="1">哨声</option>
+                                <option value="2">贝司</option>
+                                <option value="3">警报</option>
+                                <option value="4">嘟嘟</option>
+                            </select>
+                            <span class="switchBtn soundtip active" value="3">
+									<i></i>
+								</span>
+                        </li>
+                        <li>
+                            <span>进球红牌提示框</span>
+                            <span class="switchBtn boxtip" value="4">
+									<i></i>
+								</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="controlLi" id="matchShowChooseOption">
+                <a href="javascript:;" onclick="showOrHideChooseOption();" class="controlBtn"><i class="sssxIcon sprite_live"></i>赛事筛选<em class="g-triangle"></em></a>
+                <div class="tipWap matchSelect">
+                    <i class="triangle01"></i><i class="triangle02"></i>
+                    <div class="con" style="border-bottom: 1px solid #eee;">
+                        <div class="tit">状态：</div>
+                        <div class="selectBtn clearfix mt10" id="optionMatchStatus">
+                            <a href="javascript:;" onclick="chooseMatchStatus($(this));" class="active">全部<span style="display: none;">10</span></a>
+                            <a href="javascript:;" onclick="chooseMatchStatus($(this));">未开赛<span style="display: none;">0</span></a>
+                            <a href="javascript:;" onclick="chooseMatchStatus($(this));">比赛中<span style="display: none;">1</span></a>
+                            <a href="javascript:;" onclick="chooseMatchStatus($(this));">已完场<span style="display: none;">2</span></a>
+                        </div>
+                    </div>
+                    <div class="con">
+                        <div class="tit clearfix"><span class="fl">赛事：</span>
+                            <div class="fr">
+                                <!--
+									<a href="javascript:;" id="jq_matchselect_teamgroup_topmatch">一级赛事</a>
+									<em>|</em> -->
+                                <a href="javascript:;" onclick="chooseAllLeague();" id="jq_matchselect_teamgroup_all">全选</a>
+                                <em>|</em>
+                                <a href="javascript:;" onclick="reverseChooseLeague();" id="jq_matchselect_teamgroup_inverse">反选</a>
+                            </div>
+                        </div>
+                        <div class="selectBtn clearfix mt20" id="optionLeagueList">
+
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_31" value="31" title="英超" class="active">英超</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_26" value="26" title="西甲" class="active">西甲</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_8" value="8" title="德甲" class="active">德甲</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_29" value="29" title="意甲" class="active">意甲</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_11" value="11" title="法甲" class="active">法甲</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_15" value="15" title="韩K联" class="active">韩K联</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_201" value="201" title="澳洲甲" class="active">澳洲甲</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_9" value="9" title="德乙" class="active">德乙</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_12" value="12" title="法乙" class="active">法乙</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_20" value="20" title="葡超" class="active">葡超</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_16" value="16" title="荷甲" class="active">荷甲</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_10" value="10" title="俄超" class="active">俄超</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_18" value="18" title="美职业" class="active">美职业</a>
+                            <a href="javascript:;" onclick="chooseLeague($(this));" id="jq_select_208" value="208" title="日职乙" class="active">日职乙</a>
+
+                            <script typt="text/javascript">
+                                var leagueIdArr = Array(14);
+                                leagueIdArr[0] = 31;
+                                leagueIdArr[1] = 26;
+                                leagueIdArr[2] = 8;
+                                leagueIdArr[3] = 29;
+                                leagueIdArr[4] = 11;
+                                leagueIdArr[5] = 15;
+                                leagueIdArr[6] = 201;
+                                leagueIdArr[7] = 9;
+                                leagueIdArr[8] = 12;
+                                leagueIdArr[9] = 20;
+                                leagueIdArr[10] = 16;
+                                leagueIdArr[11] = 10;
+                                leagueIdArr[12] = 18;
+                                leagueIdArr[13] = 208;
+                            </script>
+
+                        </div>
+                    </div>
+                    <div class="tipBtn clearfix">
+                        <a href="javascript:;" onclick="confirmChooseOption();" class="active" style="border-right: 1px solid #eee;">确定</a>
+                        <a href="javascript:;" onclick="cacelChooseOption();">取消</a>
+                    </div>
+                </div>
+            </div>
+            <div class="showAll fr">
+                <span id="jq_matchshow_text">隐藏<strong id="jq_hidden_matchcount">0</strong>场</span>
+                <a href="javascript:;" onclick="showAllMatch();" class="mr15 ml15">显示全部</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="tableDataWrap">
+        <table class="tableData" id="jq_jsbf_body">
+            <thead>
+            <tr>
+                <td width="260">
+                    <span style="width: 38px;"></span>
+                    <span class="changci">场次</span><span class="saishi">赛事</span>
+                    <span class="kaisai">开赛</span><span class="zhuangtai">状态</span>
+                </td>
+                <td width="534"><span class="zhudui">主队</span><span class="vs">比分</span><span class="kedui">客队</span></td>
+                <td width="40" class="tac">半场</td>
+                <td width="30" class="tac">让球</td>
+                <td width="140" class="tac">
+                    <div id="oddsCompanyDiv" class="spSelect">
+                        <a href="javascript:;" class="spSelectBtn" onclick="showOrHideOddsCompanyList();">
+                            <span id="choosedOddsCompanyDesc">竞彩sp值</span><span id="choosedOddsCompanyIndex" style="display:none;">6</span><em class="g-triangle"></em>
+                        </a>
+                        <div class="slideUl" style="top: 40px;"><ul id="oddsCompanyUl"><li class="active" onclick="chooseOddsCompany($(this));"><span class="oddsCompanyDesc">竞彩sp值</span><span class="oddsCompanyIndex" style="display:none;">6</span><i class="selectIcon sprite"></i></li><li onclick="chooseOddsCompany($(this));"><span class="oddsCompanyDesc">平均欧指</span><span class="oddsCompanyIndex" style="display:none;">7</span><i class="selectIcon sprite"></i></li><li onclick="chooseOddsCompany($(this));"><span class="oddsCompanyDesc">bet365</span><span class="oddsCompanyIndex" style="display:none;">1</span><i class="selectIcon sprite"></i></li><li onclick="chooseOddsCompany($(this));"><span class="oddsCompanyDesc">澳门</span><span class="oddsCompanyIndex" style="display:none;">2</span><i class="selectIcon sprite"></i></li><li onclick="chooseOddsCompany($(this));"><span class="oddsCompanyDesc">威廉希尔</span><span class="oddsCompanyIndex" style="display:none;">3</span><i class="selectIcon sprite"></i></li><li onclick="chooseOddsCompany($(this));"><span class="oddsCompanyDesc">皇冠</span><span class="oddsCompanyIndex" style="display:none;">0</span><i class="selectIcon sprite"></i></li></ul></div>
+                    </div>
+                </td>
+                <td width="190" class="tar"><span class="fenxi">分析</span><span class="pr5">置顶</span></td>
+            </tr>
+            </thead>
+
+            <tbody id="jq_match_bodyHead_2019-03-03_tbody" class="jq_match_bodyHead">
+            <tr>
+                <td colspan="6" class="timeTitle">2019-03-03 (11:00 -- 次日 11:00)</td>
+            </tr>
+            </tbody>
+
+            <tbody id="matchListTbody" class="jq_match_bodyHead">
+
+            <tr class="liveMacthLi" id="jq_match_1583447_tr" data-matchid="2744101" data-qtmatchid="1583447" data-index="26" data-middle="false" data-leagueid="26" data-matchstatus="2" data-matchstatuscategory="2">
+                <td class="pr no_border_left">
+                    <input type="checkbox" checked="checked" class="input" onchange="showOrHideMatch($(this));">
+                    <span class="week">周日026</span>
+                    <span class="league" style="background:#006633">
+						<a target="_blank" href="http://league.aicai.com/league/38/">西甲</a>
 				</span>
-            <span title="查看比赛进程" class="s_h_h jq_matchdetail_control jq_1576215_control" id="jq_1576215_control"></span>
-        </td>
-        <td class="expertsNumTd">
-            <a target="_blank" href="https://yq.aicai.com/matchPlanDetail/1576215-1?agentId=2335103"><span class="red">198</span>位专家推荐</a>
-        </td>
-        <td id="jq_halfscore_1576215">
-            <span class="red">0:0</span>
-        </td>
-        <td id="jq_rangqiu_1576215" letpoint="-1">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;">0</p>
-                <p>-1</p></div>
-        </td>
-        <td class="txtddd">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;"><i id="jq_winOdds_1576215"
-                                                                               style="background-color: rgb(21, 110, 202); color: white;">1.20</i>|<i
-                    id="jq_drowOdds_1576215">5.10</i>|<i id="jq_loseOdds_1576215">10.00</i></p>
-                <p><i id="jq_winOdds_let_1576215">1.77</i>|<i id="jq_drowOdds_let_1576215"
-                                                              style="background-color: rgb(255, 69, 0); color: white;">3.55</i>|<i
-                        id="jq_loseOdds_let_1576215">3.53</i></p></div>
-        </td>
-        <td class="rt_no_border">
-            <a href="/zc/xyo_1576215.html" target="_blank">析</a>&nbsp;
-            <a href="/zc/xyo_1576215_yazhi.html" target="_blank">亚</a>&nbsp;
-            <a href="/zc/xyo_1576215_ouzhi.html" target="_blank">欧</a>
-        </td>
-    </tr>
-    <tr class="otr_bg jq_match_matchId_1552349_tr jq_match_tr jq_match_leagueId_43_tr jq_match_status_-1_tr"
-        id="jq_match_1552349_tr">
-        <td>
-            <input type="checkbox" id="jq_1552349" class="jq_selectmatch input" checked="checked">
-        </td>
-        <td class="txtbbb xx_bg_weekIndex" id="jq_matchindex_1552349_td">周四103</td>
-        <td style="color:#fff; background:#FF3333" id="jq_league_1552349_td" status="0"><a
-                href="http://league.aicai.com/league/43/" style="color:#fff;" target="_blank">英超</a></td>
-        <td>
-            <span id="jq_league_matchTime_1552349">01-04 04:00</span>
-            <span id="jq_league_starttime_1552349" style="display:none;">04:00</span>
-        </td>
-        <td class="duiz_box">
-					<span class="left_line">
-							<s id="jq_hostredcard_1552349" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_hostyellowcard_1552349" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">4</s>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_hostrank_1552349">
-						[3]
-						</span>
-						<span id="jq_match_hostteam_1552349_span"><a href="http://league.aicai.com/team/54/"
-                                                                     target="_blank">曼城</a></span>
+                    <span class="time"><p class="c999">03-03</p><p>23:15</p></span>
+                    <span id="jq_league_starttime_1583447" style="display:none;">00:00</span>
+                    <span id="jq_status_1583447" class="state red" data-matchstatus="2">已完场</span>
+                </td>
+
+                <td>
+                    <div class="teamLine left">
+                        <span class="card yellow jq_yellowcard" style="display: none;">2</span>
+                        <span class="card red jq_redcard" style="display:none">0</span>
+                        <span class="cbbb ml5 jq_rank">[7]</span>
+                        <span class="name">
+						    <a target="_blank" href="http://league.aicai.com/team/123/">贝蒂斯</a>
+					    </span>
+                    </div>
+                    <div class="vs" onmouseover="showAllOdds($(this));" onmouseout="hideAllOdds($(this));"><a target="_blank" href="//yq.aicai.com/matchPlanDetail/1583447-1/room?showHeader=1&amp;tab=1"><span class="red homeScore">1</span><span class="ml5 mr5">-</span><span class="red awayScore">2</span></a>
+                    </div>
+                    <!--盘口tip-->
+                    <div class="handicapTip">
+                        <i class="triangle01"></i><i class="triangle02"></i>
+                        <table>
+                            <thead>
+                            <tr><td>贝蒂斯</td><td>赫塔费</td></tr>
+                            <tr class="tr2"><td style="border-right: 1px solid #eee;">即时指数</td><td>初盘指数</td></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">亚盘</span>
+                                    <span class="span2 asia_js_win"></span><span class="span3 c999 asia_js_handicap"></span><span class="span4 asia_js_lose"></span>
+                                </td>
+                                <td><span class="span1 asia_first_win"></span><span class="span3 c999 asia_first_handicap"></span><span class="span4 asia_first_lose"></span></td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">欧赔</span>
+                                    <span class="span2 ou_js_win"></span><span class="span3 ou_js_draw"></span><span class="span4 ou_js_lose"></span>
+                                </td>
+                                <td><span class="span1 ou_first_win"></span><span class="span3 ou_js_draw"></span><span class="span4 ou_js_lose"></span></td>
+                            </tr>
+
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">大小</span>
+                                    <span class="span2 bs_js_win"></span><span class="span3 c999 bs_js_handicap"></span><span class="span4 bs_js_lose"></span>
+                                </td>
+                                <td><span class="span1 bs_first_win"></span><span class="span3 c999  bs_first_handicap"></span><span class="span4 bs_first_lose"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="teamLine right">
+					<span class="name">
+						<a target="_blank" href="http://league.aicai.com/team/124/">赫塔费</a>
 					</span>
-            <span class="vs">
-							<a id="jq_timelyscore_1552349" class="wcbf_color">2:1</a>
-					</span>
-            <span class="right_line">
-						<span id="jq_match_guestteam_1552349_span"><a href="http://league.aicai.com/team/53/"
-                                                                      target="_blank">利物浦</a></span>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_guestrank_1552349">
-						[1]
-						</span>
-							<s id="jq_guestredcard_1552349" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_guestyellowcard_1552349" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">2</s>
-					</span>
-            <span class="time_box">
-					<span class="time_wc">
-						<span id="jq_status_1552349" rel="-1">完场</span>
-					</span>
+                        <span class="cbbb mr5 jq_rank">[5]</span>
+                        <span class="card red jq_redcard" style="display:none">0</span>
+                        <span class="card yellow jq_yellowcard" style="display: none;">2</span>
+                    </div>
+                    <div class="videoBxo">
+                        <a class="video sprite_live" target="_blank" href="//yq.aicai.com/matchPlanDetail/1583447-1/room?showHeader=1&amp;tab=1"></a>
+                        <a class="animate sprite_live" target="_blank" href="//yq.aicai.com/matchPlanDetail/1583447-1/room?showHeader=1&amp;tab=2"></a>
+                    </div>
+                    <div class="recomExpert">
+                        <p><a target="_blank" href="http://yq.aicai.com/matchPlanDetail/1583447-1/matchPlanRecommend?showHeader=1&amp;agentId=2335103"><em class="red">127</em>位专家推荐</a></p>
+                    </div>
+                </td>
+                <td class="halfCourt">
+				<span class="red">
+					 0 :
+					 2
 				</span>
-            <span title="查看比赛进程" class="s_h_h jq_matchdetail_control jq_1552349_control" id="jq_1552349_control"></span>
-        </td>
-        <td class="expertsNumTd">
-            <a target="_blank" href="https://yq.aicai.com/matchPlanDetail/1552349-1?agentId=2335103"><span class="red">337</span>位专家推荐</a>
-        </td>
-        <td id="jq_halfscore_1552349">
-            <span class="red">1:0</span>
-        </td>
-        <td id="jq_rangqiu_1552349" letpoint="-1">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;">0</p>
-                <p>-1</p></div>
-        </td>
-        <td class="txtddd">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;"><i id="jq_winOdds_1552349"
-                                                                               style="background-color: rgb(21, 110, 202); color: white;">1.90</i>|<i
-                    id="jq_drowOdds_1552349">3.70</i>|<i id="jq_loseOdds_1552349">3.00</i></p>
-                <p><i id="jq_winOdds_let_1552349">3.75</i>|<i id="jq_drowOdds_let_1552349"
-                                                              style="background-color: rgb(255, 69, 0); color: white;">3.85</i>|<i
-                        id="jq_loseOdds_let_1552349">1.66</i></p></div>
-        </td>
-        <td class="rt_no_border">
-            <a href="/zc/xyo_1552349.html" target="_blank">析</a>&nbsp;
-            <a href="/zc/xyo_1552349_yazhi.html" target="_blank">亚</a>&nbsp;
-            <a href="/zc/xyo_1552349_ouzhi.html" target="_blank">欧</a>
-        </td>
-    </tr>
-    <tr class="jq_match_tr jq_match_matchId_1576208_tr jq_match_leagueId_32_tr jq_match_status_-1_tr"
-        id="jq_match_1576208_tr">
-        <td>
-            <input type="checkbox" id="jq_1576208" class="jq_selectmatch input" checked="checked">
-        </td>
-        <td class="txtbbb xx_bg_weekIndex" id="jq_matchindex_1576208_td">周四104</td>
-        <td style="color:#fff; background:#008888" id="jq_league_1576208_td" status="0"><a
-                href="http://league.aicai.com/league/32/" style="color:#fff;" target="_blank">葡超</a></td>
-        <td>
-            <span id="jq_league_matchTime_1576208">01-04 04:15</span>
-            <span id="jq_league_starttime_1576208" style="display:none;">05:22</span>
-        </td>
-        <td class="duiz_box">
-					<span class="left_line">
-							<s id="jq_hostredcard_1576208" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_hostyellowcard_1576208" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">2</s>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_hostrank_1576208">
-						[15]
-						</span>
-						<span id="jq_match_hostteam_1576208_span"><a href="http://league.aicai.com/team/867/"
-                                                                     target="_blank">阿维斯</a></span>
-					</span>
-            <span class="vs">
-							<a id="jq_timelyscore_1576208" class="wcbf_color">0:1</a>
-					</span>
-            <span class="right_line">
-						<span id="jq_match_guestteam_1576208_span"><a href="http://league.aicai.com/team/463/"
-                                                                      target="_blank">波尔图</a></span>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_guestrank_1576208">
-						[1]
-						</span>
-							<s id="jq_guestredcard_1576208" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_guestyellowcard_1576208" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">1</s>
-					</span>
-            <span class="time_box">
-					<span class="time_wc">
-						<span id="jq_status_1576208" rel="-1">完场</span>
-					</span>
+                </td>
+                <td><div class="tdDiv letBallShow"><p class="letBallShow_no" style="border-bottom: 1px solid #eee;">0</p><p class="letBallShow_let">-1</p></div></td>
+                <td class="txtddd"><div class="tdDiv ouOddsShow"><p class="ouOddsShow_no" style="border-bottom: 1px solid #eee;"><em>2.15</em><em>2.53</em><em><b class="odBg red">3.35</b></em></p><p class="ouOddsShow_let h30"><em>4.85</em><em>3.60</em><em><b class="odBg blue">1.48</b></em></p></div>
+                </td>
+                <td class="linkTd">
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1583447.html">析</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1583447_yazhi.html">亚</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1583447_ouzhi.html">欧</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1583447_dxzhi.html">大</a>
+                    <a target="_blank" href="http://yq.aicai.com/matchPlanDetail/1583447-1/matchPlanIntelligence?showHeader=1" class="red">情报</a>
+                    <a href="javascript:;" onclick="topOrCancelTop($(this));" class="stick sprite_live"></a>
+                </td>
+            </tr>
+
+
+            <tr class="liveMacthLi otrBg" id="jq_match_1552054_tr" data-matchid="2695763" data-qtmatchid="1552054" data-index="27" data-middle="false" data-leagueid="16" data-matchstatus="2" data-matchstatuscategory="2">
+                <td class="pr no_border_left">
+                    <input type="checkbox" checked="checked" class="input" onchange="showOrHideMatch($(this));">
+                    <span class="week">周日027</span>
+                    <span class="league" style="background:#FF6699">
+						<a target="_blank" href="http://league.aicai.com/league/28/">荷甲</a>
 				</span>
-            <span title="查看比赛进程" class="s_h_h jq_matchdetail_control jq_1576208_control" id="jq_1576208_control"></span>
-        </td>
-        <td class="expertsNumTd">
-            <a target="_blank" href="https://yq.aicai.com/matchPlanDetail/1576208-1?agentId=2335103"><span class="red">169</span>位专家推荐</a>
-        </td>
-        <td id="jq_halfscore_1576208">
-            <span class="red">0:1</span>
-        </td>
-        <td id="jq_rangqiu_1576208" letpoint="1">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;">0</p>
-                <p>1</p></div>
-        </td>
-        <td class="txtddd">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;"><i id="jq_winOdds_1576208">11.50</i>|<i
-                    id="jq_drowOdds_1576208">5.35</i>|<i id="jq_loseOdds_1576208"
-                                                         style="background-color: rgb(21, 110, 202); color: white;">1.17</i>
-            </p>
-                <p><i id="jq_winOdds_let_1576208">3.98</i>|<i id="jq_drowOdds_let_1576208"
-                                                              style="background-color: rgb(218, 175, 2); color: white;">3.45</i>|<i
-                        id="jq_loseOdds_let_1576208">1.70</i></p></div>
-        </td>
-        <td class="rt_no_border">
-            <a href="/zc/xyo_1576208.html" target="_blank">析</a>&nbsp;
-            <a href="/zc/xyo_1576208_yazhi.html" target="_blank">亚</a>&nbsp;
-            <a href="/zc/xyo_1576208_ouzhi.html" target="_blank">欧</a>
-        </td>
-    </tr>
-    <tr class="otr_bg jq_match_matchId_1583350_tr jq_match_tr jq_match_leagueId_38_tr jq_match_status_-1_tr"
-        id="jq_match_1583350_tr">
-        <td>
-            <input type="checkbox" id="jq_1583350" class="jq_selectmatch input" checked="checked">
-        </td>
-        <td class="txtbbb xx_bg_weekIndex" id="jq_matchindex_1583350_td">周四105</td>
-        <td style="color:#fff; background:#006633" id="jq_league_1583350_td" status="0"><a
-                href="http://league.aicai.com/league/38/" style="color:#fff;" target="_blank">西甲</a></td>
-        <td>
-            <span id="jq_league_matchTime_1583350">01-04 04:30</span>
-            <span id="jq_league_starttime_1583350" style="display:none;">05:31</span>
-        </td>
-        <td class="duiz_box">
-					<span class="left_line">
-							<s id="jq_hostredcard_1583350" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_hostyellowcard_1583350" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">2</s>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_hostrank_1583350">
-						[18]
-						</span>
-						<span id="jq_match_hostteam_1583350_span"><a href="http://league.aicai.com/team/132/"
-                                                                     target="_blank">比利亚雷</a></span>
+                    <span class="time"><p class="c999">03-03</p><p>23:45</p></span>
+                    <span id="jq_league_starttime_1552054" style="display:none;">00:00</span>
+
+                    <span id="jq_status_1552054" class="state red" data-matchstatus="2">已完场</span>
+                </td>
+                <td>
+                    <div class="teamLine left">
+                        <span class="card yellow jq_yellowcard" style="display:none">0</span>
+                        <span class="card red jq_redcard" style="display:none">0</span>
+                        <span class="cbbb ml5 jq_rank">[4]</span>
+                        <span class="name">
+						<a target="_blank" href="http://league.aicai.com/team/246/">阿尔克马</a>
 					</span>
-            <span class="vs">
-							<a id="jq_timelyscore_1583350" class="wcbf_color">2:2</a>
+                    </div>
+                    <div class="vs" onmouseover="showAllOdds($(this));" onmouseout="hideAllOdds($(this));"><a target="_blank" href="//yq.aicai.com/matchPlanDetail/1552054-1/room?showHeader=1&amp;tab=1"><span class="red homeScore">4</span><span class="ml5 mr5">-</span><span class="red awayScore">2</span></a></div>
+                    <!--盘口tip-->
+                    <div class="handicapTip">
+                        <i class="triangle01"></i><i class="triangle02"></i>
+                        <table>
+                            <thead>
+                            <tr><td>阿尔克马</td><td>福图纳</td></tr>
+                            <tr class="tr2"><td style="border-right: 1px solid #eee;">即时指数</td><td>初盘指数</td></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">亚盘</span>
+                                    <span class="span2 asia_js_win"></span><span class="span3 c999 asia_js_handicap"></span><span class="span4 asia_js_lose"></span>
+                                </td>
+                                <td><span class="span1 asia_first_win"></span><span class="span3 c999 asia_first_handicap"></span><span class="span4 asia_first_lose"></span></td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">欧赔</span>
+                                    <span class="span2 ou_js_win"></span><span class="span3 ou_js_draw"></span><span class="span4 ou_js_lose"></span>
+                                </td>
+                                <td><span class="span1 ou_first_win"></span><span class="span3 ou_js_draw"></span><span class="span4 ou_js_lose"></span></td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">大小</span>
+                                    <span class="span2 bs_js_win"></span><span class="span3 c999 bs_js_handicap"></span><span class="span4 bs_js_lose"></span>
+                                </td>
+                                <td><span class="span1 bs_first_win"></span><span class="span3 c999  bs_first_handicap"></span><span class="span4 bs_first_lose"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="teamLine right">
+					<span class="name">
+						<a target="_blank" href="http://league.aicai.com/team/285/">福图纳</a>
 					</span>
-            <span class="right_line">
-						<span id="jq_match_guestteam_1583350_span"><a href="http://league.aicai.com/team/109/"
-                                                                      target="_blank">皇马</a></span>
-						<span title="球队排名" class="gray_11 jq_rank" id="jq_guestrank_1583350">
-						[4]
-						</span>
-							<s id="jq_guestredcard_1583350" class="red_card_num jq_redcard" title="红牌"
-                               style="display:none;">0</s>
-							<s id="jq_guestyellowcard_1583350" class="yellow_card_num jq_yellowcard" title="黄牌"
-                               style="display: none;">2</s>
-					</span>
-            <span class="time_box">
-					<span class="time_wc">
-						<span id="jq_status_1583350" rel="-1">完场</span>
-					</span>
+                        <span class="cbbb mr5 jq_rank">[13]</span>
+                        <span class="card red jq_redcard" style="display:none">0</span>
+                        <span class="card yellow jq_yellowcard" style="display: none;">1</span>
+                    </div>
+                    <div class="videoBxo">
+                        <a class="video sprite_live" target="_blank" href="//yq.aicai.com/matchPlanDetail/1552054-1/room?showHeader=1&amp;tab=1"></a>
+                        <a class="animate sprite_live" target="_blank" href="//yq.aicai.com/matchPlanDetail/1552054-1/room?showHeader=1&amp;tab=2"></a>
+                    </div>
+                    <div class="recomExpert">
+                        <p><a target="_blank" href="http://yq.aicai.com/matchPlanDetail/1552054-1/matchPlanRecommend?showHeader=1&amp;agentId=2335103"><em class="red">29</em>位专家推荐</a></p>
+                    </div>
+                </td>
+                <td class="halfCourt">
+				<span class="red">
+					 1 :
+					 2
 				</span>
-            <span title="查看比赛进程" class="s_h_h jq_matchdetail_control jq_1583350_control" id="jq_1583350_control"></span>
-        </td>
-        <td class="expertsNumTd">
-            <a target="_blank" href="https://yq.aicai.com/matchPlanDetail/1583350-1?agentId=2335103"><span class="red">255</span>位专家推荐</a>
-        </td>
-        <td id="jq_halfscore_1583350">
-            <span class="red">1:2</span>
-        </td>
-        <td id="jq_rangqiu_1583350" letpoint="1">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;">0</p>
-                <p>1</p></div>
-        </td>
-        <td class="txtddd">
-            <div class="tdDiv"><p style="border-bottom: 1px solid #DDDDDD;"><i id="jq_winOdds_1583350">4.40</i>|<i
-                    id="jq_drowOdds_1583350" style="background-color: rgb(218, 175, 2); color: white;">3.85</i>|<i
-                    id="jq_loseOdds_1583350">1.56</i></p>
-                <p><i id="jq_winOdds_let_1583350" style="background-color: rgb(21, 110, 202); color: white;">2.05</i>|<i
-                        id="jq_drowOdds_let_1583350">3.55</i>|<i id="jq_loseOdds_let_1583350">2.78</i></p></div>
-        </td>
-        <td class="rt_no_border">
-            <a href="/zc/xyo_1583350.html" target="_blank">析</a>&nbsp;
-            <a href="/zc/xyo_1583350_yazhi.html" target="_blank">亚</a>&nbsp;
-            <a href="/zc/xyo_1583350_ouzhi.html" target="_blank">欧</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+                </td>
+                <td><div class="tdDiv letBallShow"><p class="letBallShow_no" style="border-bottom: 1px solid #eee;">0</p><p class="letBallShow_let">-2</p></div></td>
+                <td class="txtddd"><div class="tdDiv ouOddsShow"><p class="ouOddsShow_no" style="border-bottom: 1px solid #eee;"><em><b class="odBg blue">1.07</b></em><em>7.25</em><em>11.50</em></p><p class="ouOddsShow_let h30"><em>1.80</em><em><b class="odBg red">4.20</b></em><em>2.74</em></p></div></td>
+                <td class="linkTd">
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1552054.html">析</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1552054_yazhi.html">亚</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1552054_ouzhi.html">欧</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1552054_dxzhi.html">大</a>
+                    <a target="_blank" href="http://yq.aicai.com/matchPlanDetail/1552054-1/matchPlanIntelligence?showHeader=1" class="red">情报</a>
+                    <a href="javascript:;" onclick="topOrCancelTop($(this));" class="stick sprite_live"></a>
+                </td>
+            </tr>
+            <tr class="liveMacthLi" id="jq_match_1552062_tr" data-matchid="2695785" data-qtmatchid="1552062" data-index="28" data-middle="false" data-leagueid="16" data-matchstatus="2" data-matchstatuscategory="2">
+                <td class="pr no_border_left">
+                    <input type="checkbox" checked="checked" class="input" onchange="showOrHideMatch($(this));">
+                    <span class="week">周日028</span>
+                    <span class="league" style="background:#FF6699">
+						<a target="_blank" href="http://league.aicai.com/league/28/">荷甲</a>
+				</span>
+                    <span class="time"><p class="c999">03-03</p><p>23:45</p></span>
+                    <span id="jq_league_starttime_1552062" style="display:none;">00:00</span>
+
+                    <span id="jq_status_1552062" class="state red" data-matchstatus="2">已完场</span>
+                </td>
+                <td>
+                    <div class="teamLine left">
+                        <span class="card yellow jq_yellowcard" style="display:none">0</span>
+                        <span class="card red jq_redcard" style="display:none">0</span>
+                        <span class="cbbb ml5 jq_rank">[3]</span>
+                        <span class="name">
+						<a target="_blank" href="http://league.aicai.com/team/264/">费耶诺德</a>
+					</span>
+                    </div>
+                    <div class="vs" onmouseover="showAllOdds($(this));" onmouseout="hideAllOdds($(this));"><a target="_blank" href="//yq.aicai.com/matchPlanDetail/1552062-1/room?showHeader=1&amp;tab=1"><span class="red homeScore">4</span><span class="ml5 mr5">-</span><span class="red awayScore">0</span></a></div>
+                    <!--盘口tip-->
+                    <div class="handicapTip">
+                        <i class="triangle01"></i><i class="triangle02"></i>
+                        <table>
+                            <thead>
+                            <tr><td>费耶诺德</td><td>埃门</td></tr>
+                            <tr class="tr2"><td style="border-right: 1px solid #eee;">即时指数</td><td>初盘指数</td></tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">亚盘</span>
+                                    <span class="span2 asia_js_win"></span><span class="span3 c999 asia_js_handicap"></span><span class="span4 asia_js_lose"></span>
+                                </td>
+                                <td><span class="span1 asia_first_win"></span><span class="span3 c999 asia_first_handicap"></span><span class="span4 asia_first_lose"></span></td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">欧赔</span>
+                                    <span class="span2 ou_js_win"></span><span class="span3 ou_js_draw"></span><span class="span4 ou_js_lose"></span>
+                                </td>
+                                <td><span class="span1 ou_first_win"></span><span class="span3 ou_js_draw"></span><span class="span4 ou_js_lose"></span></td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #eee;">
+                                    <span class="span1">大小</span>
+                                    <span class="span2 bs_js_win"></span><span class="span3 c999 bs_js_handicap"></span><span class="span4 bs_js_lose"></span>
+                                </td>
+                                <td><span class="span1 bs_first_win"></span><span class="span3 c999  bs_first_handicap"></span><span class="span4 bs_first_lose"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="teamLine right">
+					<span class="name">
+						<a target="_blank" href="http://league.aicai.com/team/947/">埃门</a>
+					</span>
+                        <span class="cbbb mr5 jq_rank">[16]</span>
+                        <span class="card red jq_redcard" style="display:none">0</span>
+                        <span class="card yellow jq_yellowcard" style="display: none;">1</span>
+                    </div>
+                    <div class="videoBxo">
+                        <a class="video sprite_live" target="_blank" href="//yq.aicai.com/matchPlanDetail/1552062-1/room?showHeader=1&amp;tab=1"></a>
+                        <a class="animate sprite_live" target="_blank" href="//yq.aicai.com/matchPlanDetail/1552062-1/room?showHeader=1&amp;tab=2"></a>
+                    </div>
+                    <div class="recomExpert">
+                        <p><a target="_blank" href="http://yq.aicai.com/matchPlanDetail/1552062-1/matchPlanRecommend?showHeader=1&amp;agentId=2335103"><em class="red">58</em>位专家推荐</a></p>
+                    </div>
+                </td>
+                <td class="halfCourt">
+				<span class="red">
+					 1 :
+					 0
+				</span>
+                </td>
+                <td><div class="tdDiv letBallShow"><p class="letBallShow_no" style="border-bottom: 1px solid #eee;">0</p><p class="letBallShow_let">-2</p></div></td>
+                <td class="txtddd"><div class="tdDiv ouOddsShow"><p class="ouOddsShow_no" style="border-bottom: 1px solid #eee;"><em><b class="odBg blue">1.06</b></em><em>7.75</em><em>11.50</em></p><p class="ouOddsShow_let h30"><em><b class="odBg blue">1.70</b></em><em>4.25</em><em>2.98</em></p></div></td>
+                <td class="linkTd">
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1552062.html">析</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1552062_yazhi.html">亚</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1552062_ouzhi.html">欧</a>
+                    <a target="_blank" href="https://live.aicai.com/zc/xyo_1552062_dxzhi.html">大</a>
+                    <a target="_blank" href="http://yq.aicai.com/matchPlanDetail/1552062-1/matchPlanIntelligence?showHeader=1" class="red">情报</a>
+                    <a href="javascript:;" onclick="topOrCancelTop($(this));" class="stick sprite_live"></a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div class="spCount">
+            <span id="spCountCompany">竞彩sp值</span>
+            <span class="peilv blue">首赔</span><span id="firstCount" class="c333">41</span>
+            <span class="peilv yellow">次赔</span><span id="secondCount" class="c333">11</span>
+            <span class="peilv red">末赔</span><span id="thirdCount" class="c333">22</span>
+            <span id="letSpCount" style="display: none;">
+					<span class="ml25">竞彩sp值(让球)</span>
+					<span class="peilv blue">首赔</span><span id="letFirstCount" class="c333"></span>
+					<span class="peilv yellow">次赔</span><span id="letSecondCount" class="c333"></span>
+					<span class="peilv red">末赔</span><span id="letThirdCount" class="c333"></span>
+				</span>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>
