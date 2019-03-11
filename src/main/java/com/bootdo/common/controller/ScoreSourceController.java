@@ -1,14 +1,15 @@
 package com.bootdo.common.controller;
 
 import com.bootdo.common.domain.ScoreDO;
-import com.bootdo.common.domain.ScoreDataDO;
+import com.bootdo.common.domain.ScoreSourceDO;
 import com.bootdo.common.generator.IdWorkerInstance;
-import com.bootdo.common.service.ScoreDataService;
 import com.bootdo.common.service.ScoreService;
+import com.bootdo.common.service.ScoreSourceService;
 import com.bootdo.common.utils.PageUtils;
 import com.bootdo.common.utils.Query;
 import com.bootdo.common.utils.R;
 import com.bootdo.common.utils.StringUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,9 +32,9 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/common/scoreData")
-public class ScoreDataController {
+public class ScoreSourceController {
     @Autowired
-    private ScoreDataService scoreDataService;
+    private ScoreSourceService scoreDataService;
 
     @Autowired
     ScoreService scoreService;
@@ -48,10 +49,10 @@ public class ScoreDataController {
     @ResponseBody
     @RequiresPermissions("common:scoreData:scoreData")
     public R resolveScoreData(@RequestParam Map<String, Object> params) {
-        ScoreDataDO scoreDataDO = scoreDataService.list(params).get(0);
-        String dataTable = scoreDataDO.getDataTable();
+        ScoreSourceDO scoreDataDO = scoreDataService.list(params).get(0);
+        String dataTable = scoreDataDO.getSsTable();
         Document doc = Jsoup.parse(dataTable);
-        Elements table = doc != null ? doc.select("tbody:eq(2)") : null;
+        Elements table = doc != null ? doc.select("tbody:eq(1)") : null;
         // 使用选择器选择该table内所有的<tr> <tr/>
         Elements trs = table != null ? table.select("tr") : null;
         List<ScoreDO> scoreDOS = new ArrayList<>();
@@ -67,12 +68,16 @@ public class ScoreDataController {
                 for (Element ignore : tds) {
                     // 获取td节点的所有div
                     //获取比赛周次
-                    String betWeek = tds.get(1).text();
+                    String betWeek = tds.get(0).select("strong").text();
                     scoreDO.setBetWeek(betWeek);
                     //比赛赛事(英超)
-                    String betLeague = tds.get(2).text();
+                    String betLeague = tds.get(1).select("a").text();
                     scoreDO.setBetLeague(betLeague);
-                    Elements spans3 = tds.get(3).select("span");
+                    //比赛赛事样式
+                    String style1 = tds.get(1).attr("style");
+                    scoreDO.setBetLeagueStyle(style1);
+
+                    Elements spans3 = tds.get(2).select("span");
                     for (Element ignored : spans3) {
                         String betTime = spans3.get(0).text();
                         String startTime = spans3.get(1).text();
@@ -82,7 +87,7 @@ public class ScoreDataController {
                         scoreDO.setStartTime(startTime);
                     }
                     //主队信息hostTeam
-                    Elements spans4 = tds.get(4).select("span");
+                    Elements spans4 = tds.get(3).select("span");
                     for (Element ignoring : spans4) {
                         Elements ss = spans4.get(0).select("s");
                         for (Element ignored : ss) {
@@ -167,16 +172,16 @@ public class ScoreDataController {
                         scoreDO.setGuestTeam(guestTeam);
                     }
                     //半场比分
-                    String betHalf = tds.get(6).select("span").get(0).text();
+                    String betHalf = tds.get(5).select("span").get(0).text();
                     scoreDO.setBetScoreHalf(betHalf);
                     Elements elements = tds.get(7).select("div").select("p");
                     for (Element ignored : elements) {
                         //平手
                         String drawBall = elements.get(0).text();
-                        scoreDO.setDrawBall(Integer.valueOf(drawBall.trim()));
+                        scoreDO.setDrawPoint(Integer.valueOf(drawBall.trim()));
                         //让q
                         String letBall = elements.get(1).text();
-                        scoreDO.setLetBall(Integer.valueOf(letBall.trim()));
+                        scoreDO.setLetPoint(Integer.valueOf(letBall.trim()));
                     }
                     Elements ps = tds.get(8).select("div").select("p");
                     for (Element ignored : ps) {
@@ -194,10 +199,19 @@ public class ScoreDataController {
 
                             //设置打出属性
                             if (is.get(0).hasAttr("style")) {
+                                String style = is.get(0).attr("style");
+                                setAveIndexOrStyle(scoreDO, style);
                                 scoreDO.setDrawActive(String.valueOf(3));
+
                             } else if (is.get(1).hasAttr("style")) {
+                                String style = is.get(0).attr("style");
+                                setAveIndexOrStyle(scoreDO, style);
+
                                 scoreDO.setDrawActive(String.valueOf(1));
                             } else if (is.get(2).hasAttr("style")) {
+                                String style = is.get(0).attr("style");
+                                setAveIndexOrStyle(scoreDO, style);
+
                                 scoreDO.setDrawActive(String.valueOf(0));
                             }
                         }
@@ -224,18 +238,32 @@ public class ScoreDataController {
                         }
                     }
                 }
-                scoreDO.setDataId(scoreDataDO.getDataId());
+                scoreDO.setSsId(scoreDataDO.getSsId());
+                scoreDO.setSsStage(scoreDataDO.getSsStage());
                 scoreDOS.add(scoreDO);
             }
         }
-        if (scoreService.batchSave(scoreDOS) > 0) {
-            ScoreDataDO dataDO = new ScoreDataDO();
-            dataDO.setDataId(scoreDataDO.getDataId());
-            dataDO.setDataStatus(1);
+        if (CollectionUtils.isNotEmpty(scoreDOS) && scoreService.batchSave(scoreDOS) > 0) {
+            ScoreSourceDO dataDO = new ScoreSourceDO();
+            dataDO.setSsId(scoreDataDO.getSsId());
+            dataDO.setSsStatus(1);
             scoreDataService.update(dataDO);
             return R.ok();
         }
         return R.error();
+    }
+
+    private void setAveIndexOrStyle(ScoreDO scoreDO, String style) {
+        if("background-color: rgb(218, 175, 2); color: white;".equalsIgnoreCase(style.trim())){
+            scoreDO.setAveIndex(1L);
+            scoreDO.setAveIndexStyle(style.trim());
+        }else if("background-color: rgb(21, 110, 202); color: white;".equalsIgnoreCase(style.trim())){
+            scoreDO.setAveIndex(2L);
+            scoreDO.setAveIndexStyle(style.trim());
+        }else if("background-color: rgb(255, 69, 0); color: white;".equalsIgnoreCase(style.trim())){
+            scoreDO.setAveIndex(3L);
+            scoreDO.setAveIndexStyle(style.trim());
+        }
     }
 
 
@@ -247,7 +275,7 @@ public class ScoreDataController {
         params.put("limit", 100);
         //查询列表数据
         Query query = new Query(params);
-        List<ScoreDataDO> scoreDataList = scoreDataService.list(query);
+        List<ScoreSourceDO> scoreDataList = scoreDataService.list(query);
         int total = scoreDataService.count(query);
         return new PageUtils(scoreDataList, total);
     }
@@ -261,7 +289,7 @@ public class ScoreDataController {
     @GetMapping("/edit/{dataId}")
     @RequiresPermissions("common:scoreData:edit")
     public String edit(@PathVariable("dataId") Long dataId, Model model) {
-        ScoreDataDO scoreData = scoreDataService.get(dataId);
+        ScoreSourceDO scoreData = scoreDataService.get(dataId);
         model.addAttribute("scoreData", scoreData);
         return "common/scoreData/edit";
     }
@@ -272,12 +300,12 @@ public class ScoreDataController {
     @ResponseBody
     @PostMapping("/save")
     @RequiresPermissions("common:scoreData:add")
-    public R save(ScoreDataDO scoreData) {
-        if (StringUtils.isBlank(scoreData.getDataTable())) {
+    public R save(ScoreSourceDO scoreData) {
+        if (StringUtils.isBlank(scoreData.getSsTable())) {
             return R.error("请导入数据！");
         }
-        scoreData.setDataId(IdWorkerInstance.getId());
-        String dataTable = scoreData.getDataTable();
+        scoreData.setSsId(IdWorkerInstance.getId());
+        String dataTable = scoreData.getSsTable();
         Document doc = Jsoup.parse(dataTable);
         Elements thead = doc != null ? doc.select("tbody:eq(1)") : null;
         Elements tr = thead != null ? thead.select("tr:eq(0)") : null;
@@ -285,8 +313,8 @@ public class ScoreDataController {
         if (thead == null || tr == null || td == null || td.text() == null) {
             return R.error("导入数据错误！");
         }
-        scoreData.setDataTime(td.text());
-        scoreData.setDataStatus(0);
+        scoreData.setSsTime(td.text());
+        scoreData.setSsStatus(0);
         if (scoreDataService.save(scoreData) > 0) {
             return R.ok();
         }
@@ -299,7 +327,7 @@ public class ScoreDataController {
     @ResponseBody
     @RequestMapping("/update")
     @RequiresPermissions("common:scoreData:edit")
-    public R update(ScoreDataDO scoreData) {
+    public R update(ScoreSourceDO scoreData) {
         scoreDataService.update(scoreData);
         return R.ok();
     }

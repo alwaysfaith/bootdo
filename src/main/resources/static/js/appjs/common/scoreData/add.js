@@ -36,7 +36,7 @@ function generator(){
         type : 1,
         area : [ '100%', '100%' ],
         shadeClose : false, // 点击遮罩关闭层
-        content :$('#dataTable').val()
+        content :$('#ssTable').val()
     });
     layer.full(index);
 }
