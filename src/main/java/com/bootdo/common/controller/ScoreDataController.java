@@ -31,8 +31,9 @@ import java.util.Map;
  */
 
 @Controller
-@RequestMapping("/common/scoreData/copy")
-public class ScoreSourceControllerCopy {
+@RequestMapping("/common/scoreData")
+public class ScoreDataController {
+
     @Autowired
     private ScoreSourceService scoreDataService;
 
@@ -52,7 +53,7 @@ public class ScoreSourceControllerCopy {
         ScoreSourceDO scoreDataDO = scoreDataService.list(params).get(0);
         String dataTable = scoreDataDO.getSsTable();
         Document doc = Jsoup.parse(dataTable);
-        Elements table = doc != null ? doc.select("tbody:eq(1)") : null;
+        Elements table = doc != null ? doc.select("tbody:eq(2)") : null;
         // 使用选择器选择该table内所有的<tr> <tr/>
         Elements trs = table != null ? table.select("tr") : null;
         List<ScoreDO> scoreDOS = new ArrayList<>();
@@ -200,18 +201,17 @@ public class ScoreSourceControllerCopy {
                             //设置打出属性
                             if (is.get(0).hasAttr("style")) {
                                 String style = is.get(0).attr("style");
-                                setAveIndexOrStyle(scoreDO, style);
+                                setBetSpPoint(scoreDO, style);
                                 scoreDO.setDrawActive(String.valueOf(3));
 
                             } else if (is.get(1).hasAttr("style")) {
-                                String style = is.get(0).attr("style");
-                                setAveIndexOrStyle(scoreDO, style);
+                                String style = is.get(1).attr("style");
+                                setBetSpPoint(scoreDO, style);
 
                                 scoreDO.setDrawActive(String.valueOf(1));
                             } else if (is.get(2).hasAttr("style")) {
-                                String style = is.get(0).attr("style");
-                                setAveIndexOrStyle(scoreDO, style);
-
+                                String style = is.get(2).attr("style");
+                                setBetSpPoint(scoreDO, style);
                                 scoreDO.setDrawActive(String.valueOf(0));
                             }
                         }
@@ -229,10 +229,16 @@ public class ScoreSourceControllerCopy {
 
                             //设置打出属性
                             if (i2s.get(0).hasAttr("style")) {
+                                String style = i2s.get(0).attr("style");
+                                setBetSpLetPoint(scoreDO, style);
                                 scoreDO.setLetActive(String.valueOf(3));
                             } else if (i2s.get(1).hasAttr("style")) {
+                                String style = i2s.get(1).attr("style");
+                                setBetSpLetPoint(scoreDO, style);
                                 scoreDO.setLetActive(String.valueOf(1));
                             } else if (i2s.get(2).hasAttr("style")) {
+                                String style = i2s.get(2).attr("style");
+                                setBetSpLetPoint(scoreDO, style);
                                 scoreDO.setLetActive(String.valueOf(0));
                             }
                         }
@@ -253,16 +259,29 @@ public class ScoreSourceControllerCopy {
         return R.error();
     }
 
-    private void setAveIndexOrStyle(ScoreDO scoreDO, String style) {
-        if("background-color: rgb(218, 175, 2); color: white;".equalsIgnoreCase(style.trim())){
-            scoreDO.setAveIndex(1L);
-            scoreDO.setAveIndexStyle(style.trim());
-        }else if("background-color: rgb(21, 110, 202); color: white;".equalsIgnoreCase(style.trim())){
-            scoreDO.setAveIndex(2L);
-            scoreDO.setAveIndexStyle(style.trim());
-        }else if("background-color: rgb(255, 69, 0); color: white;".equalsIgnoreCase(style.trim())){
-            scoreDO.setAveIndex(3L);
-            scoreDO.setAveIndexStyle(style.trim());
+    private void setBetSpLetPoint(ScoreDO scoreDO, String style) {
+        if ("background-color: rgb(218, 175, 2); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSpLet(1);
+            scoreDO.setBetSpLetStyle(style.trim());
+        } else if ("background-color: rgb(21, 110, 202); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSpLet(3);
+            scoreDO.setBetSpLetStyle(style.trim());
+        } else if ("background-color: rgb(255, 69, 0); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSpLet(0);
+            scoreDO.setBetSpLetStyle(style.trim());
+        }
+    }
+
+    private void setBetSpPoint(ScoreDO scoreDO, String style) {
+        if ("background-color: rgb(218, 175, 2); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSp(1);
+            scoreDO.setBetSpStyle(style.trim());
+        } else if ("background-color: rgb(21, 110, 202); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSp(3);
+            scoreDO.setBetSpStyle(style.trim());
+        } else if ("background-color: rgb(255, 69, 0); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSp(0);
+            scoreDO.setBetSpStyle(style.trim());
         }
     }
 
@@ -338,8 +357,8 @@ public class ScoreSourceControllerCopy {
     @PostMapping("/remove")
     @ResponseBody
     @RequiresPermissions("common:scoreData:remove")
-    public R remove(Long dataId) {
-        if (scoreDataService.remove(dataId) > 0) {
+    public R remove(Long ssId) {
+        if (scoreDataService.remove(ssId) > 0) {
             return R.ok();
         }
         return R.error();

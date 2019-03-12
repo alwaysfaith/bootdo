@@ -44,11 +44,11 @@ function load() {
                     hostYellowCard: $('#hostYellowCard').val(),
                     guestYellowCard: $('#guestYellowCard').val(),
                     betScoreHalf: $('#betScoreHalf').val(),
-                    drawBall: $('#drawBall').val(),
+                    drawPoint: $('#drawPoint').val(),
                     drawWinOdds: $('#drawWinOdds').val(),
                     drawDrowOdds: $('#drawDrowOdds').val(),
                     drawLoseOdds: $('#drawLoseOdds').val(),
-                    letBall: $('#letBall').val(),
+                    letPoint: $('#letPoint').val(),
                     letWinOdds: $('#letWinOdds').val(),
                     letDrowOdds: $('#letDrowOdds').val(),
                     letLoseOdds: $('#letLoseOdds').val(),
@@ -79,35 +79,7 @@ function load() {
                     field: 'betLeague',
                     title: '比赛赛事',
                     formatter: function (value, row) {
-                        switch (row.betLeague) {
-                            case '亚洲杯':
-                                return '<span style="background: #37BE5A;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                            case '澳洲甲':
-                                return '<span style="background: #FF7000;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                            case '法甲':
-                                return '<span style="background: #663333;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                            case '法乙':
-                                return '<span style="background: #B1A7A7;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                            case '葡超':
-                                return '<span style="background: #008888;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                            case '英冠':
-                                return '<span style="background: #cc3300;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                            case '西甲':
-                                return '<span style="background: #006633;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                            case '西杯':
-                                return '<span style="background:#006666;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                            default:
-                                return '<span style="background: #9999CC;color: #fff;display: inline-block;width: 88px;line-height: 38px;">' + row.betLeague + '</span>';
-                                break;
-                        }
+                        return'<span style="display: inline-block;width: 88px;line-height: 38px;'+row.betLeagueStyle+'">' + row.betLeague + '</span>';
                     }
                 },
                 {
@@ -263,12 +235,12 @@ function load() {
                     }
                 },
                 {
-                    field: 'drawBall',
+                    field: 'drawPoint',
                     title: '平手盘',
                     formatter: function (value, row) {
-                        var nbsp = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #D9D9D9;">' + row.drawBall + '</p><p class="letBall"><span class="let-space">' + row.letBall + '</span></p></div>',
-                            nonbsp = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #D9D9D9;">' + row.drawBall + '</p><p class="letBall">' + row.letBall + '</p></div>';
-                        if (row.letBall < 0) {
+                        var nbsp = '<div class="tdDiv"><p class="drawPoint" style="border-bottom: 1px solid #D9D9D9;">' + row.drawPoint + '</p><p class="letPoint"><span class="let-space">' + row.letPoint + '</span></p></div>',
+                            nonbsp = '<div class="tdDiv"><p class="drawPoint" style="border-bottom: 1px solid #D9D9D9;">' + row.drawPoint + '</p><p class="letPoint">' + row.letPoint + '</p></div>';
+                        if (row.letPoint < 0) {
                             return nbsp;
                         } else {
                             return nonbsp;
@@ -276,7 +248,7 @@ function load() {
                     }
                 },
                 {
-                    field: 'letBall',
+                    field: 'letPoint',
                     title: '让球盘',
                     visible: false
                 },
@@ -285,134 +257,134 @@ function load() {
                     title: '平手盘主队',
                     formatter: function (value, row) {
                         var e = '<div class="tdDiv">' +
-                            '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                            '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                             '<i class="drawWinOdds"><span  style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawWinOdds + '</span></i>' +
                             '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                             '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                             '</p>' +
-                            '<p class="letBall">' +
+                            '<p class="letPoint">' +
                             '<i class="letWinOdds"  ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letWinOdds + '</span></i>' +
                             '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
                             '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                             '</p>' +
                             '</div>',
                             f = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"  ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds" ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
                             g = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
                                 '</p>' +
                                 '</div>',
-                            h = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                            h = '<div class="tdDiv"><p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"  ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds "><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds "><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
-                            i = '<div class="tdDiv"><p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                            i = '<div class="tdDiv"><p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds "><span  style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"  ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds "><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
                             j = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds " ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds"><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds" ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
                                 '</p>' +
                                 '</div>',
                             k = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds "  ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"  ><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds "><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
                             l = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds "  ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
                             m = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds "  ><span style="background-color: rgb(21, 110, 202);color: #fff">' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span  style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
                             n = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds "  ><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
                             o = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds "  ><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>',
                             p = '<div class="tdDiv">' +
-                                '<p class="drawBall" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
                                 '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
                                 '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
                                 '<i class="drawLoseOdds "  ><span>' + row.drawLoseOdds + '</span></i>' +
                                 '</p>' +
-                                '<p class="letBall">' +
+                                '<p class="letPoint">' +
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
@@ -583,11 +555,11 @@ function reLoad() {
                 hostYellowCard: $('#hostYellowCard').val(),
                 guestYellowCard: $('#guestYellowCard').val(),
                 betScoreHalf: $('#betScoreHalf').val(),
-                drawBall: $('#drawBall').val(),
+                drawPoint: $('#drawPoint').val(),
                 drawWinOdds: $('#drawWinOdds').val(),
                 drawDrowOdds: $('#drawDrowOdds').val(),
                 drawLoseOdds: $('#drawLoseOdds').val(),
-                letBall: $('#letBall').val(),
+                letPoint: $('#letPoint').val(),
                 letWinOdds: $('#letWinOdds').val(),
                 letDrowOdds: $('#letDrowOdds').val(),
                 letLoseOdds: $('#letLoseOdds').val(),

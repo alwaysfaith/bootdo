@@ -31,11 +31,10 @@ import java.util.Map;
  */
 
 @Controller
-@RequestMapping("/common/scoreData")
+@RequestMapping("/common/scoreSource")
 public class ScoreSourceController {
     @Autowired
     private ScoreSourceService scoreDataService;
-
     @Autowired
     ScoreService scoreService;
 
@@ -200,17 +199,17 @@ public class ScoreSourceController {
                             //设置打出属性
                             if (is.get(0).hasAttr("style")) {
                                 String style = is.get(0).attr("style");
-                                setAveIndexOrStyle(scoreDO, style);
+                                setBetSpLetPoint(scoreDO, style);
                                 scoreDO.setDrawActive(String.valueOf(3));
 
                             } else if (is.get(1).hasAttr("style")) {
                                 String style = is.get(0).attr("style");
-                                setAveIndexOrStyle(scoreDO, style);
+                                setBetSpLetPoint(scoreDO, style);
 
                                 scoreDO.setDrawActive(String.valueOf(1));
                             } else if (is.get(2).hasAttr("style")) {
                                 String style = is.get(0).attr("style");
-                                setAveIndexOrStyle(scoreDO, style);
+                                setBetSpLetPoint(scoreDO, style);
 
                                 scoreDO.setDrawActive(String.valueOf(0));
                             }
@@ -253,16 +252,16 @@ public class ScoreSourceController {
         return R.error();
     }
 
-    private void setAveIndexOrStyle(ScoreDO scoreDO, String style) {
-        if("background-color: rgb(218, 175, 2); color: white;".equalsIgnoreCase(style.trim())){
-            scoreDO.setAveIndex(1L);
-            scoreDO.setAveIndexStyle(style.trim());
-        }else if("background-color: rgb(21, 110, 202); color: white;".equalsIgnoreCase(style.trim())){
-            scoreDO.setAveIndex(2L);
-            scoreDO.setAveIndexStyle(style.trim());
-        }else if("background-color: rgb(255, 69, 0); color: white;".equalsIgnoreCase(style.trim())){
-            scoreDO.setAveIndex(3L);
-            scoreDO.setAveIndexStyle(style.trim());
+    private void setBetSpLetPoint(ScoreDO scoreDO, String style) {
+        if ("background-color: rgb(218, 175, 2); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSpLet(1);
+            scoreDO.setBetSpLetStyle(style.trim());
+        } else if ("background-color: rgb(21, 110, 202); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSpLet(3);
+            scoreDO.setBetSpLetStyle(style.trim());
+        } else if ("background-color: rgb(255, 69, 0); color: white;".equalsIgnoreCase(style.trim())) {
+            scoreDO.setBetSpLet(0);
+            scoreDO.setBetSpLetStyle(style.trim());
         }
     }
 

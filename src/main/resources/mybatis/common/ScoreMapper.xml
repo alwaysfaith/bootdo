@@ -4,44 +4,44 @@
 <mapper namespace="com.bootdo.common.dao.ScoreDao">
 
     <select id="get" resultType="com.bootdo.common.domain.ScoreDO">
-		select `bet_id`,`bet_week`,`bet_league`,`bet_league_style`,`bet_time`,`start_time`,`host_rank`,`host_team`,`guest_rank`,`guest_team`,`bet_score`,`host_red_card`,`guest_red_card`,`host_yellow_card`,`guest_yellow_card`,`bet_score_half`,`draw_point`,`draw_win_odds`,`draw_drow_odds`,`draw_lose_odds`,`let_point`,`let_win_odds`,`let_drow_odds`,`let_lose_odds`,`draw_active`,`let_active`,`ave_index`,`ave_index_style`,`ss_id`,`ss_stage` from tf_score where bet_id = #{value}
-	</select>
+        select `bet_id`,`bet_week`,`bet_league`,`bet_league_style`,`bet_time`,`start_time`,`host_rank`,`host_team`,`guest_rank`,`guest_team`,`bet_score`,`host_red_card`,`guest_red_card`,`host_yellow_card`,`guest_yellow_card`,`bet_score_half`,`draw_point`,`draw_win_odds`,`draw_drow_odds`,`draw_lose_odds`,`let_point`,`let_win_odds`,`let_drow_odds`,`let_lose_odds`,`draw_active`,`let_active`,`bet_sp`,`bet_sp_let`,`bet_sp_let_style`,`bet_sp_style`,`ss_id`,`ss_stage` from tf_score where bet_id = #{value}
+    </select>
 
     <select id="list" resultType="com.bootdo.common.domain.ScoreDO">
-        select
-        `bet_id`,`bet_week`,`bet_league`,`bet_league_style`,`bet_time`,`start_time`,`host_rank`,`host_team`,`guest_rank`,`guest_team`,`bet_score`,`host_red_card`,`guest_red_card`,`host_yellow_card`,`guest_yellow_card`,`bet_score_half`,`draw_point`,`draw_win_odds`,`draw_drow_odds`,`draw_lose_odds`,`let_point`,`let_win_odds`,`let_drow_odds`,`let_lose_odds`,`draw_active`,`let_active`,`ave_index`,`ave_index_style`,`ss_id`,`ss_stage`
-        from tf_score
+        select `bet_id`,`bet_week`,`bet_league`,`bet_league_style`,`bet_time`,`start_time`,`host_rank`,`host_team`,`guest_rank`,`guest_team`,`bet_score`,`host_red_card`,`guest_red_card`,`host_yellow_card`,`guest_yellow_card`,`bet_score_half`,`draw_point`,`draw_win_odds`,`draw_drow_odds`,`draw_lose_odds`,`let_point`,`let_win_odds`,`let_drow_odds`,`let_lose_odds`,`draw_active`,`let_active`,`bet_sp`,`bet_sp_let`,`bet_sp_let_style`,`bet_sp_style`,`ss_id`,`ss_stage` from tf_score
         <where>
-            <if test="betId != null and betId != ''">and bet_id = #{betId}</if>
-            <if test="betWeek != null and betWeek != ''">and bet_week = #{betWeek}</if>
-            <if test="betLeague != null and betLeague != ''">and bet_league = #{betLeague}</if>
-            <if test="betLeagueStyle != null and betLeagueStyle != ''">and bet_league_style = #{betLeagueStyle}</if>
-            <if test="betTime != null and betTime != ''">and bet_time = #{betTime}</if>
-            <if test="startTime != null and startTime != ''">and start_time = #{startTime}</if>
-            <if test="hostRank != null and hostRank != ''">and host_rank = #{hostRank}</if>
-            <if test="hostTeam != null and hostTeam != ''">and host_team = #{hostTeam}</if>
-            <if test="guestRank != null and guestRank != ''">and guest_rank = #{guestRank}</if>
-            <if test="guestTeam != null and guestTeam != ''">and guest_team = #{guestTeam}</if>
-            <if test="betScore != null and betScore != ''">and bet_score = #{betScore}</if>
-            <if test="hostRedCard != null and hostRedCard != ''">and host_red_card = #{hostRedCard}</if>
-            <if test="guestRedCard != null and guestRedCard != ''">and guest_red_card = #{guestRedCard}</if>
-            <if test="hostYellowCard != null and hostYellowCard != ''">and host_yellow_card = #{hostYellowCard}</if>
-            <if test="guestYellowCard != null and guestYellowCard != ''">and guest_yellow_card = #{guestYellowCard}</if>
-            <if test="betScoreHalf != null and betScoreHalf != ''">and bet_score_half = #{betScoreHalf}</if>
-            <if test="drawPoint != null and drawPoint != ''">and draw_point = #{drawPoint}</if>
-            <if test="drawWinOdds != null and drawWinOdds != ''">and draw_win_odds = #{drawWinOdds}</if>
-            <if test="drawDrowOdds != null and drawDrowOdds != ''">and draw_drow_odds = #{drawDrowOdds}</if>
-            <if test="drawLoseOdds != null and drawLoseOdds != ''">and draw_lose_odds = #{drawLoseOdds}</if>
-            <if test="letPoint != null and letPoint != ''">and let_point = #{letPoint}</if>
-            <if test="letWinOdds != null and letWinOdds != ''">and let_win_odds = #{letWinOdds}</if>
-            <if test="letDrowOdds != null and letDrowOdds != ''">and let_drow_odds = #{letDrowOdds}</if>
-            <if test="letLoseOdds != null and letLoseOdds != ''">and let_lose_odds = #{letLoseOdds}</if>
-            <if test="drawActive != null and drawActive != ''">and draw_active = #{drawActive}</if>
-            <if test="letActive != null and letActive != ''">and let_active = #{letActive}</if>
-            <if test="aveIndex != null and aveIndex != ''">and ave_index = #{aveIndex}</if>
-            <if test="aveIndexStyle != null and aveIndexStyle != ''">and ave_index_style = #{aveIndexStyle}</if>
-            <if test="ssId != null and ssId != ''">and ss_id = #{ssId}</if>
-            <if test="ssStage != null and ssStage != ''">and ss_stage = #{ssStage}</if>
+            <if test="betId != null and betId != ''"> and bet_id = #{betId} </if>
+            <if test="betWeek != null and betWeek != ''"> and bet_week = #{betWeek} </if>
+            <if test="betLeague != null and betLeague != ''"> and bet_league = #{betLeague} </if>
+            <if test="betLeagueStyle != null and betLeagueStyle != ''"> and bet_league_style = #{betLeagueStyle} </if>
+            <if test="betTime != null and betTime != ''"> and bet_time = #{betTime} </if>
+            <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
+            <if test="hostRank != null and hostRank != ''"> and host_rank = #{hostRank} </if>
+            <if test="hostTeam != null and hostTeam != ''"> and host_team = #{hostTeam} </if>
+            <if test="guestRank != null and guestRank != ''"> and guest_rank = #{guestRank} </if>
+            <if test="guestTeam != null and guestTeam != ''"> and guest_team = #{guestTeam} </if>
+            <if test="betScore != null and betScore != ''"> and bet_score = #{betScore} </if>
+            <if test="hostRedCard != null and hostRedCard != ''"> and host_red_card = #{hostRedCard} </if>
+            <if test="guestRedCard != null and guestRedCard != ''"> and guest_red_card = #{guestRedCard} </if>
+            <if test="hostYellowCard != null and hostYellowCard != ''"> and host_yellow_card = #{hostYellowCard} </if>
+            <if test="guestYellowCard != null and guestYellowCard != ''"> and guest_yellow_card = #{guestYellowCard} </if>
+            <if test="betScoreHalf != null and betScoreHalf != ''"> and bet_score_half = #{betScoreHalf} </if>
+            <if test="drawPoint != null and drawPoint != ''"> and draw_point = #{drawPoint} </if>
+            <if test="drawWinOdds != null and drawWinOdds != ''"> and draw_win_odds = #{drawWinOdds} </if>
+            <if test="drawDrowOdds != null and drawDrowOdds != ''"> and draw_drow_odds = #{drawDrowOdds} </if>
+            <if test="drawLoseOdds != null and drawLoseOdds != ''"> and draw_lose_odds = #{drawLoseOdds} </if>
+            <if test="letPoint != null and letPoint != ''"> and let_point = #{letPoint} </if>
+            <if test="letWinOdds != null and letWinOdds != ''"> and let_win_odds = #{letWinOdds} </if>
+            <if test="letDrowOdds != null and letDrowOdds != ''"> and let_drow_odds = #{letDrowOdds} </if>
+            <if test="letLoseOdds != null and letLoseOdds != ''"> and let_lose_odds = #{letLoseOdds} </if>
+            <if test="drawActive != null and drawActive != ''"> and draw_active = #{drawActive} </if>
+            <if test="letActive != null and letActive != ''"> and let_active = #{letActive} </if>
+            <if test="betSp != null and betSp != ''"> and bet_sp = #{betSp} </if>
+            <if test="betSpLet != null and betSpLet != ''"> and bet_sp_let = #{betSpLet} </if>
+            <if test="betSpLetStyle != null and betSpLetStyle != ''"> and bet_sp_let_style = #{betSpLetStyle} </if>
+            <if test="betSpStyle != null and betSpStyle != ''"> and bet_sp_style = #{betSpStyle} </if>
+            <if test="ssId != null and ssId != ''"> and ss_id = #{ssId} </if>
+            <if test="ssStage != null and ssStage != ''"> and ss_stage = #{ssStage} </if>
         </where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -59,160 +59,44 @@
     <select id="count" resultType="int">
         select count(*) from tf_score
         <where>
-            <if test="betId != null and betId != ''">and bet_id = #{betId}</if>
-            <if test="betWeek != null and betWeek != ''">and bet_week = #{betWeek}</if>
-            <if test="betLeague != null and betLeague != ''">and bet_league = #{betLeague}</if>
-            <if test="betLeagueStyle != null and betLeagueStyle != ''">and bet_league_style = #{betLeagueStyle}</if>
-            <if test="betTime != null and betTime != ''">and bet_time = #{betTime}</if>
-            <if test="startTime != null and startTime != ''">and start_time = #{startTime}</if>
-            <if test="hostRank != null and hostRank != ''">and host_rank = #{hostRank}</if>
-            <if test="hostTeam != null and hostTeam != ''">and host_team = #{hostTeam}</if>
-            <if test="guestRank != null and guestRank != ''">and guest_rank = #{guestRank}</if>
-            <if test="guestTeam != null and guestTeam != ''">and guest_team = #{guestTeam}</if>
-            <if test="betScore != null and betScore != ''">and bet_score = #{betScore}</if>
-            <if test="hostRedCard != null and hostRedCard != ''">and host_red_card = #{hostRedCard}</if>
-            <if test="guestRedCard != null and guestRedCard != ''">and guest_red_card = #{guestRedCard}</if>
-            <if test="hostYellowCard != null and hostYellowCard != ''">and host_yellow_card = #{hostYellowCard}</if>
-            <if test="guestYellowCard != null and guestYellowCard != ''">and guest_yellow_card = #{guestYellowCard}</if>
-            <if test="betScoreHalf != null and betScoreHalf != ''">and bet_score_half = #{betScoreHalf}</if>
-            <if test="drawPoint != null and drawPoint != ''">and draw_point = #{drawPoint}</if>
-            <if test="drawWinOdds != null and drawWinOdds != ''">and draw_win_odds = #{drawWinOdds}</if>
-            <if test="drawDrowOdds != null and drawDrowOdds != ''">and draw_drow_odds = #{drawDrowOdds}</if>
-            <if test="drawLoseOdds != null and drawLoseOdds != ''">and draw_lose_odds = #{drawLoseOdds}</if>
-            <if test="letPoint != null and letPoint != ''">and let_point = #{letPoint}</if>
-            <if test="letWinOdds != null and letWinOdds != ''">and let_win_odds = #{letWinOdds}</if>
-            <if test="letDrowOdds != null and letDrowOdds != ''">and let_drow_odds = #{letDrowOdds}</if>
-            <if test="letLoseOdds != null and letLoseOdds != ''">and let_lose_odds = #{letLoseOdds}</if>
-            <if test="drawActive != null and drawActive != ''">and draw_active = #{drawActive}</if>
-            <if test="letActive != null and letActive != ''">and let_active = #{letActive}</if>
-            <if test="aveIndex != null and aveIndex != ''">and ave_index = #{aveIndex}</if>
-            <if test="aveIndexStyle != null and aveIndexStyle != ''">and ave_index_style = #{aveIndexStyle}</if>
-            <if test="ssId != null and ssId != ''">and ss_id = #{ssId}</if>
-            <if test="ssStage != null and ssStage != ''">and ss_stage = #{ssStage}</if>
+            <if test="betId != null and betId != ''"> and bet_id = #{betId} </if>
+            <if test="betWeek != null and betWeek != ''"> and bet_week = #{betWeek} </if>
+            <if test="betLeague != null and betLeague != ''"> and bet_league = #{betLeague} </if>
+            <if test="betLeagueStyle != null and betLeagueStyle != ''"> and bet_league_style = #{betLeagueStyle} </if>
+            <if test="betTime != null and betTime != ''"> and bet_time = #{betTime} </if>
+            <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
+            <if test="hostRank != null and hostRank != ''"> and host_rank = #{hostRank} </if>
+            <if test="hostTeam != null and hostTeam != ''"> and host_team = #{hostTeam} </if>
+            <if test="guestRank != null and guestRank != ''"> and guest_rank = #{guestRank} </if>
+            <if test="guestTeam != null and guestTeam != ''"> and guest_team = #{guestTeam} </if>
+            <if test="betScore != null and betScore != ''"> and bet_score = #{betScore} </if>
+            <if test="hostRedCard != null and hostRedCard != ''"> and host_red_card = #{hostRedCard} </if>
+            <if test="guestRedCard != null and guestRedCard != ''"> and guest_red_card = #{guestRedCard} </if>
+            <if test="hostYellowCard != null and hostYellowCard != ''"> and host_yellow_card = #{hostYellowCard} </if>
+            <if test="guestYellowCard != null and guestYellowCard != ''"> and guest_yellow_card = #{guestYellowCard} </if>
+            <if test="betScoreHalf != null and betScoreHalf != ''"> and bet_score_half = #{betScoreHalf} </if>
+            <if test="drawPoint != null and drawPoint != ''"> and draw_point = #{drawPoint} </if>
+            <if test="drawWinOdds != null and drawWinOdds != ''"> and draw_win_odds = #{drawWinOdds} </if>
+            <if test="drawDrowOdds != null and drawDrowOdds != ''"> and draw_drow_odds = #{drawDrowOdds} </if>
+            <if test="drawLoseOdds != null and drawLoseOdds != ''"> and draw_lose_odds = #{drawLoseOdds} </if>
+            <if test="letPoint != null and letPoint != ''"> and let_point = #{letPoint} </if>
+            <if test="letWinOdds != null and letWinOdds != ''"> and let_win_odds = #{letWinOdds} </if>
+            <if test="letDrowOdds != null and letDrowOdds != ''"> and let_drow_odds = #{letDrowOdds} </if>
+            <if test="letLoseOdds != null and letLoseOdds != ''"> and let_lose_odds = #{letLoseOdds} </if>
+            <if test="drawActive != null and drawActive != ''"> and draw_active = #{drawActive} </if>
+            <if test="letActive != null and letActive != ''"> and let_active = #{letActive} </if>
+            <if test="betSp != null and betSp != ''"> and bet_sp = #{betSp} </if>
+            <if test="betSpLet != null and betSpLet != ''"> and bet_sp_let = #{betSpLet} </if>
+            <if test="betSpLetStyle != null and betSpLetStyle != ''"> and bet_sp_let_style = #{betSpLetStyle} </if>
+            <if test="betSpStyle != null and betSpStyle != ''"> and bet_sp_style = #{betSpStyle} </if>
+            <if test="ssId != null and ssId != ''"> and ss_id = #{ssId} </if>
+            <if test="ssStage != null and ssStage != ''"> and ss_stage = #{ssStage} </if>
         </where>
     </select>
 
-    <insert id="save" parameterType="com.bootdo.common.domain.ScoreDO">
-		insert into tf_score
-		(
-			`bet_id`, 
-			`bet_week`, 
-			`bet_league`, 
-			`bet_league_style`, 
-			`bet_time`, 
-			`start_time`, 
-			`host_rank`, 
-			`host_team`, 
-			`guest_rank`, 
-			`guest_team`, 
-			`bet_score`, 
-			`host_red_card`, 
-			`guest_red_card`, 
-			`host_yellow_card`, 
-			`guest_yellow_card`, 
-			`bet_score_half`, 
-			`draw_point`, 
-			`draw_win_odds`, 
-			`draw_drow_odds`, 
-			`draw_lose_odds`, 
-			`let_point`, 
-			`let_win_odds`, 
-			`let_drow_odds`, 
-			`let_lose_odds`, 
-			`draw_active`, 
-			`let_active`, 
-			`ave_index`, 
-			`ave_index_style`, 
-			`ss_id`, 
-			`ss_stage`
-		)
-		values
-		(
-			#{betId}, 
-			#{betWeek}, 
-			#{betLeague}, 
-			#{betLeagueStyle}, 
-			#{betTime}, 
-			#{startTime}, 
-			#{hostRank}, 
-			#{hostTeam}, 
-			#{guestRank}, 
-			#{guestTeam}, 
-			#{betScore}, 
-			#{hostRedCard}, 
-			#{guestRedCard}, 
-			#{hostYellowCard}, 
-			#{guestYellowCard}, 
-			#{betScoreHalf}, 
-			#{drawPoint}, 
-			#{drawWinOdds}, 
-			#{drawDrowOdds}, 
-			#{drawLoseOdds}, 
-			#{letPoint}, 
-			#{letWinOdds}, 
-			#{letDrowOdds}, 
-			#{letLoseOdds}, 
-			#{drawActive}, 
-			#{letActive}, 
-			#{aveIndex}, 
-			#{aveIndexStyle}, 
-			#{ssId}, 
-			#{ssStage}
-		)
-	</insert>
-
-    <update id="update" parameterType="com.bootdo.common.domain.ScoreDO">
-        update tf_score
-        <set>
-            <if test="betWeek != null">`bet_week` = #{betWeek},</if>
-            <if test="betLeague != null">`bet_league` = #{betLeague},</if>
-            <if test="betLeagueStyle != null">`bet_league_style` = #{betLeagueStyle},</if>
-            <if test="betTime != null">`bet_time` = #{betTime},</if>
-            <if test="startTime != null">`start_time` = #{startTime},</if>
-            <if test="hostRank != null">`host_rank` = #{hostRank},</if>
-            <if test="hostTeam != null">`host_team` = #{hostTeam},</if>
-            <if test="guestRank != null">`guest_rank` = #{guestRank},</if>
-            <if test="guestTeam != null">`guest_team` = #{guestTeam},</if>
-            <if test="betScore != null">`bet_score` = #{betScore},</if>
-            <if test="hostRedCard != null">`host_red_card` = #{hostRedCard},</if>
-            <if test="guestRedCard != null">`guest_red_card` = #{guestRedCard},</if>
-            <if test="hostYellowCard != null">`host_yellow_card` = #{hostYellowCard},</if>
-            <if test="guestYellowCard != null">`guest_yellow_card` = #{guestYellowCard},</if>
-            <if test="betScoreHalf != null">`bet_score_half` = #{betScoreHalf},</if>
-            <if test="drawPoint != null">`draw_point` = #{drawPoint},</if>
-            <if test="drawWinOdds != null">`draw_win_odds` = #{drawWinOdds},</if>
-            <if test="drawDrowOdds != null">`draw_drow_odds` = #{drawDrowOdds},</if>
-            <if test="drawLoseOdds != null">`draw_lose_odds` = #{drawLoseOdds},</if>
-            <if test="letPoint != null">`let_point` = #{letPoint},</if>
-            <if test="letWinOdds != null">`let_win_odds` = #{letWinOdds},</if>
-            <if test="letDrowOdds != null">`let_drow_odds` = #{letDrowOdds},</if>
-            <if test="letLoseOdds != null">`let_lose_odds` = #{letLoseOdds},</if>
-            <if test="drawActive != null">`draw_active` = #{drawActive},</if>
-            <if test="letActive != null">`let_active` = #{letActive},</if>
-            <if test="aveIndex != null">`ave_index` = #{aveIndex},</if>
-            <if test="aveIndexStyle != null">`ave_index_style` = #{aveIndexStyle},</if>
-            <if test="ssId != null">`ss_id` = #{ssId},</if>
-            <if test="ssStage != null">`ss_stage` = #{ssStage}</if>
-        </set>
-        where bet_id = #{betId}
-    </update>
-
-    <delete id="remove">
-		delete from tf_score where bet_id = #{value}
-	</delete>
-
-    <delete id="batchRemove">
-        delete from tf_score where bet_id in
-        <foreach item="betId" collection="array" open="(" separator="," close=")">
-            #{betId}
-        </foreach>
-    </delete>
-
-    <insert id="batchSave" parameterType="java.util.List">
-        INSERT INTO
-        `tf_score`
+    <insert id="save" parameterType="com.bootdo.common.domain.ScoreDO" useGeneratedKeys="true" keyProperty="betId">
+        insert into tf_score
         (
-        `bet_id`,
         `bet_week`,
         `bet_league`,
         `bet_league_style`,
@@ -238,15 +122,137 @@
         `let_lose_odds`,
         `draw_active`,
         `let_active`,
-        `ave_index`,
-        `ave_index_style`,
+        `bet_sp`,
+        `bet_sp_let`,
+        `bet_sp_let_style`,
+        `bet_sp_style`,
+        `ss_id`,
+        `ss_stage`
+        )
+        values
+        (
+        #{betWeek},
+        #{betLeague},
+        #{betLeagueStyle},
+        #{betTime},
+        #{startTime},
+        #{hostRank},
+        #{hostTeam},
+        #{guestRank},
+        #{guestTeam},
+        #{betScore},
+        #{hostRedCard},
+        #{guestRedCard},
+        #{hostYellowCard},
+        #{guestYellowCard},
+        #{betScoreHalf},
+        #{drawPoint},
+        #{drawWinOdds},
+        #{drawDrowOdds},
+        #{drawLoseOdds},
+        #{letPoint},
+        #{letWinOdds},
+        #{letDrowOdds},
+        #{letLoseOdds},
+        #{drawActive},
+        #{letActive},
+        #{betSp},
+        #{betSpLet},
+        #{betSpLetStyle},
+        #{betSpStyle},
+        #{ssId},
+        #{ssStage}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.bootdo.common.domain.ScoreDO">
+        update tf_score
+        <set>
+            <if test="betWeek != null">`bet_week` = #{betWeek}, </if>
+            <if test="betLeague != null">`bet_league` = #{betLeague}, </if>
+            <if test="betLeagueStyle != null">`bet_league_style` = #{betLeagueStyle}, </if>
+            <if test="betTime != null">`bet_time` = #{betTime}, </if>
+            <if test="startTime != null">`start_time` = #{startTime}, </if>
+            <if test="hostRank != null">`host_rank` = #{hostRank}, </if>
+            <if test="hostTeam != null">`host_team` = #{hostTeam}, </if>
+            <if test="guestRank != null">`guest_rank` = #{guestRank}, </if>
+            <if test="guestTeam != null">`guest_team` = #{guestTeam}, </if>
+            <if test="betScore != null">`bet_score` = #{betScore}, </if>
+            <if test="hostRedCard != null">`host_red_card` = #{hostRedCard}, </if>
+            <if test="guestRedCard != null">`guest_red_card` = #{guestRedCard}, </if>
+            <if test="hostYellowCard != null">`host_yellow_card` = #{hostYellowCard}, </if>
+            <if test="guestYellowCard != null">`guest_yellow_card` = #{guestYellowCard}, </if>
+            <if test="betScoreHalf != null">`bet_score_half` = #{betScoreHalf}, </if>
+            <if test="drawPoint != null">`draw_point` = #{drawPoint}, </if>
+            <if test="drawWinOdds != null">`draw_win_odds` = #{drawWinOdds}, </if>
+            <if test="drawDrowOdds != null">`draw_drow_odds` = #{drawDrowOdds}, </if>
+            <if test="drawLoseOdds != null">`draw_lose_odds` = #{drawLoseOdds}, </if>
+            <if test="letPoint != null">`let_point` = #{letPoint}, </if>
+            <if test="letWinOdds != null">`let_win_odds` = #{letWinOdds}, </if>
+            <if test="letDrowOdds != null">`let_drow_odds` = #{letDrowOdds}, </if>
+            <if test="letLoseOdds != null">`let_lose_odds` = #{letLoseOdds}, </if>
+            <if test="drawActive != null">`draw_active` = #{drawActive}, </if>
+            <if test="letActive != null">`let_active` = #{letActive}, </if>
+            <if test="betSp != null">`bet_sp` = #{betSp}, </if>
+            <if test="betSpLet != null">`bet_sp_let` = #{betSpLet}, </if>
+            <if test="betSpLetStyle != null">`bet_sp_let_style` = #{betSpLetStyle}, </if>
+            <if test="betSpStyle != null">`bet_sp_style` = #{betSpStyle}, </if>
+            <if test="ssId != null">`ss_id` = #{ssId}, </if>
+            <if test="ssStage != null">`ss_stage` = #{ssStage}</if>
+        </set>
+        where bet_id = #{betId}
+    </update>
+
+    <delete id="remove">
+        delete from tf_score where bet_id = #{value}
+    </delete>
+
+    <delete id="batchRemove">
+        delete from tf_score where bet_id in
+        <foreach item="betId" collection="array" open="(" separator="," close=")">
+            #{betId}
+        </foreach>
+    </delete>
+
+    <insert id="batchSave" parameterType="java.util.List">
+        INSERT INTO
+        `tf_score`
+        (
+        `bet_week`,
+        `bet_league`,
+        `bet_league_style`,
+        `bet_time`,
+        `start_time`,
+        `host_rank`,
+        `host_team`,
+        `guest_rank`,
+        `guest_team`,
+        `bet_score`,
+        `host_red_card`,
+        `guest_red_card`,
+        `host_yellow_card`,
+        `guest_yellow_card`,
+        `bet_score_half`,
+        `draw_point`,
+        `draw_win_odds`,
+        `draw_drow_odds`,
+        `draw_lose_odds`,
+        `let_point`,
+        `let_win_odds`,
+        `let_drow_odds`,
+        `let_lose_odds`,
+        `draw_active`,
+        `let_active`,
+        `bet_sp`,
+        `bet_sp_let`,
+        `bet_sp_let_style`,
+        `bet_sp_style`,
         `ss_id`,
         `ss_stage`
         )
         VALUES
         <foreach collection="list" item="score" index="index" separator=",">
             (
-            #{score.betId},
             #{score.betWeek},
             #{score.betLeague},
             #{score.betLeagueStyle},
@@ -272,8 +278,10 @@
             #{score.letLoseOdds},
             #{score.drawActive},
             #{score.letActive},
-            #{score.aveIndex},
-            #{score.aveIndexStyle},
+            #{score.betSp},
+            #{score.betSpLet},
+            #{score.betSpLetStyle},
+            #{score.betSpStyle},
             #{score.ssId},
             #{score.ssStage}
             )

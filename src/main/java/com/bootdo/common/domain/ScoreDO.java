@@ -12,7 +12,7 @@ import java.util.Date;
  * 
  * @author Caixin
  * @email 1992lcg@163.com
- * @date 2019-03-11 15:22:10
+ * @date 2019-03-12 16:37:10
  */
 public class ScoreDO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -70,11 +70,14 @@ public class ScoreDO implements Serializable {
 	private String drawActive;
 	//让球盘打出3主队赢1平手0客队赢
 	private String letActive;
-	//平均指数1：首赔2：次赔3：末赔
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
-	private Long aveIndex;
-	//平均指数样式
-	private String aveIndexStyle;
+	//竞彩sp：1：首赔2：次赔3：末赔
+	private Integer betSp;
+	//竞彩sp（让球）：1：首赔2：次赔3：末赔
+	private Integer betSpLet;
+	//竞彩sp（让球）样式
+	private String betSpLetStyle;
+	//竞彩sp样式
+	private String betSpStyle;
 	//数据源
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private Long ssId;
@@ -394,28 +397,52 @@ public class ScoreDO implements Serializable {
 		return letActive;
 	}
 	/**
-	 * 设置：平均指数1：首赔2：次赔3：末赔
+	 * 设置：竞彩sp：1：首赔2：次赔3：末赔
 	 */
-	public void setAveIndex(Long aveIndex) {
-		this.aveIndex = aveIndex;
+	public void setBetSp(Integer betSp) {
+		this.betSp = betSp;
 	}
 	/**
-	 * 获取：平均指数1：首赔2：次赔3：末赔
+	 * 获取：竞彩sp：1：首赔2：次赔3：末赔
 	 */
-	public Long getAveIndex() {
-		return aveIndex;
+	public Integer getBetSp() {
+		return betSp;
 	}
 	/**
-	 * 设置：平均指数样式
+	 * 设置：竞彩sp（让球）：1：首赔2：次赔3：末赔
 	 */
-	public void setAveIndexStyle(String aveIndexStyle) {
-		this.aveIndexStyle = aveIndexStyle;
+	public void setBetSpLet(Integer betSpLet) {
+		this.betSpLet = betSpLet;
 	}
 	/**
-	 * 获取：平均指数样式
+	 * 获取：竞彩sp（让球）：1：首赔2：次赔3：末赔
 	 */
-	public String getAveIndexStyle() {
-		return aveIndexStyle;
+	public Integer getBetSpLet() {
+		return betSpLet;
+	}
+	/**
+	 * 设置：竞彩sp（让球）样式
+	 */
+	public void setBetSpLetStyle(String betSpLetStyle) {
+		this.betSpLetStyle = betSpLetStyle;
+	}
+	/**
+	 * 获取：竞彩sp（让球）样式
+	 */
+	public String getBetSpLetStyle() {
+		return betSpLetStyle;
+	}
+	/**
+	 * 设置：竞彩sp样式
+	 */
+	public void setBetSpStyle(String betSpStyle) {
+		this.betSpStyle = betSpStyle;
+	}
+	/**
+	 * 获取：竞彩sp样式
+	 */
+	public String getBetSpStyle() {
+		return betSpStyle;
 	}
 	/**
 	 * 设置：数据源

@@ -53,16 +53,16 @@
 	#exampleTable tr:hover td{
 		background: #f5f5f5;
 	}
-	p.drawBall i:nth-child(1),p.letBall i:nth-child(1){
+	p.drawPoint i:nth-child(1),p.letPoint i:nth-child(1){
 		border-left: none;
 	}
-	p.drawBall i,p.letBall i{
+	p.drawPoint i,p.letPoint i{
 		display: inline-block;
 		padding: 6px 12px;
 		font-size:14px;
 		border-left:1px solid #D9D9D9;
 	}
-	p.drawBall i span,p.letBall i span{
+	p.drawPoint i span,p.letPoint i span{
 		display: inline-block;
 		width: 32px;
 	}
@@ -105,7 +105,7 @@
 		font-size: 14px;
 		font-family:"Microsoft JhengHei";
 	}
-	.letBall .let-space{
+	.letPoint .let-space{
 		display: inline-block;
 		text-indent: -6px;
 	}
@@ -194,8 +194,8 @@
 										   placeholder="客队黄牌">
 								</div>
 								<div class="layui-input-inline">
-									<input type="text" name="drawBall" onkeyup="reLoad()" class="layui-input"
-										   id="drawBall"
+									<input type="text" name="drawPoint" onkeyup="reLoad()" class="layui-input"
+										   id="drawPoint"
 										   placeholder="平手盘">
 								</div>
 								<div class="layui-input-inline">
@@ -217,8 +217,8 @@
 										   placeholder="平手盘客队">
 								</div>
 								<div class="layui-input-inline">
-									<input type="text" name="letBall" onkeyup="reLoad()" class="layui-input"
-										   id="letBall"
+									<input type="text" name="letPoint" onkeyup="reLoad()" class="layui-input"
+										   id="letPoint"
 										   placeholder="让球盘">
 								</div>
 								<div class="layui-input-inline">
