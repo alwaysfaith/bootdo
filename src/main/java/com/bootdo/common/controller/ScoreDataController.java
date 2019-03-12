@@ -226,7 +226,6 @@ public class ScoreDataController {
                             //让客
                             String letLoseOdds = i2s.get(2).text();
                             scoreDO.setLetLoseOdds(letLoseOdds);
-
                             //设置打出属性
                             if (i2s.get(0).hasAttr("style")) {
                                 String style = i2s.get(0).attr("style");
