@@ -472,10 +472,10 @@ public class ScoreController {
                     for (Element ignored : elements) {
                         //平手
                         String drawBall = elements.get(0).text();
-                        scoreDO.setDrawBall(Integer.valueOf(drawBall.trim()));
+                        scoreDO.setDrawPoint(Integer.valueOf(drawBall.trim()));
                         //让q
                         String letBall = elements.get(1).text();
-                        scoreDO.setLetBall(Integer.valueOf(letBall.trim()));
+                        scoreDO.setLetPoint(Integer.valueOf(letBall.trim()));
                     }
                     Elements ps = tds.get(8).select("div").select("p");
                     for (Element ignored : ps) {

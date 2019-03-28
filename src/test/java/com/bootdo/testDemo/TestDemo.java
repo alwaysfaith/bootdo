@@ -5,19 +5,30 @@ import com.bootdo.system.domain.UserDO;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 @RestController()
 @RunWith(SpringRunner.class)
@@ -36,7 +47,7 @@ public class TestDemo {
 
     private ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
             .setNameFormat("demo-pool-%d").build();
-    private ExecutorService executor = new ThreadPoolExecutor(corePoolSize, corePoolSize+1,
+    private ExecutorService executor = new ThreadPoolExecutor(corePoolSize, corePoolSize + 1,
             10L, TimeUnit.MILLISECONDS,
             new LinkedBlockingQueue<>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
@@ -69,6 +80,101 @@ public class TestDemo {
         long end = System.currentTimeMillis();
         sqlSession.close();
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>" + (end - start) + ">>>>>>>>>>>>>>>>>>>>>>>>");
+    }
+
+
+//    public class MyThreadPoolExecutor extends ThreadPoolExecutor {
+//        private Logger log = LoggerFactory.getLogger(MyThreadPoolExecutor.class);
+//
+//        private ReentrantLock pauseLock = new ReentrantLock();
+//        private Condition unpaused = pauseLock.newCondition();
+//
+//        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, RejectedExecutionHandler handler) {
+//            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
+//        }
+//
+//        /**
+//         * 重写，覆盖并弃用父类的awaitTermination方法 </br>
+//         * 所以，这里传的两个参数将无效，可以随便传
+//         */
+//        @Override
+//        public boolean awaitTermination(long timeout, TimeUnit unit) {
+//            //阻塞，不让主程序死掉，到时候这里传异常信号量，出现异常则推送信号数据到这里while(flag)
+//            int i = 0;
+//            while (i < 10) {
+//                pauseLock.lock();
+//                try {
+//                    i++;
+//                    System.out.println(i);
+//                    unpaused.await();
+//                } catch (InterruptedException e) {
+//                    log.error("", e);
+//                } finally {
+//                    pauseLock.unlock();
+//                }
+//            }
+//            return true;
+//        }
+//    }
+
+
+    class MyThreadPoolExecutor extends ThreadPoolExecutor{
+        private boolean hasFinish = false;
+        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, RejectedExecutionHandler handler)
+        {super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
+            // TODO Auto-generated constructor stub
+        }
+
+        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler)
+        {
+            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+                    threadFactory, handler);
+            // TODO Auto-generated constructor stub
+
+        }
+        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory) {
+            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+                    threadFactory);
+            // TODO Auto-generated constructor stub
+        }
+
+        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
+            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
+            // TODO Auto-generated constructor stub
+        }
+
+        /* (non-Javadoc)
+         * @see java.util.concurrent.ThreadPoolExecutor#afterExecute(java.lang.Runnable, java.lang.Throwable)
+         */
+        @Override
+        protected void afterExecute(Runnable r, Throwable t) {
+            // TODO Auto-generated method stub
+            super.afterExecute(r, t);
+            synchronized(this){
+                System.out.println("自动调用了....afterEx 此时getActiveCount()值:"+this.getActiveCount());
+                if(this.getActiveCount() == 1)//已执行完任务之后的最后一个线程
+                {
+                    this.hasFinish=true;
+                    this.notify();
+                }//if
+            }// synchronized
+        }
+
+        public void isEndTask() {
+            synchronized(this){
+                while (!this.hasFinish) {
+                    System.out.println("等待线程池所有任务结束: wait...");
+                    try {
+                        this.wait();
+                    }
+                    catch (InterruptedException e) {
+//           TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
     }
 
 
@@ -140,14 +246,14 @@ public class TestDemo {
                 for (int index = 0; index < dbList.size(); ) {
                     if (batchLastIndex > dbList.size()) {
                         mapper.batchSave(dbList.subList(index, batchLastIndex));
-                        System.out.println(">>>>>>>>>>>>>>>>>>>>>"+dbList.subList(index, batchLastIndex).size());
+                        System.out.println(">>>>>>>>>>>>>>>>>>>>>" + dbList.subList(index, batchLastIndex).size());
                         batchSqlSession.commit();
                         System.out.println("index:" + index + " batchLastIndex:" + batchLastIndex);
                         break;// 数据插入完毕，退出循环
                     } else {
                         mapper.batchSave(dbList.subList(index, batchLastIndex));
                         batchSqlSession.commit();
-                        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>"+dbList.subList(index, batchLastIndex));
+                        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>" + dbList.subList(index, batchLastIndex));
                         System.out.println("index:" + index + " batchLastIndex:" + batchLastIndex);
                         index = batchLastIndex;// 设置下一批下标
                         batchLastIndex = index + (batchCount - 1);
@@ -168,5 +274,6 @@ public class TestDemo {
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>" + (end - start) + ">>>>>>>>>>>>>>>>>>>>>>>>");
 //        return Tools.getBoolean(result);
     }
+
 
 }

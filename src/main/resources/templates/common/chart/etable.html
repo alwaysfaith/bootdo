@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="row  border-bottom white-bg dashboard-header">
+    <div class="col-sm-12">
+        <p>为了更好的协助后台工会管理华东家园，图表统计提供了直观，生动，可交互的数据统计，直观的了解工会各个地区男女比例，省份分布详情，各地区年龄分布详情。了解当前用户使用群体，更好的维护的统计数据，迎合用户喜好进行下一版本的迭代。
+        </p>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!--<div class="row">-->
+        <!--<div class="col-sm-6">-->
+            <!--<div class="ibox float-e-margins">-->
+                <!--<div class="ibox-title">-->
+                    <!--<h5>工作省份人数、男生、女生比例</h5>-->
+                    <!--<div class="ibox-tools">-->
+                        <!--<a class="collapse-link">-->
+                            <!--<i class="fa fa-chevron-up"></i>-->
+                        <!--</a>-->
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">-->
+                            <!--<i class="fa fa-wrench"></i>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu dropdown-user">-->
+                            <!--<li><a href="javascript:;">选项1</a>-->
+                            <!--</li>-->
+                            <!--<li><a href="javascript:;">选项2</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                        <!--<a class="close-link">-->
+                            <!--<i class="fa fa-times"></i>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="ibox-content">-->
+                    <!--<table id="exampleTable-total" class="text-center exampleTable" data-mobile-responsive="true"-->
+                           <!--data-resizable-columns-id="demo-table"></table>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="row">
+        <div class="col-sm-6">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>所有地区总人数、男生女生占比</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="javascript:;">选项1</a>
+                            </li>
+                            <li><a href="javascript:;">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table id="exampleTable-total" class="text-center exampleTable" data-mobile-responsive="true"
+                           data-resizable-columns-id="demo-table"></table>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>工作省份人数、男生、女生比例</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="javascript:;">选项1</a>
+                            </li>
+                            <li><a href="javascript:;">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table id="exampleTable-province" class="text-center exampleTable" data-mobile-responsive="true"
+                           data-resizable-columns-id="demo-table"></table>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>工作城市人数、男生、女生比例</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="javascript:;">选项1</a>
+                            </li>
+                            <li><a href="javascript:;">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table id="exampleTable-city" class="text-center exampleTable" data-mobile-responsive="true"
+                           data-resizable-columns-id="demo-table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/system/sysChart/etable.js"></script>
+</body>
+</html>

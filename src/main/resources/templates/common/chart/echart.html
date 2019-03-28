@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+
+<body class="gray-bg">
+<div class="row  border-bottom white-bg dashboard-header">
+    <div class="col-sm-12">
+        <p>
+            为了更好的协助后台工会管理华东家园，图表统计提供了直观，生动，可交互的数据统计，直观的了解工会各个地区男女比例，省份分布详情，各地区年龄分布详情。了解当前用户使用群体，更好的维护的统计数据，迎合用户喜好进行下一版本的迭代。
+        </p>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>地区总人数、男生、女生柱状图</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="javascript:;">选项1</a>
+                            </li>
+                            <li><a href="javascript:;">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="echarts" id="echarts-bar-chart" style="height: 318px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-5" style="width: 39.666667%;">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title ibox-chart">
+                    <h5>
+                        <select onchange="loadGender()" class="form-control" id="countryGender" name="countryGender"
+                                th:if="${not #lists.isEmpty(chartCountry)}">
+                            <option value="">所有地区男女总占比</option>
+
+                            <option th:value="${country.workProvince}" th:text="${country.workCounty}"
+                                    th:each="country:${chartCountry}"></option>
+
+                        </select>
+                    </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="javascript:;">选项1</a>
+                            </li>
+                            <li><a href="javascript:;">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="echarts" style="height:400px;" id="echarts-pie-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7" style="width: 60.333333%;">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title ibox-chart">
+                    <h5>
+                        <select onchange="loadAge()" class="form-control" id="countryGender-age" name="countryGender"
+                                th:if="${not #lists.isEmpty(chartCountry)}">
+                            <option value="">所有地区年龄总占比</option>
+                            <option th:value="${country.workProvince}" th:text="${country.workCounty}"
+                                    th:each="country:${chartCountry}"></option>
+                        </select>
+                    </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="javascript:;">选项1</a>
+                            </li>
+                            <li><a href="javascript:;">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div style="height:400px;" class="echarts" id="echarts-pie-chart-birth"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="row">
+         <div class="col-sm-12">
+             <div class="ibox float-e-margins">
+                 <div class="ibox-title">
+                     <h5>华东家园用户分布图</h5>
+                     <div class="ibox-tools">
+                         <a class="collapse-link">
+                             <i class="fa fa-chevron-up"></i>
+                         </a>
+                         <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                             <i class="fa fa-wrench"></i>
+                         </a>
+                         <ul class="dropdown-menu dropdown-user">
+                             <li><a href="javascript:;">选项1</a>
+                             </li>
+                             <li><a href="javascript:;">选项2</a>
+                             </li>
+                         </ul>
+                         <a class="close-link">
+                             <i class="fa fa-times"></i>
+                         </a>
+                     </div>
+                 </div>
+                 <div class="ibox-content">
+                     <div style="height:600px" id="echarts-map-chart"></div>
+                 </div>
+             </div>
+         </div>
+     </div>-->
+
+</div>
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- ECharts -->
+<script src="/js/plugins/echarts/echarts-all.js"></script>
+
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+
+<!-- ECharts demo data -->
+<script src="/js/demo/echarts-demo.js"></script>
+</body>
+</html>

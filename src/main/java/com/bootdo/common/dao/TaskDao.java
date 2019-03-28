@@ -5,6 +5,8 @@ import com.bootdo.common.domain.TaskDO;
 import java.util.List;
 import java.util.Map;
 
+import com.bootdo.system.domain.BasicHouseOrderDO;
+import com.bootdo.system.domain.orderData;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -29,4 +31,8 @@ public interface TaskDao {
 	int remove(Long id);
 	
 	int batchRemove(Long[] ids);
+
+	List<orderData> queryOrderData();
+
+	int saveOrderData(BasicHouseOrderDO basicHouseOrderDO);
 }
