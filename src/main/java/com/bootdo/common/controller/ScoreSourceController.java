@@ -31,12 +31,10 @@ import java.util.Map;
  */
 
 @Controller
-@RequestMapping("/common/scoreData")
-public class ScoreDataController {
-
+@RequestMapping("/common/scoreSource")
+public class ScoreSourceController {
     @Autowired
     private ScoreSourceService scoreDataService;
-
     @Autowired
     ScoreService scoreService;
 
@@ -53,7 +51,7 @@ public class ScoreDataController {
         ScoreSourceDO scoreDataDO = scoreDataService.list(params).get(0);
         String dataTable = scoreDataDO.getSsTable();
         Document doc = Jsoup.parse(dataTable);
-        Elements table = doc != null ? doc.select("tbody:eq(2)") : null;
+        Elements table = doc != null ? doc.select("tbody:eq(1)") : null;
         // 使用选择器选择该table内所有的<tr> <tr/>
         Elements trs = table != null ? table.select("tr") : null;
         List<ScoreDO> scoreDOS = new ArrayList<>();
@@ -69,16 +67,16 @@ public class ScoreDataController {
                 for (Element ignore : tds) {
                     // 获取td节点的所有div
                     //获取比赛周次
-                    String betWeek = tds.get(1).text();
+                    String betWeek = tds.get(0).select("strong").text();
                     scoreDO.setBetWeek(betWeek);
                     //比赛赛事(英超)
-                    String betLeague = tds.get(2).text();
+                    String betLeague = tds.get(1).select("a").text();
                     scoreDO.setBetLeague(betLeague);
                     //比赛赛事样式
-                    String style1 = tds.get(2).attr("style");
+                    String style1 = tds.get(1).attr("style");
                     scoreDO.setBetLeagueStyle(style1);
 
-                    Elements spans3 = tds.get(3).select("span");
+                    Elements spans3 = tds.get(2).select("span");
                     for (Element ignored : spans3) {
                         String betTime = spans3.get(0).text();
                         String startTime = spans3.get(1).text();
@@ -88,7 +86,7 @@ public class ScoreDataController {
                         scoreDO.setStartTime(startTime);
                     }
                     //主队信息hostTeam
-                    Elements spans4 = tds.get(4).select("span");
+                    Elements spans4 = tds.get(3).select("span");
                     for (Element ignoring : spans4) {
                         Elements ss = spans4.get(0).select("s");
                         for (Element ignored : ss) {
@@ -173,7 +171,7 @@ public class ScoreDataController {
                         scoreDO.setGuestTeam(guestTeam);
                     }
                     //半场比分
-                    String betHalf = tds.get(6).select("span").get(0).text();
+                    String betHalf = tds.get(5).select("span").get(0).text();
                     scoreDO.setBetScoreHalf(betHalf);
                     Elements elements = tds.get(7).select("div").select("p");
                     for (Element ignored : elements) {
@@ -201,17 +199,18 @@ public class ScoreDataController {
                             //设置打出属性
                             if (is.get(0).hasAttr("style")) {
                                 String style = is.get(0).attr("style");
-                                setBetSpPoint(scoreDO, style);
+                                setBetSpLetPoint(scoreDO, style);
                                 scoreDO.setDrawActive(String.valueOf(3));
 
                             } else if (is.get(1).hasAttr("style")) {
-                                String style = is.get(1).attr("style");
-                                setBetSpPoint(scoreDO, style);
+                                String style = is.get(0).attr("style");
+                                setBetSpLetPoint(scoreDO, style);
 
                                 scoreDO.setDrawActive(String.valueOf(1));
                             } else if (is.get(2).hasAttr("style")) {
-                                String style = is.get(2).attr("style");
-                                setBetSpPoint(scoreDO, style);
+                                String style = is.get(0).attr("style");
+                                setBetSpLetPoint(scoreDO, style);
+
                                 scoreDO.setDrawActive(String.valueOf(0));
                             }
                         }
@@ -226,18 +225,13 @@ public class ScoreDataController {
                             //让客
                             String letLoseOdds = i2s.get(2).text();
                             scoreDO.setLetLoseOdds(letLoseOdds);
+
                             //设置打出属性
                             if (i2s.get(0).hasAttr("style")) {
-                                String style = i2s.get(0).attr("style");
-                                setBetSpLetPoint(scoreDO, style);
                                 scoreDO.setLetActive(String.valueOf(3));
                             } else if (i2s.get(1).hasAttr("style")) {
-                                String style = i2s.get(1).attr("style");
-                                setBetSpLetPoint(scoreDO, style);
                                 scoreDO.setLetActive(String.valueOf(1));
                             } else if (i2s.get(2).hasAttr("style")) {
-                                String style = i2s.get(2).attr("style");
-                                setBetSpLetPoint(scoreDO, style);
                                 scoreDO.setLetActive(String.valueOf(0));
                             }
                         }
@@ -268,19 +262,6 @@ public class ScoreDataController {
         } else if ("background-color: rgb(255, 69, 0); color: white;".equalsIgnoreCase(style.trim())) {
             scoreDO.setBetSpLet(0);
             scoreDO.setBetSpLetStyle(style.trim());
-        }
-    }
-
-    private void setBetSpPoint(ScoreDO scoreDO, String style) {
-        if ("background-color: rgb(218, 175, 2); color: white;".equalsIgnoreCase(style.trim())) {
-            scoreDO.setBetSp(1);
-            scoreDO.setBetSpStyle(style.trim());
-        } else if ("background-color: rgb(21, 110, 202); color: white;".equalsIgnoreCase(style.trim())) {
-            scoreDO.setBetSp(3);
-            scoreDO.setBetSpStyle(style.trim());
-        } else if ("background-color: rgb(255, 69, 0); color: white;".equalsIgnoreCase(style.trim())) {
-            scoreDO.setBetSp(0);
-            scoreDO.setBetSpStyle(style.trim());
         }
     }
 
@@ -356,8 +337,8 @@ public class ScoreDataController {
     @PostMapping("/remove")
     @ResponseBody
     @RequiresPermissions("common:scoreData:remove")
-    public R remove(Long ssId) {
-        if (scoreDataService.remove(ssId) > 0) {
+    public R remove(Long dataId) {
+        if (scoreDataService.remove(dataId) > 0) {
             return R.ok();
         }
         return R.error();
