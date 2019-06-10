@@ -3,65 +3,65 @@
 
 <mapper namespace="com.sf.system.dao.ChartDao">
 
-    <!--查询大区列表-->
-    <select id="getCountry" resultType="com.sf.system.domain.UserinfoDO">
-SELECT dic_area.`name` as `work_county`,shu.work_province from (SELECT work_province from sh_userinfo  GROUP BY work_province) shu LEFT JOIN dic_area on shu.work_province= dic_area.`code`
-	</select>
+    <!--&lt;!&ndash;查询大区列表&ndash;&gt;-->
+    <!--<select id="getCountry" resultType="com.sf.system.domain.UserinfoDO">-->
+<!--SELECT dic_area.`name` as `work_county`,shu.work_province from (SELECT work_province from sh_userinfo  GROUP BY work_province) shu LEFT JOIN dic_area on shu.work_province= dic_area.`code`-->
+	<!--</select>-->
 
-    <!--查询男女比例-->
-    <select id="getGender" resultType="com.sf.system.vo.ChartSexVO" parameterType="java.lang.String">
-        SELECT sex as `name`,count(*) as value from sh_userinfo
-        <where>
-            <if test="countryGender != null and countryGender != ''">and work_province =#{countryGender}</if>
-        </where>
-        GROUP BY sex
-    </select>
+    <!--&lt;!&ndash;查询男女比例&ndash;&gt;-->
+    <!--<select id="getGender" resultType="com.sf.system.vo.ChartSexVO" parameterType="java.lang.String">-->
+        <!--SELECT sex as `name`,count(*) as value from sh_userinfo-->
+        <!--<where>-->
+            <!--<if test="countryGender != null and countryGender != ''">and work_province =#{countryGender}</if>-->
+        <!--</where>-->
+        <!--GROUP BY sex-->
+    <!--</select>-->
 
-    <!--查询年龄比例-->
-    <select id="getAge" resultType="com.sf.system.vo.ChartSexVO" parameterType="java.lang.String">
-        SELECT substring(birth,1,4) as `name`,count(*) as value from sh_userinfo
-        <where>
-            <if test="countryGender != null and countryGender != ''">and work_province =#{countryGender}</if>
-        </where>
-        GROUP BY substring(birth,1,4)
-    </select>
+    <!--&lt;!&ndash;查询年龄比例&ndash;&gt;-->
+    <!--<select id="getAge" resultType="com.sf.system.vo.ChartSexVO" parameterType="java.lang.String">-->
+        <!--SELECT substring(birth,1,4) as `name`,count(*) as value from sh_userinfo-->
+        <!--<where>-->
+            <!--<if test="countryGender != null and countryGender != ''">and work_province =#{countryGender}</if>-->
+        <!--</where>-->
+        <!--GROUP BY substring(birth,1,4)-->
+    <!--</select>-->
 
-    <!--查询大区，男女总人数-->
-    <select id="getSingle" resultType="com.sf.system.vo.SeriesVO">
-            SELECT
-                dic_area.`name`,
-                tt.maNum,
-                tt.woNum,
-                tt.total
-            FROM
-                (
-                    SELECT
-                    sht.*,IFNULL(shto.maNum,0) as maNum,(sht.total-IFNULL(shto.maNum,0)) as woNum
-            FROM
-                (
-                    SELECT
-                        work_province AS NAME,
-                        count(*) AS `total`
-                    FROM
-                        sh_userinfo
-                    GROUP BY
-                        work_province
-                ) sht
-            LEFT JOIN (
-                SELECT
-                    work_province AS NAME,
-                    count(*) AS `maNum`
-                FROM
-                    sh_userinfo
-                WHERE
-                    sex = '男'
-                GROUP BY
-                    work_province
-            ) shto ON sht. NAME = shto. NAME
-                ) tt
-            LEFT JOIN dic_area ON tt. NAME = dic_area.`code`
-            ORDER BY tt.total DESC
-    </select>
+    <!--&lt;!&ndash;查询大区，男女总人数&ndash;&gt;-->
+    <!--<select id="getSingle" resultType="com.sf.system.vo.SeriesVO">-->
+            <!--SELECT-->
+                <!--dic_area.`name`,-->
+                <!--tt.maNum,-->
+                <!--tt.woNum,-->
+                <!--tt.total-->
+            <!--FROM-->
+                <!--(-->
+                    <!--SELECT-->
+                    <!--sht.*,IFNULL(shto.maNum,0) as maNum,(sht.total-IFNULL(shto.maNum,0)) as woNum-->
+            <!--FROM-->
+                <!--(-->
+                    <!--SELECT-->
+                        <!--work_province AS NAME,-->
+                        <!--count(*) AS `total`-->
+                    <!--FROM-->
+                        <!--sh_userinfo-->
+                    <!--GROUP BY-->
+                        <!--work_province-->
+                <!--) sht-->
+            <!--LEFT JOIN (-->
+                <!--SELECT-->
+                    <!--work_province AS NAME,-->
+                    <!--count(*) AS `maNum`-->
+                <!--FROM-->
+                    <!--sh_userinfo-->
+                <!--WHERE-->
+                    <!--sex = '男'-->
+                <!--GROUP BY-->
+                    <!--work_province-->
+            <!--) shto ON sht. NAME = shto. NAME-->
+                <!--) tt-->
+            <!--LEFT JOIN dic_area ON tt. NAME = dic_area.`code`-->
+            <!--ORDER BY tt.total DESC-->
+    <!--</select>-->
 
 
 </mapper>

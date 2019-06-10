@@ -53,7 +53,10 @@ function load() {
                     letDrowOdds: $('#letDrowOdds').val(),
                     letLoseOdds: $('#letLoseOdds').val(),
                     drawActive: $('#drawActive').val(),
-                    letActive: $('#letActive').val()
+                    letActive: $('#letActive').val(),
+                    betSp: $('#betSp').val(),
+                    betSpLet: $('#betSpLet').val(),
+                    hostGuest: $('#hostGuest').val(),
                 };
             },
             // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -79,7 +82,7 @@ function load() {
                     field: 'betLeague',
                     title: '比赛赛事',
                     formatter: function (value, row) {
-                        return'<span style="display: inline-block;width: 88px;line-height: 38px;'+row.betLeagueStyle+'">' + row.betLeague + '</span>';
+                        return '<span style="display: inline-block;width: 88px;line-height: 38px;' + row.betLeagueStyle + '">' + row.betLeague + '</span>';
                     }
                 },
                 {
@@ -174,6 +177,9 @@ function load() {
                     field: 'betScore',
                     title: '比分',
                     formatter: function (value, row) {
+                        if (row.betScore == "VS") {
+                            return '<span class="betGray">' + row.betScore + '</span>';
+                        }
                         return '<span class="betScore">' + row.betScore + '</span>';
                     }
                 },
@@ -231,7 +237,10 @@ function load() {
                     field: 'betScoreHalf',
                     title: '半场比分',
                     formatter: function (value, row) {
-                        return '<span class="betScore">' + row.betScore + '</span>';
+                        if (row.betScoreHalf == "延期" || row.betScoreHalf == "腰斩") {
+                            return '<span class="betGray">' + row.betScoreHalf + '</span>';
+                        }
+                        return '<span class="betScore">' + row.betScoreHalf + '</span>';
                     }
                 },
                 {
@@ -388,6 +397,17 @@ function load() {
                                 '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
                                 '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
                                 '<i class="letLoseOdds"><span style="background-color: rgb(255, 69, 0);color: #fff">' + row.letLoseOdds + '</span></i>' +
+                                '</p></div>',
+                            q = '<div class="tdDiv">' +
+                                '<p class="drawPoint" style="border-bottom: 1px solid #e4eaec;">' +
+                                '<i class="drawWinOdds"><span>' + row.drawWinOdds + '</span></i>' +
+                                '<i class="drawDrowOdds"><span>' + row.drawDrowOdds + '</span></i>' +
+                                '<i class="drawLoseOdds "  ><span>' + row.drawLoseOdds + '</span></i>' +
+                                '</p>' +
+                                '<p class="letPoint">' +
+                                '<i class="letWinOdds"><span>' + row.letWinOdds + '</span></i>' +
+                                '<i class="letDrowOdds"><span>' + row.letDrowOdds + '</span></i>' +
+                                '<i class="letLoseOdds"><span>' + row.letLoseOdds + '</span></i>' +
                                 '</p></div>';
                         if (row.drawActive == 3 && row.letActive == 3) {
                             return e;
@@ -407,6 +427,8 @@ function load() {
                             return l;
                         } else if (row.drawActive == 0 && row.letActive == 0) {
                             return m;
+                        } else if (row.drawActive == null && row.letActive == null) {
+                            return q;
                         } else if (row.drawWinOdds == "--" && row.drawDrowOdds == "--" && row.drawLoseOdds == "--") {
                             if (row.letActive == 3) {
                                 return n;
@@ -564,7 +586,10 @@ function reLoad() {
                 letDrowOdds: $('#letDrowOdds').val(),
                 letLoseOdds: $('#letLoseOdds').val(),
                 drawActive: $('#drawActive').val(),
-                letActive: $('#letActive').val()
+                letActive: $('#letActive').val(),
+                betSp: $('#betSp').val(),
+                betSpLet: $('#betSpLet').val(),
+                hostGuest: $('#hostGuest').val(),
             };
         }
     };

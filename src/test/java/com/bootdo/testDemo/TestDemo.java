@@ -5,30 +5,20 @@ import com.bootdo.system.domain.UserDO;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
-import org.dom4j.Attribute;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 
 @RestController()
 @RunWith(SpringRunner.class)
@@ -54,6 +44,38 @@ public class TestDemo {
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
+
+
+    @Test
+    public void testScoreProbability() throws Exception {
+        long millis1 = Clock.systemDefaultZone().millis();
+        /**
+         *
+         * 盘口查询： (-0.25   -0.5  -0.75  -1 -1.25 -1.5 -1.75 -2 -2.25  0  0.25 0.5 0.75 1 1.25  1.5 1.75 2)
+         * 让球   受*平/半     同初盘               http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.25&n=5&t=1&l=0
+         * 让球   受*平/半     同终盘               http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.25&n=5&t=2&l=0
+         * 让球   受*平/半     初盘终盘相同     http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.25&n=5&t=3&l=0
+         *
+         *让球   受*半球      同初盘                http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.5&n=5&t=1&l=0
+         *让球   受*半球      同终盘                http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.5&n=5&t=2&l=0
+         *让球   受*半球      初盘终盘相同      http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.5&n=5&t=3&l=0
+         *
+         *让球   受*半/一     同初盘                http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.75&n=5&t=1&l=0
+         *让球   受*半/一     同终盘                http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.75&n=5&t=2&l=0
+         *让球   受*半/一     初盘终盘相同      http://vip.win0168.com/history/SearchSameGoal.aspx?g=-0.75&n=5&t=3&l=0
+         *
+         *让球   受*一球     同初盘                http://vip.win0168.com/history/SearchSameGoal.aspx?g=-1&n=5&t=1&l=0
+         *让球   受*一球     同终盘                http://vip.win0168.com/history/SearchSameGoal.aspx?g=-1&n=5&t=2&l=0
+         *让球   受*一球     初盘终盘相同      http://vip.win0168.com/history/SearchSameGoal.aspx?g=-1&n=5&t=3&l=0
+         *
+         *
+         *  大小
+         *
+         */
+        long millis2 = Clock.systemDefaultZone().millis();
+        System.out.println("耗时：{}" + (millis2 - millis1));
+
+    }
 
 
     @Test
@@ -118,20 +140,21 @@ public class TestDemo {
 //    }
 
 
-    class MyThreadPoolExecutor extends ThreadPoolExecutor{
+    class MyThreadPoolExecutor extends ThreadPoolExecutor {
         private boolean hasFinish = false;
-        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, RejectedExecutionHandler handler)
-        {super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
+
+        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, RejectedExecutionHandler handler) {
+            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
             // TODO Auto-generated constructor stub
         }
 
-        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler)
-        {
+        public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {
             super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
                     threadFactory, handler);
             // TODO Auto-generated constructor stub
 
         }
+
         public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory) {
             super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
                     threadFactory);
@@ -150,24 +173,23 @@ public class TestDemo {
         protected void afterExecute(Runnable r, Throwable t) {
             // TODO Auto-generated method stub
             super.afterExecute(r, t);
-            synchronized(this){
-                System.out.println("自动调用了....afterEx 此时getActiveCount()值:"+this.getActiveCount());
-                if(this.getActiveCount() == 1)//已执行完任务之后的最后一个线程
+            synchronized (this) {
+                System.out.println("自动调用了....afterEx 此时getActiveCount()值:" + this.getActiveCount());
+                if (this.getActiveCount() == 1)//已执行完任务之后的最后一个线程
                 {
-                    this.hasFinish=true;
+                    this.hasFinish = true;
                     this.notify();
                 }//if
             }// synchronized
         }
 
         public void isEndTask() {
-            synchronized(this){
+            synchronized (this) {
                 while (!this.hasFinish) {
                     System.out.println("等待线程池所有任务结束: wait...");
                     try {
                         this.wait();
-                    }
-                    catch (InterruptedException e) {
+                    } catch (InterruptedException e) {
 //           TODO Auto-generated catch block
                         e.printStackTrace();
                     }

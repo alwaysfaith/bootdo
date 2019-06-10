@@ -3,304 +3,351 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <style>
-	.fixed-table-container {
-		border: 1px solid #D9D9D9;
-	}
-	.bootstrap-table .table {
-		border-bottom: 1px solid #D9D9D9;
-	}
-	.bootstrap-table .table>thead>tr>th {
-		border-bottom: 1px solid #D9D9D9;
-	}
-	.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-		border-top: 1px solid #D9D9D9;
-	}
-	.fixed-table-container tbody td {
-		border-left: 1px solid #D9D9D9;
-	}
-	.fixed-table-container thead th {
-		border-left: 1px solid #D9D9D9;
-	}
-	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-		padding:0;
-	}
-	.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
-		padding:0;
-	}
-	.bootstrap-table .table, .bootstrap-table .table>tbody>tr>td, .bootstrap-table .table>tbody>tr>th, .bootstrap-table .table>tfoot>tr>td, .bootstrap-table .table>tfoot>tr>th, .bootstrap-table .table>thead>tr>td{
-		padding:0px!important;
-	}
-	#exampleTable tr th:focus{
-		outline:none;
-	}
-	#exampleTable tr th{
-		text-align: center;
-		font-weight:normal;
-		vertical-align: middle!important;
-		font-size:15px;
-		color: #555;
-		background-color: #f5f5f5;
-	}
-	#exampleTable tr td{
-		text-align: center;
-		background: #fff;
-		font-size:15px;
-		color: #555;
-		padding-left:0!important;
-		padding-right:0!important;
-		font-weight:normal;
-	}
-	#exampleTable tr:hover td{
-		background: #f5f5f5;
-	}
-	p.drawPoint i:nth-child(1),p.letPoint i:nth-child(1){
-		border-left: none;
-	}
-	p.drawPoint i,p.letPoint i{
-		display: inline-block;
-		padding: 6px 12px;
-		font-size:14px;
-		border-left:1px solid #D9D9D9;
-	}
-	p.drawPoint i span,p.letPoint i span{
-		display: inline-block;
-		width: 32px;
-	}
-	.hostTeam .hostRedCard,.hostTeam .hostYellowCard,.guestTeam .guestRedCard,.guestTeam .guestYellowCard{
-		margin-bottom:10px;
-		margin-right:3px;
-		display: inline-block;
-		padding: 2px 3.5px;
-		font-size:10px;
-		color: #fff;
-		text-align: center;
-		line-height:12px;
-		vertical-align: middle;
-		background: #E60012;
-	}
-	.guestTeam .guestRedCard,.guestTeam .guestYellowCard,.guestTeam .guestRank{
-		margin-left:3px;
-		margin-right:0;
-	}
-	.hostTeam .hostYellowCard,.guestTeam .guestYellowCard{
-		background: #FF9900;
-	}
-	.hostTeam .hostRank,.guestTeam .guestRank{
-		font-size:10px;
-		line-height:12px;
-		vertical-align: middle;
-		display: inline-block;
-		color: #999;
-		margin: 0 2px 10px 2px;
-	}
-	.betScore{
-		letter-spacing: 5px;
-		font-weight:600;
-		color:#E60012;
-		font-size: 14px;
-		font-family:"Microsoft JhengHei";
-	}
-	.tdDiv p{
-		font-weight:600;
-		font-size: 14px;
-		font-family:"Microsoft JhengHei";
-	}
-	.letPoint .let-space{
-		display: inline-block;
-		text-indent: -6px;
-	}
-	.hostTeam,.guestTeam{
-		color: #1f3b7b;
-	}
+    .fixed-table-container {
+        border: 1px solid #D9D9D9;
+    }
+
+    .bootstrap-table .table {
+        border-bottom: 1px solid #D9D9D9;
+    }
+
+    .bootstrap-table .table > thead > tr > th {
+        border-bottom: 1px solid #D9D9D9;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        border-top: 1px solid #D9D9D9;
+    }
+
+    .fixed-table-container tbody td {
+        border-left: 1px solid #D9D9D9;
+    }
+
+    .fixed-table-container thead th {
+        border-left: 1px solid #D9D9D9;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 0;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        padding: 0;
+    }
+
+    .bootstrap-table .table, .bootstrap-table .table > tbody > tr > td, .bootstrap-table .table > tbody > tr > th, .bootstrap-table .table > tfoot > tr > td, .bootstrap-table .table > tfoot > tr > th, .bootstrap-table .table > thead > tr > td {
+        padding: 0px !important;
+    }
+
+    #exampleTable tr th:focus {
+        outline: none;
+    }
+
+    #exampleTable tr th {
+        text-align: center;
+        font-weight: normal;
+        vertical-align: middle !important;
+        font-size: 15px;
+        color: #555;
+        background-color: #f5f5f5;
+    }
+
+    #exampleTable tr td {
+        text-align: center;
+        background: #fff;
+        font-size: 15px;
+        color: #555;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        font-weight: normal;
+    }
+
+    #exampleTable tr:hover td {
+        background: #f5f5f5;
+    }
+
+    p.drawPoint i:nth-child(1), p.letPoint i:nth-child(1) {
+        border-left: none;
+    }
+
+    p.drawPoint i, p.letPoint i {
+        display: inline-block;
+        padding: 6px 12px;
+        font-size: 14px;
+        border-left: 1px solid #D9D9D9;
+    }
+
+    p.drawPoint i span, p.letPoint i span {
+        display: inline-block;
+        width: 32px;
+    }
+
+    .hostTeam .hostRedCard, .hostTeam .hostYellowCard, .guestTeam .guestRedCard, .guestTeam .guestYellowCard {
+        margin-bottom: 10px;
+        margin-right: 3px;
+        display: inline-block;
+        padding: 2px 3.5px;
+        font-size: 10px;
+        color: #fff;
+        text-align: center;
+        line-height: 12px;
+        vertical-align: middle;
+        background: #E60012;
+    }
+
+    .guestTeam .guestRedCard, .guestTeam .guestYellowCard, .guestTeam .guestRank {
+        margin-left: 3px;
+        margin-right: 0;
+    }
+
+    .hostTeam .hostYellowCard, .guestTeam .guestYellowCard {
+        background: #FF9900;
+    }
+
+    .hostTeam .hostRank, .guestTeam .guestRank {
+        font-size: 10px;
+        line-height: 12px;
+        vertical-align: middle;
+        display: inline-block;
+        color: #999;
+        margin: 0 2px 10px 2px;
+    }
+
+    .betScore {
+        letter-spacing: 5px;
+        font-weight: 600;
+        color: #E60012;
+        font-size: 14px;
+        font-family: "Microsoft JhengHei";
+    }
+
+    .tdDiv p {
+        font-weight: 600;
+        font-size: 14px;
+        font-family: "Microsoft JhengHei";
+    }
+
+    span.betGray {
+        color: #999;
+    }
+
+    .letPoint .let-space {
+        display: inline-block;
+        text-indent: -6px;
+    }
+
+    .hostTeam, .guestTeam {
+        color: #1f3b7b;
+    }
 </style>
 <body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="col-sm-12">
-			<div class="ibox">
-				<div class="ibox-body">
-					<div class="fixed-table-toolbar">
-						<div class="layui-form" id="query-form">
+<div class="wrapper wrapper-content ">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div class="fixed-table-toolbar">
+                    <div class="layui-form" id="query-form">
 
-							<div class="layui-form-item">
-								<div class="layui-input-inline">
-									<input type="text" name="betWeek" onkeyup="reLoad()" class="layui-input"
-										   id="betWeek"
-										   placeholder="比赛周次">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="betLeague" onkeyup="reLoad()" class="layui-input"
-										   id="betLeague"
-										   placeholder="比赛赛事">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="betTime" onkeyup="reLoad()" class="layui-input"
-										   id="betTime"
-										   placeholder="比赛日期">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="hostTeam" onkeyup="reLoad()" class="layui-input"
-										   id="hostTeam"
-										   placeholder="主队">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="hostRank" onkeyup="reLoad()" class="layui-input"
-										   id="hostRank"
-										   placeholder="主队排名">
-								</div>
-							</div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <input type="text" name="betWeek" onkeyup="reLoad()" class="layui-input"
+                                       id="betWeek"
+                                       placeholder="比赛周次">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="betLeague" onkeyup="reLoad()" class="layui-input"
+                                       id="betLeague"
+                                       placeholder="比赛赛事">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="betTime" onkeyup="reLoad()" class="layui-input"
+                                       id="betTime"
+                                       placeholder="比赛日期">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="hostTeam" onkeyup="reLoad()" class="layui-input"
+                                       id="hostTeam"
+                                       placeholder="主队">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="hostRank" onkeyup="reLoad()" class="layui-input"
+                                       id="hostRank"
+                                       placeholder="主队排名">
+                            </div>
+                        </div>
 
-							<div class="layui-form-item">
-								<div class="layui-input-inline">
-									<input type="text" name="guestTeam" onkeyup="reLoad()" class="layui-input"
-										   id="guestTeam"
-										   placeholder="客队">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="guestRank" onkeyup="reLoad()" class="layui-input"
-										   id="guestRank"
-										   placeholder="客队排名">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="betScore" onkeyup="reLoad()" class="layui-input"
-										   id="betScore"
-										   placeholder="完场比分">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="betScoreHalf" onkeyup="reLoad()" class="layui-input"
-										   id="betScoreHalf"
-										   placeholder="半场比分">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="hostRedCard" onkeyup="reLoad()" class="layui-input"
-										   id="hostRedCard"
-										   placeholder="主队红牌">
-								</div>
-							</div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <input type="text" name="guestTeam" onkeyup="reLoad()" class="layui-input"
+                                       id="guestTeam"
+                                       placeholder="客队">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="guestRank" onkeyup="reLoad()" class="layui-input"
+                                       id="guestRank"
+                                       placeholder="客队排名">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="betScore" onkeyup="reLoad()" class="layui-input"
+                                       id="betScore"
+                                       placeholder="完场比分">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="betScoreHalf" onkeyup="reLoad()" class="layui-input"
+                                       id="betScoreHalf"
+                                       placeholder="半场比分">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="hostRedCard" onkeyup="reLoad()" class="layui-input"
+                                       id="hostRedCard"
+                                       placeholder="主队红牌">
+                            </div>
+                        </div>
 
-							<div class="layui-form-item">
-								<div class="layui-input-inline">
-									<input type="text" name="hostYellowCard" onkeyup="reLoad()" class="layui-input"
-										   id="hostYellowCard"
-										   placeholder="主队黄牌">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="guestRedCard" onkeyup="reLoad()" class="layui-input"
-										   id="guestRedCard"
-										   placeholder="客队红牌">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="guestYellowCard" onkeyup="reLoad()" class="layui-input"
-										   id="guestYellowCard"
-										   placeholder="客队黄牌">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="drawPoint" onkeyup="reLoad()" class="layui-input"
-										   id="drawPoint"
-										   placeholder="平手盘">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="drawWinOdds" onkeyup="reLoad()" class="layui-input"
-										   id="drawWinOdds"
-										   placeholder="平手盘主队">
-								</div>
-							</div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <input type="text" name="hostYellowCard" onkeyup="reLoad()" class="layui-input"
+                                       id="hostYellowCard"
+                                       placeholder="主队黄牌">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="guestRedCard" onkeyup="reLoad()" class="layui-input"
+                                       id="guestRedCard"
+                                       placeholder="客队红牌">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="guestYellowCard" onkeyup="reLoad()" class="layui-input"
+                                       id="guestYellowCard"
+                                       placeholder="客队黄牌">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="drawPoint" onkeyup="reLoad()" class="layui-input"
+                                       id="drawPoint"
+                                       placeholder="平手盘">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="drawWinOdds" onkeyup="reLoad()" class="layui-input"
+                                       id="drawWinOdds"
+                                       placeholder="平手盘主队">
+                            </div>
+                        </div>
 
-							<div class="layui-form-item">
-								<div class="layui-input-inline">
-									<input type="text" name="drawDrowOdds" onkeyup="reLoad()" class="layui-input"
-										   id="drawDrowOdds"
-										   placeholder="平手盘平手">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="drawLoseOdds" onkeyup="reLoad()" class="layui-input"
-										   id="drawLoseOdds"
-										   placeholder="平手盘客队">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="letPoint" onkeyup="reLoad()" class="layui-input"
-										   id="letPoint"
-										   placeholder="让球盘">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="letWinOdds" onkeyup="reLoad()" class="layui-input"
-										   id="letWinOdds"
-										   placeholder="让球盘主队">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="letDrowOdds" onkeyup="reLoad()" class="layui-input"
-										   id="letDrowOdds"
-										   placeholder="让球盘平手">
-								</div>
-							</div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <input type="text" name="drawDrowOdds" onkeyup="reLoad()" class="layui-input"
+                                       id="drawDrowOdds"
+                                       placeholder="平手盘平手">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="drawLoseOdds" onkeyup="reLoad()" class="layui-input"
+                                       id="drawLoseOdds"
+                                       placeholder="平手盘客队">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="letPoint" onkeyup="reLoad()" class="layui-input"
+                                       id="letPoint"
+                                       placeholder="让球盘">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="letWinOdds" onkeyup="reLoad()" class="layui-input"
+                                       id="letWinOdds"
+                                       placeholder="让球盘主队">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="letDrowOdds" onkeyup="reLoad()" class="layui-input"
+                                       id="letDrowOdds"
+                                       placeholder="让球盘平手">
+                            </div>
+                        </div>
 
-							<div class="layui-form-item">
-								<div class="layui-input-inline">
-									<input type="text" name="letLoseOdds" onkeyup="reLoad()" class="layui-input"
-										   id="letLoseOdds"
-										   placeholder="让球盘客队">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="drawActive" onkeyup="reLoad()" class="layui-input"
-										   id="drawActive"
-										   placeholder="平手盘310">
-								</div>
-								<div class="layui-input-inline">
-									<input type="text" name="letActive" onkeyup="reLoad()" class="layui-input"
-										   id="letActive"
-										   placeholder="让球盘310">
-								</div>
-							</div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <input type="text" name="letLoseOdds" onkeyup="reLoad()" class="layui-input"
+                                       id="letLoseOdds"
+                                       placeholder="让球盘客队">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="drawActive" onkeyup="reLoad()" class="layui-input"
+                                       id="drawActive"
+                                       placeholder="平手盘310">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="letActive" onkeyup="reLoad()" class="layui-input"
+                                       id="letActive"
+                                       placeholder="让球盘310">
+                            </div>
 
-							<div class="layui-form-item">
-								<div class="layui-input-inline" style="width: 50%;">
-									<button id="btn_search" onclick="reLoad()" type="button"
-											class="layui-btn">
-										<span class="fa fa-search" aria-hidden="true">查询</span>
-									</button>
-									<button id="btn_reset" onclick="resetSearch()" type="button"
-											class="layui-btn">
-										<span class="fa fa-eraser" aria-hidden="true">重置</span>
-									</button>
-									<button type="button" class="layui-btn"
-											onclick="batchRemove()">
-										<i class="fa fa-trash" aria-hidden="true"></i>删除
-									</button>
-								</div>
-							</div>
+                            <div class="layui-input-inline">
+                                <input type="text" name="betSp" onkeyup="reLoad()" class="layui-input"
+                                       id="betSp"
+                                       placeholder="竞彩sp310">
+                            </div>
 
-						</div>
-					</div>
-					<table id="exampleTable" data-mobile-responsive="true">
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
-		<div>
-			<script type="text/javascript">
-				var s_edit_h = 'hidden';
-				var s_remove_h = 'hidden';
-				var s_resetPwd_h = 'hidden';
-			</script>
-		</div>
-		<div shiro:hasPermission="common:score:edit">
-			<script type="text/javascript">
-				s_edit_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="common:score:remove">
-			<script type="text/javascript">
-				var s_remove_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="common:score:resetPwd">
-			<script type="text/javascript">
-				var s_resetPwd_h = '';
-			</script>
-		</div>
-	</div>
-	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/common/score/score.js"></script>
+                            <div class="layui-input-inline">
+                                <input type="text" name="betSpLet" onkeyup="reLoad()" class="layui-input"
+                                       id="betSpLet"
+                                       placeholder="竞彩sp(让球)310">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <input type="text" name="hostGuest" onkeyup="reLoad()" class="layui-input"
+                                       id="hostGuest"
+                                       placeholder="主客队">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline" style="width: 50%;">
+                                <button id="btn_search" onclick="reLoad()" type="button"
+                                        class="layui-btn">
+                                    <span class="fa fa-search" aria-hidden="true">查询</span>
+                                </button>
+                                <button id="btn_reset" onclick="resetSearch()" type="button"
+                                        class="layui-btn">
+                                    <span class="fa fa-eraser" aria-hidden="true">重置</span>
+                                </button>
+                                <button type="button" class="layui-btn"
+                                        onclick="batchRemove()">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>删除
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <table id="exampleTable" data-mobile-responsive="true">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+<div>
+    <script type="text/javascript">
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        var s_resetPwd_h = 'hidden';
+    </script>
+</div>
+<div shiro:hasPermission="common:score:edit">
+    <script type="text/javascript">
+        s_edit_h = '';
+    </script>
+</div>
+<div shiro:hasPermission="common:score:remove">
+    <script type="text/javascript">
+        var s_remove_h = '';
+    </script>
+</div>
+<div shiro:hasPermission="common:score:resetPwd">
+    <script type="text/javascript">
+        var s_resetPwd_h = '';
+    </script>
+</div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/common/score/score.js"></script>
 </body>
 </html>

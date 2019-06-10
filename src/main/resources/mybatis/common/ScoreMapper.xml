@@ -10,11 +10,14 @@
     <select id="list" resultType="com.bootdo.common.domain.ScoreDO">
         select `bet_id`,`bet_week`,`bet_league`,`bet_league_style`,`bet_time`,`start_time`,`host_rank`,`host_team`,`guest_rank`,`guest_team`,`bet_score`,`host_red_card`,`guest_red_card`,`host_yellow_card`,`guest_yellow_card`,`bet_score_half`,`draw_point`,`draw_win_odds`,`draw_drow_odds`,`draw_lose_odds`,`let_point`,`let_win_odds`,`let_drow_odds`,`let_lose_odds`,`draw_active`,`let_active`,`bet_sp`,`bet_sp_let`,`bet_sp_let_style`,`bet_sp_style`,`ss_id`,`ss_stage` from tf_score
         <where>
+            <if test="hostGuest != null and hostGuest != ''">
+                (host_team = #{hostGuest} OR guest_team=#{hostGuest})
+            </if>
             <if test="betId != null and betId != ''"> and bet_id = #{betId} </if>
             <if test="betWeek != null and betWeek != ''"> and bet_week = #{betWeek} </if>
             <if test="betLeague != null and betLeague != ''"> and bet_league = #{betLeague} </if>
             <if test="betLeagueStyle != null and betLeagueStyle != ''"> and bet_league_style = #{betLeagueStyle} </if>
-            <if test="betTime != null and betTime != ''"> and bet_time = #{betTime} </if>
+            <if test="betTime != null and betTime != ''"> and bet_time LIKE CONCAT(#{betTime}, '%')</if>
             <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
             <if test="hostRank != null and hostRank != ''"> and host_rank = #{hostRank} </if>
             <if test="hostTeam != null and hostTeam != ''"> and host_team = #{hostTeam} </if>
@@ -42,6 +45,7 @@
             <if test="betSpStyle != null and betSpStyle != ''"> and bet_sp_style = #{betSpStyle} </if>
             <if test="ssId != null and ssId != ''"> and ss_id = #{ssId} </if>
             <if test="ssStage != null and ssStage != ''"> and ss_stage = #{ssStage} </if>
+
         </where>
         <choose>
             <when test="sort != null and sort.trim() != ''">

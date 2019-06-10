@@ -17,6 +17,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,7 @@ public class ScoreDataController {
 
     @PostMapping("/resolve")
     @ResponseBody
+    @Transactional(rollbackFor = Exception.class)
     @RequiresPermissions("common:scoreData:scoreData")
     public R resolveScoreData(@RequestParam Map<String, Object> params) {
         ScoreSourceDO scoreDataDO = scoreDataService.list(params).get(0);
@@ -173,8 +175,18 @@ public class ScoreDataController {
                         scoreDO.setGuestTeam(guestTeam);
                     }
                     //半场比分
-                    String betHalf = tds.get(6).select("span").get(0).text();
-                    scoreDO.setBetScoreHalf(betHalf);
+                    Elements span = tds.get(6).select("span");
+                    if (span.isEmpty()) {
+                        for (Element ignoring : spans4) {
+                            //半场比分延期或腰斩
+                            String lateBet = spans4.get(9).text();
+                            scoreDO.setBetScoreHalf(lateBet);
+                        }
+                    } else {
+                        String betHalf = tds.get(6).select("span").get(0).text();
+                        scoreDO.setBetScoreHalf(betHalf);
+                    }
+
                     Elements elements = tds.get(7).select("div").select("p");
                     for (Element ignored : elements) {
                         //平手
@@ -317,6 +329,7 @@ public class ScoreDataController {
      */
     @ResponseBody
     @PostMapping("/save")
+    @Transactional(rollbackFor = Exception.class)
     @RequiresPermissions("common:scoreData:add")
     public R save(ScoreSourceDO scoreData) {
         if (StringUtils.isBlank(scoreData.getSsTable())) {

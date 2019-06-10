@@ -9,7 +9,7 @@
 
 	<select id="list" resultType="com.bootdo.activiti.domain.SalaryDO">
 		select `id`,`PROC_INS_ID`,`USER_ID`,`OFFICE_ID`,`POST`,`AGE`,`EDU`,`CONTENT`,`OLDA`,`OLDB`,`OLDC`,`NEWA`,`NEWB`,`NEWC`,`ADD_NUM`,`EXE_DATE`,`HR_TEXT`,`LEAD_TEXT`,`MAIN_LEAD_TEXT`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag` from salary
-        <where>  
+        <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="procInsId != null and procInsId != ''"> and PROC_INS_ID = #{procInsId} </if>
 		  		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
@@ -48,10 +48,10 @@
 			limit #{offset}, #{limit}
 		</if>
 	</select>
-	
+
  	<select id="count" resultType="int">
 		select count(*) from salary
-		 <where>  
+		 <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="procInsId != null and procInsId != ''"> and PROC_INS_ID = #{procInsId} </if>
 		  		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
@@ -79,68 +79,68 @@
 		  		  <if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
 		  		</where>
 	</select>
-	 
+
 	<insert id="save" parameterType="com.bootdo.activiti.domain.SalaryDO">
 		insert into salary
 		(
-			`id`, 
-			`PROC_INS_ID`, 
-			`USER_ID`, 
-			`OFFICE_ID`, 
-			`POST`, 
-			`AGE`, 
-			`EDU`, 
-			`CONTENT`, 
-			`OLDA`, 
-			`OLDB`, 
-			`OLDC`, 
-			`NEWA`, 
-			`NEWB`, 
-			`NEWC`, 
-			`ADD_NUM`, 
-			`EXE_DATE`, 
-			`HR_TEXT`, 
-			`LEAD_TEXT`, 
-			`MAIN_LEAD_TEXT`, 
-			`create_by`, 
-			`create_date`, 
-			`update_by`, 
-			`update_date`, 
-			`remarks`, 
+			`id`,
+			`PROC_INS_ID`,
+			`USER_ID`,
+			`OFFICE_ID`,
+			`POST`,
+			`AGE`,
+			`EDU`,
+			`CONTENT`,
+			`OLDA`,
+			`OLDB`,
+			`OLDC`,
+			`NEWA`,
+			`NEWB`,
+			`NEWC`,
+			`ADD_NUM`,
+			`EXE_DATE`,
+			`HR_TEXT`,
+			`LEAD_TEXT`,
+			`MAIN_LEAD_TEXT`,
+			`create_by`,
+			`create_date`,
+			`update_by`,
+			`update_date`,
+			`remarks`,
 			`del_flag`
 		)
 		values
 		(
-			#{id}, 
-			#{procInsId}, 
-			#{userId}, 
-			#{officeId}, 
-			#{post}, 
-			#{age}, 
-			#{edu}, 
-			#{content}, 
-			#{olda}, 
-			#{oldb}, 
-			#{oldc}, 
-			#{newa}, 
-			#{newb}, 
-			#{newc}, 
-			#{addNum}, 
-			#{exeDate}, 
-			#{hrText}, 
-			#{leadText}, 
-			#{mainLeadText}, 
-			#{createBy}, 
-			#{createDate}, 
-			#{updateBy}, 
-			#{updateDate}, 
-			#{remarks}, 
+			#{id},
+			#{procInsId},
+			#{userId},
+			#{officeId},
+			#{post},
+			#{age},
+			#{edu},
+			#{content},
+			#{olda},
+			#{oldb},
+			#{oldc},
+			#{newa},
+			#{newb},
+			#{newc},
+			#{addNum},
+			#{exeDate},
+			#{hrText},
+			#{leadText},
+			#{mainLeadText},
+			#{createBy},
+			#{createDate},
+			#{updateBy},
+			#{updateDate},
+			#{remarks},
 			#{delFlag}
 		)
 	</insert>
-	 
+
 	<update id="update" parameterType="com.bootdo.activiti.domain.SalaryDO">
-		update salary 
+		update salary
 		<set>
 			<if test="procInsId != null">`PROC_INS_ID` = #{procInsId}, </if>
 			<if test="userId != null">`USER_ID` = #{userId}, </if>
@@ -169,13 +169,13 @@
 		</set>
 		where id = #{id}
 	</update>
-	
+
 	<delete id="remove">
 		delete from salary where id = #{value}
 	</delete>
-	
+
 	<delete id="batchRemove">
-		delete from salary where id in 
+		delete from salary where id in
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

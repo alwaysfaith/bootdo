@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * @author ECHO
+ */
 @RequestMapping("/common/log")
 @Controller
 public class LogController {
