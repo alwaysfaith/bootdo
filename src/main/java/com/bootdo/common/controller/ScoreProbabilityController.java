@@ -2,12 +2,14 @@ package com.bootdo.common.controller;
 
 
 import cn.hutool.core.date.DateUtil;
+import com.bootdo.common.dao.DsScoreMatchDao;
 import com.bootdo.common.domain.DsScoreMatchDO;
 import com.bootdo.common.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +31,9 @@ public class ScoreProbabilityController {
 
     private static final String SEPARATOR_PREFIX = "/";
 
+    @Autowired
+    DsScoreMatchDao dsScoreMatchDao;
+
     public static void main(String[] args) {
         String connectUrl = "https://www.dszuqiu.com/diary/20180601";
         List<DsScoreMatchDO> scoreMatchList = getDsScoreMatchDos(connectUrl);
@@ -45,10 +50,15 @@ public class ScoreProbabilityController {
                 hasMore = matchDoList.size() == MAX_PAGE_SIZE;
             }
         }
+        scoreMatchList.parallelStream()
+                .forEach(x->{
+
+                });
+
         log.warn("scoreMatchList总大小>>>>>>>>>>>>>>>>>>>>" + scoreMatchList.size());
     }
 
-    private static List<DsScoreMatchDO> getDsScoreMatchDos(String connectUrl) {
+    public static List<DsScoreMatchDO> getDsScoreMatchDos(String connectUrl) {
         Document doc = null;
         try {
             doc = Jsoup.connect(connectUrl)

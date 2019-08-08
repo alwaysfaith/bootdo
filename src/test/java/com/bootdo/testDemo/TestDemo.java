@@ -33,6 +33,9 @@ public class TestDemo {
         System.out.println(redisTemplate.opsForValue().get("a"));
     }
 
+
+
+
     private static int corePoolSize = Runtime.getRuntime().availableProcessors();
 
     private ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
