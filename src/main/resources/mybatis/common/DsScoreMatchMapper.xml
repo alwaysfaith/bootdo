@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.common.dao.DsScoreMatchDao">
+
+	<select id="get" resultType="com.bootdo.common.domain.DsScoreMatchDO">
+		select `id`,`match`,`match_bg`,`selection`,`start_time`,`host_team`,`host_rank`,`host_red`,`host_yellow`,`over_score`,`guest_team`,`guest_rank`,`guest_red`,`guest_yellow`,`half_score`,`let_ball`,`size_ball`,`corner_ball`,`half_corner`,`over_corner`,`match_time`,`create_time`,`update_time` from ds_score_match where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.common.domain.DsScoreMatchDO">
+		select `id`,`match`,`match_bg`,`selection`,`start_time`,`host_team`,`host_rank`,`host_red`,`host_yellow`,`over_score`,`guest_team`,`guest_rank`,`guest_red`,`guest_yellow`,`half_score`,`let_ball`,`size_ball`,`corner_ball`,`half_corner`,`over_corner`,`match_time`,`create_time`,`update_time` from ds_score_match
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="match != null and match != ''"> and match = #{match} </if>
+		  		  <if test="matchBg != null and matchBg != ''"> and match_bg = #{matchBg} </if>
+		  		  <if test="selection != null and selection != ''"> and selection = #{selection} </if>
+		  		  <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
+		  		  <if test="hostTeam != null and hostTeam != ''"> and host_team = #{hostTeam} </if>
+		  		  <if test="hostRank != null and hostRank != ''"> and host_rank = #{hostRank} </if>
+		  		  <if test="hostRed != null and hostRed != ''"> and host_red = #{hostRed} </if>
+		  		  <if test="hostYellow != null and hostYellow != ''"> and host_yellow = #{hostYellow} </if>
+		  		  <if test="overScore != null and overScore != ''"> and over_score = #{overScore} </if>
+		  		  <if test="guestTeam != null and guestTeam != ''"> and guest_team = #{guestTeam} </if>
+		  		  <if test="guestRank != null and guestRank != ''"> and guest_rank = #{guestRank} </if>
+		  		  <if test="guestRed != null and guestRed != ''"> and guest_red = #{guestRed} </if>
+		  		  <if test="guestYellow != null and guestYellow != ''"> and guest_yellow = #{guestYellow} </if>
+		  		  <if test="halfScore != null and halfScore != ''"> and half_score = #{halfScore} </if>
+		  		  <if test="letBall != null and letBall != ''"> and let_ball = #{letBall} </if>
+		  		  <if test="sizeBall != null and sizeBall != ''"> and size_ball = #{sizeBall} </if>
+		  		  <if test="cornerBall != null and cornerBall != ''"> and corner_ball = #{cornerBall} </if>
+		  		  <if test="halfCorner != null and halfCorner != ''"> and half_corner = #{halfCorner} </if>
+		  		  <if test="overCorner != null and overCorner != ''"> and over_corner = #{overCorner} </if>
+		  		  <if test="matchTime != null and matchTime != ''"> and match_time = #{matchTime} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from ds_score_match
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="match != null and match != ''"> and match = #{match} </if>
+		  		  <if test="matchBg != null and matchBg != ''"> and match_bg = #{matchBg} </if>
+		  		  <if test="selection != null and selection != ''"> and selection = #{selection} </if>
+		  		  <if test="startTime != null and startTime != ''"> and start_time = #{startTime} </if>
+		  		  <if test="hostTeam != null and hostTeam != ''"> and host_team = #{hostTeam} </if>
+		  		  <if test="hostRank != null and hostRank != ''"> and host_rank = #{hostRank} </if>
+		  		  <if test="hostRed != null and hostRed != ''"> and host_red = #{hostRed} </if>
+		  		  <if test="hostYellow != null and hostYellow != ''"> and host_yellow = #{hostYellow} </if>
+		  		  <if test="overScore != null and overScore != ''"> and over_score = #{overScore} </if>
+		  		  <if test="guestTeam != null and guestTeam != ''"> and guest_team = #{guestTeam} </if>
+		  		  <if test="guestRank != null and guestRank != ''"> and guest_rank = #{guestRank} </if>
+		  		  <if test="guestRed != null and guestRed != ''"> and guest_red = #{guestRed} </if>
+		  		  <if test="guestYellow != null and guestYellow != ''"> and guest_yellow = #{guestYellow} </if>
+		  		  <if test="halfScore != null and halfScore != ''"> and half_score = #{halfScore} </if>
+		  		  <if test="letBall != null and letBall != ''"> and let_ball = #{letBall} </if>
+		  		  <if test="sizeBall != null and sizeBall != ''"> and size_ball = #{sizeBall} </if>
+		  		  <if test="cornerBall != null and cornerBall != ''"> and corner_ball = #{cornerBall} </if>
+		  		  <if test="halfCorner != null and halfCorner != ''"> and half_corner = #{halfCorner} </if>
+		  		  <if test="overCorner != null and overCorner != ''"> and over_corner = #{overCorner} </if>
+		  		  <if test="matchTime != null and matchTime != ''"> and match_time = #{matchTime} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.common.domain.DsScoreMatchDO" useGeneratedKeys="true" keyProperty="id">
+		insert into ds_score_match
+		(
+			`match`, 
+			`match_bg`, 
+			`selection`, 
+			`start_time`, 
+			`host_team`, 
+			`host_rank`, 
+			`host_red`, 
+			`host_yellow`, 
+			`over_score`, 
+			`guest_team`, 
+			`guest_rank`, 
+			`guest_red`, 
+			`guest_yellow`, 
+			`half_score`, 
+			`let_ball`, 
+			`size_ball`, 
+			`corner_ball`, 
+			`half_corner`, 
+			`over_corner`, 
+			`match_time`, 
+			`create_time`, 
+			`update_time`
+		)
+		values
+		(
+			#{match}, 
+			#{matchBg}, 
+			#{selection}, 
+			#{startTime}, 
+			#{hostTeam}, 
+			#{hostRank}, 
+			#{hostRed}, 
+			#{hostYellow}, 
+			#{overScore}, 
+			#{guestTeam}, 
+			#{guestRank}, 
+			#{guestRed}, 
+			#{guestYellow}, 
+			#{halfScore}, 
+			#{letBall}, 
+			#{sizeBall}, 
+			#{cornerBall}, 
+			#{halfCorner}, 
+			#{overCorner}, 
+			#{matchTime}, 
+			#{createTime}, 
+			#{updateTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.common.domain.DsScoreMatchDO">
+		update ds_score_match 
+		<set>
+			<if test="match != null">`match` = #{match}, </if>
+			<if test="matchBg != null">`match_bg` = #{matchBg}, </if>
+			<if test="selection != null">`selection` = #{selection}, </if>
+			<if test="startTime != null">`start_time` = #{startTime}, </if>
+			<if test="hostTeam != null">`host_team` = #{hostTeam}, </if>
+			<if test="hostRank != null">`host_rank` = #{hostRank}, </if>
+			<if test="hostRed != null">`host_red` = #{hostRed}, </if>
+			<if test="hostYellow != null">`host_yellow` = #{hostYellow}, </if>
+			<if test="overScore != null">`over_score` = #{overScore}, </if>
+			<if test="guestTeam != null">`guest_team` = #{guestTeam}, </if>
+			<if test="guestRank != null">`guest_rank` = #{guestRank}, </if>
+			<if test="guestRed != null">`guest_red` = #{guestRed}, </if>
+			<if test="guestYellow != null">`guest_yellow` = #{guestYellow}, </if>
+			<if test="halfScore != null">`half_score` = #{halfScore}, </if>
+			<if test="letBall != null">`let_ball` = #{letBall}, </if>
+			<if test="sizeBall != null">`size_ball` = #{sizeBall}, </if>
+			<if test="cornerBall != null">`corner_ball` = #{cornerBall}, </if>
+			<if test="halfCorner != null">`half_corner` = #{halfCorner}, </if>
+			<if test="overCorner != null">`over_corner` = #{overCorner}, </if>
+			<if test="matchTime != null">`match_time` = #{matchTime}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from ds_score_match where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from ds_score_match where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

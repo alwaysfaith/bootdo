@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -353,6 +354,23 @@ public class ScoreSourceController {
     public R remove(@RequestParam("ids[]") Long[] dataIds) {
         scoreDataService.batchRemove(dataIds);
         return R.ok();
+    }
+
+    /**
+     *  获取url
+     *  http://vip.win0168.com/history/SearchSameGoal.aspx?g=1.75&n=5&t=4&l=1
+     *
+     *
+     */
+    public static void main(String[] args) {
+
+        Document doc = null;
+        try {
+            doc = Jsoup.connect("http://vip.win0168.com/history/SearchSameGoal.aspx?g=1.75&n=5&t=4&l=1").get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(doc);
     }
 
 }

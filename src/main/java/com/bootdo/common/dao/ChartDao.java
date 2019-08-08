@@ -1,16 +1,22 @@
-package com.bootdo.common.dao;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
-
-/**
- * @author cx
- * @date 2018/7/1714:41
- */
-@Mapper
-@Repository
-public interface ChartDao {
-
+//package com.bootdo.common.dao;
+//
+//import com.sf.system.domain.UserinfoDO;
+//import com.sf.system.vo.ChartSexVO;
+//import com.sf.system.vo.SeriesVO;
+//import org.apache.ibatis.annotations.Mapper;
+//import org.apache.ibatis.annotations.Param;
+//import org.springframework.stereotype.Repository;
+//
+//import java.util.List;
+//
+///**
+// * @author cx
+// * @date 2018/7/1714:41
+// */
+//@Mapper
+//@Repository
+//public interface ChartDao {
+//
 //    /**
 //     * 获取大区列表
 //     *
@@ -40,5 +46,5 @@ public interface ChartDao {
 //     * @return List
 //     */
 //    List<ChartSexVO> getAge(@Param("countryGender") String countryGender);
-
-}
+//
+//}

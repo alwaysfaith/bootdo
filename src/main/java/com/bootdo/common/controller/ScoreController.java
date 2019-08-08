@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,12 +38,6 @@ public class ScoreController {
     private ScoreService scoreService;
 
     public static void main(String[] args) {
-//        Document doc = null;
-//        try {
-//            doc = Jsoup.connect("https://live.aicai.com/").get();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 //        // 根据id获取table
 //        Date date = new Date();
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
