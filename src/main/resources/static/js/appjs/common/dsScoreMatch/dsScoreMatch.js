@@ -44,9 +44,6 @@ function load() {
 						// sortOrder.
 						// 返回false将会终止请求
 						columns : [
-								{
-									checkbox : true
-								},
 																{
 									field : 'id', 
 									title : '主键' 
@@ -54,10 +51,6 @@ function load() {
 																{
 									field : 'match', 
 									title : '赛事' 
-								},
-																{
-									field : 'matchBg', 
-									title : '赛事背景' 
 								},
 																{
 									field : 'selection', 
@@ -130,32 +123,25 @@ function load() {
 																{
 									field : 'matchTime', 
 									title : '赛事日期时间' 
-								},
-																{
-									field : 'createTime', 
-									title : '创建时间' 
-								},
-																{
-									field : 'updateTime', 
-									title : '更新时间' 
-								},
-																{
-									title : '操作',
-									field : 'id',
-									align : 'center',
-									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.id
-												+ '\')"><i class="fa fa-edit"></i></a> ';
-										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
-												+ row.id
-												+ '\')"><i class="fa fa-remove"></i></a> ';
-										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
-												+ row.id
-												+ '\')"><i class="fa fa-key"></i></a> ';
-										return e + d ;
-									}
-								} ]
+								}
+								// 								{
+								// 	title : '操作',
+								// 	field : 'id',
+								// 	align : 'center',
+								// 	formatter : function(value, row, index) {
+								// 		var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
+								// 				+ row.id
+								// 				+ '\')"><i class="fa fa-edit"></i></a> ';
+								// 		var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
+								// 				+ row.id
+								// 				+ '\')"><i class="fa fa-remove"></i></a> ';
+								// 		var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
+								// 				+ row.id
+								// 				+ '\')"><i class="fa fa-key"></i></a> ';
+								// 		return e + d ;
+								// 	}
+								// }
+								]
 					});
 }
 function reLoad() {

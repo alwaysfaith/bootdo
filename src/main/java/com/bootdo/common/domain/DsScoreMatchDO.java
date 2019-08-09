@@ -1,5 +1,9 @@
 package com.bootdo.common.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,7 +16,11 @@ import java.util.Date;
  * @email 1992lcg@163.com
  * @date 2019-08-08 13:51:06
  */
+
+@ToString
+@NoArgsConstructor
 public class DsScoreMatchDO implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	public DsScoreMatchDO(String match, String matchBg, String selection, String startTime, String hostTeam, String hostRank, String hostRed, String hostYellow, String overScore, String guestTeam, String guestRank, String guestRed, String guestYellow, String halfScore, String letBall, String sizeBall, String cornerBall, String halfCorner, String overCorner, Date matchTime) {

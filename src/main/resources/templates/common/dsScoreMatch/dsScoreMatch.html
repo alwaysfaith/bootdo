@@ -2,60 +2,75 @@
 <html>
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
-<body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="col-sm-12">
-			<div class="ibox">
-				<div class="ibox-body">
-					<div class="fixed-table-toolbar">
-						<div class="columns pull-left">
-							<button shiro:hasPermission="common:dsScoreMatch:add" type="button" class="btn  btn-primary" onclick="add()">
-								<i class="fa fa-plus" aria-hidden="true"></i>添加
-							</button>
-							<button shiro:hasPermission="common:dsScoreMatch:batchRemove" type="button" class="btn  btn-danger"
-								onclick="batchRemove()">
-								<i class="fa fa-trash" aria-hidden="true"></i>删除
-							</button>
-						</div>
-						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="reLoad()">查询</button>
-						</div>
-						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control"
-								placeholder="">
-						</div>
-					</div>
-					<table id="exampleTable" data-mobile-responsive="true">
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
-		<div>
-			<script type="text/javascript">
-				var s_edit_h = 'hidden';
-				var s_remove_h = 'hidden';
-				var s_resetPwd_h = 'hidden';
-			</script>
-		</div>
-		<div shiro:hasPermission="common:dsScoreMatch:edit">
-			<script type="text/javascript">
-				s_edit_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="common:dsScoreMatch:remove">
-			<script type="text/javascript">
-				var s_remove_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="common:dsScoreMatch:resetPwd">
-			<script type="text/javascript">
-				var s_resetPwd_h = '';
-			</script>
-		</div>
-	</div>
-	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/common/dsScoreMatch/dsScoreMatch.js"></script>
+<body>
+<div class="layui-row">
+    <div class="layui-col-xs12 layui-col-md8">
+
+        <div class="layui-form" id="query-form">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="ssId" id="ssId" type="text" placeholder="数据ID"
+                           onkeyup="reLoad()">
+                </div>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="ssTime" id="ssTime" type="text" placeholder="数据时间"
+                           onkeyup="reLoad()">
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" name="betTime" onkeyup="reLoad()" class="layui-input" id="betTime"
+                           placeholder="比赛日期">
+                </div>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="ssTable" id="ssTable" type="text" placeholder="数据源"
+                           onkeyup="reLoad()">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-inline" style="width: 50%;">
+                    <button class="layui-btn" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询
+                    </button>
+                    <button class="layui-btn" onclick="resetSearch()"><i class="fa fa-eraser"
+                                                                         aria-hidden="true"></i>重置
+                    </button>
+                    <button type="button" class="layui-btn" onclick="add()"><i class="fa fa-plus"
+                                                                               aria-hidden="true"></i>添加
+                    </button>
+                    <button type="button" class="layui-btn" onclick="batchRemove()"><i class="fa fa-trash"
+                                                                                       aria-hidden="true"></i>删除
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <table class="layui-hide" id="dsScoreMatch"></table>
+
+    </div>
+</div>
+
+<div th:include="include :: footer"></div>
+<!--<script type="text/javascript" src="/js/appjs/common/dsScoreMatch/dsScoreMatch.js"></script>-->
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            elem: '#dsScoreMatch'
+            ,url:'/common/dsScoreMatch/list'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {field:'id', width:80, title: 'ID', sort: true}
+                ,{field:'match', width:80, title: '用户名'}
+                ,{field:'selection', width:80, title: '性别', sort: true}
+                ,{field:'startTime', width:80, title: '城市'}
+                ,{field:'hostTeam', title: '签名', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'hostRank', title: '积分', sort: true}
+                ,{field:'hostRed', title: '评分', sort: true}
+                ,{field:'hostYellow', title: '职业'}
+                ,{field:'overScore', width:137, title: '财富', sort: true}
+                ,{field:'guestTeam', width:137, title: '财富', sort: true}
+                ,{field:'guestRank', width:137, title: '财富', sort: true}
+            ]]
+        });
+    });
+</script>
 </body>
 </html>

@@ -82,8 +82,6 @@
 
 
 
-
-
             <!--总比分 >= 半场比分-->
             <if test="dsMatch =overGteHalf ">
                 <![CDATA[

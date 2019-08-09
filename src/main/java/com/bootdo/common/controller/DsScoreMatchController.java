@@ -36,14 +36,14 @@ public class DsScoreMatchController {
 	private DsScoreMatchService dsScoreMatchService;
 	
 	@GetMapping()
-	@RequiresPermissions("common:dsScoreMatch:dsScoreMatch")
+//	@RequiresPermissions("common:dsScoreMatch:dsScoreMatch")
 	String DsScoreMatch(){
 	    return "common/dsScoreMatch/dsScoreMatch";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("common:dsScoreMatch:dsScoreMatch")
+//	@RequiresPermissions("common:dsScoreMatch:dsScoreMatch")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -54,13 +54,13 @@ public class DsScoreMatchController {
 	}
 	
 	@GetMapping("/add")
-	@RequiresPermissions("common:dsScoreMatch:add")
+//	@RequiresPermissions("common:dsScoreMatch:add")
 	String add(){
 	    return "common/dsScoreMatch/add";
 	}
 
 	@GetMapping("/edit/{id}")
-	@RequiresPermissions("common:dsScoreMatch:edit")
+//	@RequiresPermissions("common:dsScoreMatch:edit")
 	String edit(@PathVariable("id") Long id,Model model){
 		DsScoreMatchDO dsScoreMatch = dsScoreMatchService.get(id);
 		model.addAttribute("dsScoreMatch", dsScoreMatch);
@@ -72,7 +72,7 @@ public class DsScoreMatchController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("common:dsScoreMatch:add")
+//	@RequiresPermissions("common:dsScoreMatch:add")
 	public R save( DsScoreMatchDO dsScoreMatch){
 		if(dsScoreMatchService.save(dsScoreMatch)>0){
 			return R.ok();
@@ -84,7 +84,7 @@ public class DsScoreMatchController {
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
-	@RequiresPermissions("common:dsScoreMatch:edit")
+//	@RequiresPermissions("common:dsScoreMatch:edit")
 	public R update( DsScoreMatchDO dsScoreMatch){
 		dsScoreMatchService.update(dsScoreMatch);
 		return R.ok();
@@ -95,7 +95,7 @@ public class DsScoreMatchController {
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
-	@RequiresPermissions("common:dsScoreMatch:remove")
+//	@RequiresPermissions("common:dsScoreMatch:remove")
 	public R remove( Long id){
 		if(dsScoreMatchService.remove(id)>0){
 		return R.ok();
@@ -108,7 +108,7 @@ public class DsScoreMatchController {
 	 */
 	@PostMapping( "/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("common:dsScoreMatch:batchRemove")
+//	@RequiresPermissions("common:dsScoreMatch:batchRemove")
 	public R remove(@RequestParam("ids[]") Long[] ids){
 		dsScoreMatchService.batchRemove(ids);
 		return R.ok();
