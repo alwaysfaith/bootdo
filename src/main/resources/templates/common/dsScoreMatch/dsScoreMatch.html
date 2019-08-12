@@ -2,75 +2,288 @@
 <html>
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
+<style>
+    #exampleTable td > span {
+        width: 60px;
+        height: 40px;
+        line-height: 40px;
+        display: inline-block;
+        text-align: center;
+    }
+    #exampleTable td span.bg1 {
+        background: #de5563;
+        color: #fff
+    }
+
+    #exampleTable td span.bg1 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg2 {
+        background: #7ea7cf;
+        color: #fff
+    }
+
+    #exampleTable td span.bg2 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg3 {
+        background: #71b096;
+        color: #fff
+    }
+
+    #exampleTable td span.bg3 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg4 {
+        background: #12a7c7;
+        color: #fff
+    }
+
+    #exampleTable td span.bg4 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg5 {
+        background: #abc178;
+        color: #fff
+    }
+
+    #exampleTable td span.bg5 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg6 {
+        background: #53a4c1;
+        color: #fff
+    }
+
+    #exampleTable td span.bg6 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg7 {
+        background: #d39946;
+        color: #fff
+    }
+
+    #exampleTable td span.bg7 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg8 {
+        background: #cfbe00;
+        color: #fff
+    }
+
+    #exampleTable td span.bg8 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg9 {
+        background: #f60;
+        color: #fff
+    }
+
+    #exampleTable td span.bg9 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg10 {
+        background: #600;
+        color: #fff
+    }
+
+    #exampleTable td span.bg10 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg11 {
+        background: #c58ed9;
+        color: #fff
+    }
+
+    #exampleTable td span.bg11 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg12 {
+        background: #f48d32;
+        color: #fff
+    }
+
+    #exampleTable td span.bg12 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg13 {
+        background: #5671e6;
+        color: #fff
+    }
+
+    #exampleTable td span.bg13 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg14 {
+        background: #85823b;
+        color: #fff
+    }
+
+    #exampleTable td span.bg14 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg15 {
+        background: #6ac750;
+        color: #fff
+    }
+
+    #exampleTable td span.bg15 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg16 {
+        background: #c64316;
+        color: #fff
+    }
+
+    #exampleTable td span.bg16 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg17 {
+        background: #1e727e;
+        color: #fff
+    }
+
+    #exampleTable td span.bg17 a {
+        color: #fff
+    }
+
+    #exampleTable td span.bg18 {
+        background: #afcb12;
+        color: #fff
+    }
+
+    #exampleTable td span.bg18 a {
+        color: #fff
+    }
+
+
+</style>
 <body>
-<div class="layui-row">
-    <div class="layui-col-xs12 layui-col-md8">
+<div class="container-fluid wrapper-content">
+    <div class="row-fluid">
+        <div class="col-sm-12">
+            <div class="layui-form" id="query-form">
 
-        <div class="layui-form" id="query-form">
-            <div class="layui-form-item">
-                <div class="layui-input-inline">
-                    <input class="layui-input" name="ssId" id="ssId" type="text" placeholder="数据ID"
-                           onkeyup="reLoad()">
+                <div class="layui-form-item">
+
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="selection" id="selection" type="text" placeholder="精选"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="startTime" id="startTime" type="text" placeholder="开赛时间"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="overScore" id="overScore" type="text" placeholder="全场比分"
+                               onkeyup="reLoad()">
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="halfScore" id="halfScore" type="text" placeholder="半场比分"
+                               onkeyup="reLoad()">
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="letBall" id="letBall" type="text" placeholder="初让球"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="sizeBall" id="sizeBall" type="text" placeholder="初大小球"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="cornerBall" id="cornerBall" type="text" placeholder="初角球"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="halfCorner" id="halfCorner" type="text" placeholder="半场角球比分"
+                               onkeyup="reLoad()">
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="overCorner" id="overCorner" type="text" placeholder="全场角球比分"
+                               onkeyup="reLoad()">
+                    </div>
                 </div>
-                <div class="layui-input-inline">
-                    <input class="layui-input" name="ssTime" id="ssTime" type="text" placeholder="数据时间"
-                           onkeyup="reLoad()">
+
+
+                <div class="layui-form-item">
+
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="match" id="match" type="text" placeholder="赛事"
+                               onkeyup="reLoad()">
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="hostTeam" id="hostTeam" type="text" placeholder="主队"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="hostRank" id="hostRank" type="text" placeholder="主队排名"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="hostRed" id="hostRed" type="text" placeholder="主队红牌"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="hostYellow" id="hostYellow" type="text" placeholder="主队黄牌"
+                               onkeyup="reLoad()">
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="guestTeam" id="guestTeam" type="text" placeholder="客队"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="guestRank" id="guestRank" type="text" placeholder="客队排名"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="guestRed" id="guestRed" type="text" placeholder="客队红牌"
+                               onkeyup="reLoad()">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" name="guestYellow" id="guestYellow" type="text" placeholder="客队黄牌"
+                               onkeyup="reLoad()">
+                    </div>
                 </div>
-                <div class="layui-input-inline">
-                    <input type="text" name="betTime" onkeyup="reLoad()" class="layui-input" id="betTime"
-                           placeholder="比赛日期">
-                </div>
-                <div class="layui-input-inline">
-                    <input class="layui-input" name="ssTable" id="ssTable" type="text" placeholder="数据源"
-                           onkeyup="reLoad()">
+
+
+                <div class="layui-form-item">
+                    <div class="layui-input-inline" style="width: 50%;">
+                        <button class="layui-btn layui-btn-fluid" onclick="reLoad()"><i class="fa fa-soccer-ball-o"
+                                                                                        aria-hidden="true">&nbsp;</i>查询
+                        </button>
+                        <button class="layui-btn layui-btn-warm" onclick="resetSearch()"><i class="fa fa-undo"
+                                                                                            aria-hidden="true">&nbsp;</i>重置
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <div class="layui-input-inline" style="width: 50%;">
-                    <button class="layui-btn" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询
-                    </button>
-                    <button class="layui-btn" onclick="resetSearch()"><i class="fa fa-eraser"
-                                                                         aria-hidden="true"></i>重置
-                    </button>
-                    <button type="button" class="layui-btn" onclick="add()"><i class="fa fa-plus"
-                                                                               aria-hidden="true"></i>添加
-                    </button>
-                    <button type="button" class="layui-btn" onclick="batchRemove()"><i class="fa fa-trash"
-                                                                                       aria-hidden="true"></i>删除
-                    </button>
-                </div>
-            </div>
+            <table id="exampleTable" data-mobile-responsive="true">
+            </table>
         </div>
-
-        <table class="layui-hide" id="dsScoreMatch"></table>
-
     </div>
 </div>
-
 <div th:include="include :: footer"></div>
-<!--<script type="text/javascript" src="/js/appjs/common/dsScoreMatch/dsScoreMatch.js"></script>-->
-<script>
-    layui.use('table', function(){
-        var table = layui.table;
-        table.render({
-            elem: '#dsScoreMatch'
-            ,url:'/common/dsScoreMatch/list'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,cols: [[
-                {field:'id', width:80, title: 'ID', sort: true}
-                ,{field:'match', width:80, title: '用户名'}
-                ,{field:'selection', width:80, title: '性别', sort: true}
-                ,{field:'startTime', width:80, title: '城市'}
-                ,{field:'hostTeam', title: '签名', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                ,{field:'hostRank', title: '积分', sort: true}
-                ,{field:'hostRed', title: '评分', sort: true}
-                ,{field:'hostYellow', title: '职业'}
-                ,{field:'overScore', width:137, title: '财富', sort: true}
-                ,{field:'guestTeam', width:137, title: '财富', sort: true}
-                ,{field:'guestRank', width:137, title: '财富', sort: true}
-            ]]
-        });
-    });
-</script>
+<script type="text/javascript" src="/js/appjs/common/dsScoreMatch/dsScoreMatch.js"></script>
 </body>
 </html>

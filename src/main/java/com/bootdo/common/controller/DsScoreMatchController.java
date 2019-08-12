@@ -22,25 +22,25 @@ import com.bootdo.common.utils.Query;
 import com.bootdo.common.utils.R;
 
 /**
- * 
- * 
+ *
+ *
  * @author Caixin
  * @email 1992lcg@163.com
  * @date 2019-08-08 13:51:06
  */
- 
+
 @Controller
 @RequestMapping("/common/dsScoreMatch")
 public class DsScoreMatchController {
 	@Autowired
 	private DsScoreMatchService dsScoreMatchService;
-	
+
 	@GetMapping()
 //	@RequiresPermissions("common:dsScoreMatch:dsScoreMatch")
 	String DsScoreMatch(){
 	    return "common/dsScoreMatch/dsScoreMatch";
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/list")
 //	@RequiresPermissions("common:dsScoreMatch:dsScoreMatch")
@@ -52,7 +52,7 @@ public class DsScoreMatchController {
 		PageUtils pageUtils = new PageUtils(dsScoreMatchList, total);
 		return pageUtils;
 	}
-	
+
 	@GetMapping("/add")
 //	@RequiresPermissions("common:dsScoreMatch:add")
 	String add(){
@@ -66,7 +66,7 @@ public class DsScoreMatchController {
 		model.addAttribute("dsScoreMatch", dsScoreMatch);
 	    return "common/dsScoreMatch/edit";
 	}
-	
+
 	/**
 	 * 保存
 	 */
@@ -89,7 +89,7 @@ public class DsScoreMatchController {
 		dsScoreMatchService.update(dsScoreMatch);
 		return R.ok();
 	}
-	
+
 	/**
 	 * 删除
 	 */
@@ -102,7 +102,7 @@ public class DsScoreMatchController {
 		}
 		return R.error();
 	}
-	
+
 	/**
 	 * 删除
 	 */
@@ -113,5 +113,5 @@ public class DsScoreMatchController {
 		dsScoreMatchService.batchRemove(ids);
 		return R.ok();
 	}
-	
+
 }
