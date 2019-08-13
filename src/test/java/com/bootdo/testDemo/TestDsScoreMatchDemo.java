@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -30,7 +31,7 @@ public class TestDsScoreMatchDemo extends TestDemo {
     DsScoreMatchDao dsScoreMatchDao;
 
     @Test
-    public void testDsScoreMatch() {
+    public void testDsScoreMatch() throws IOException {
         String connectUrl = "https://www.dszuqiu.com/diary/20180601";
         List<DsScoreMatchDO> scoreMatchList = getDsScoreMatchDos(connectUrl);
         //如果大于等于100

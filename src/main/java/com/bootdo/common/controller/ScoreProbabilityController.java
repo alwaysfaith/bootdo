@@ -35,27 +35,28 @@ public class ScoreProbabilityController {
     DsScoreMatchDao dsScoreMatchDao;
 
     public static void main(String[] args) {
-        String connectUrl = "https://www.dszuqiu.com/diary/20180601";
-        List<DsScoreMatchDO> scoreMatchList = getDsScoreMatchDos(connectUrl);
-        log.warn("scoreMatchList.size()>>>>>" + scoreMatchList.size());
-        //如果大于等于100
-        if (scoreMatchList.size() >= MAX_PAGE_SIZE) {
-            AtomicInteger pageNum = new AtomicInteger(0);
-            boolean hasMore = true;
-            while (hasMore) {
-                String connectUrl2 = "https://www.dszuqiu.com/diary/20180601/p." + pageNum.incrementAndGet();
-                log.warn("connectUrl2>>>>>>:{}", connectUrl2);
-                List<DsScoreMatchDO> matchDoList = getDsScoreMatchDos(connectUrl2);
-                scoreMatchList.addAll(matchDoList);
-                hasMore = matchDoList.size() == MAX_PAGE_SIZE;
-            }
-        }
-        scoreMatchList.parallelStream()
-                .forEach(x->{
 
-                });
-
-        log.warn("scoreMatchList总大小>>>>>>>>>>>>>>>>>>>>" + scoreMatchList.size());
+//        String connectUrl = "https://www.dszuqiu.com/diary/20180601";
+//        List<DsScoreMatchDO> scoreMatchList = getDsScoreMatchDos(connectUrl);
+//        log.warn("scoreMatchList.size()>>>>>" + scoreMatchList.size());
+//        //如果大于等于100
+//        if (scoreMatchList.size() >= MAX_PAGE_SIZE) {
+//            AtomicInteger pageNum = new AtomicInteger(0);
+//            boolean hasMore = true;
+//            while (hasMore) {
+//                String connectUrl2 = "https://www.dszuqiu.com/diary/20180601/p." + pageNum.incrementAndGet();
+//                log.warn("connectUrl2>>>>>>:{}", connectUrl2);
+//                List<DsScoreMatchDO> matchDoList = getDsScoreMatchDos(connectUrl2);
+//                scoreMatchList.addAll(matchDoList);
+//                hasMore = matchDoList.size() == MAX_PAGE_SIZE;
+//            }
+//        }
+//        scoreMatchList.parallelStream()
+//                .forEach(x->{
+//
+//                });
+//
+//        log.warn("scoreMatchList总大小>>>>>>>>>>>>>>>>>>>>" + scoreMatchList.size());
     }
 
     public static List<DsScoreMatchDO> getDsScoreMatchDos(String connectUrl) {
