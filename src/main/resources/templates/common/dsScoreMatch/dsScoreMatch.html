@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-<head th:include="include :: header"></head>
+<head th:include="include_v2 :: header"></head>
 <style>
     #exampleTable td{
         padding: 0!important;
         text-align: center;
+        vertical-align: middle!important;
+
     }
+    #exampleTable td span.leagueRank {
+        display: inline-block;
+        width: 21px;
+        height: 16px;
+        line-height: 16px;
+        font-size: 9px;
+        text-align: center;
+        color: #000000;
+        margin: 0;
+        font-family: PMingLiU;
+        position: relative;
+        top: -4px;
+        transform: scale(.9);
+        letter-spacing: -.5px;
+    }
+
+    #exampleTable td span.redCard,#exampleTable td span.yellowCard{
+        display: inline-block;
+        width: 12px;
+        height: 16px;
+        line-height: 16px;
+        font-size: 10px;
+        text-align: center;
+        color: #fff;
+        margin: 0;
+        font-family: PMingLiU;
+        position: relative;
+        top: -4px;
+        transform: scale(.9)
+    }
+
+    #exampleTable td span.redCard {
+        background: #c51313;
+        background: -moz-linear-gradient(top,#e93333,#c51313 100%);
+        background: -webkit-gradient(linear,0 0,0 100%,from(#e93333),to(#c51313))
+    }
+
+    #exampleTable td span.yellowCard {
+        background: #edbb24;
+        background: -moz-linear-gradient(top,#f4da1a,#edbb24 100%);
+        background: -webkit-gradient(linear,0 0,0 100%,from(#f4da1a),to(#edbb24));
+        color: #000
+    }
+
+
     #exampleTable td > span {
         width: 80px;
         height: 51px;
@@ -287,7 +334,7 @@
         </div>
     </div>
 </div>
-<div th:include="include :: footer"></div>
+<div th:include="include_v2 :: footer"></div>
 <script type="text/javascript" src="/js/appjs/common/dsScoreMatch/dsScoreMatch.js"></script>
 </body>
 </html>

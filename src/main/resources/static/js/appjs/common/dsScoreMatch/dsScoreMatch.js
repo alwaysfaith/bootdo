@@ -82,40 +82,110 @@ function load() {
                     },
                     {
                         field: 'hostTeam',
-                        title: '主队'
+                        title: '主队',
+                        formatter: function (value, row) {
+                            var a = '<span class=redCard>' + row.hostRed + '</span><span class=yellowCard>' + row.hostYellow + '</span><span class=leagueRank>' + row.hostRank + '</span>' + value;
+                            var b = '<span class=redCard>' + row.hostRed + '</span><span class=yellowCard>' + row.hostYellow + '</span>' + value;
+                            var c = '<span class=redCard>' + row.hostRed + '</span><span class=leagueRank>' + row.hostRank + '</span>' + value;
+
+                            var d = '<span class=yellowCard>' + row.hostYellow + '</span><span class=leagueRank>' + row.hostRank + '</span>' + value;
+                            var e = '<span class=redCard>' + row.hostRed + '</span>' + value;
+                            var f = '<span class=yellowCard>' + row.hostYellow + '</span>' + value;
+                            var g = '<span class=leagueRank>' + row.hostRank + '</span>' + value;
+                            var h = value;
+                            if (row.hostRed != null && row.hostYellow != null && row.hostRank != null) {
+                                return a;
+                            }
+                            if (row.hostRed != null && row.hostYellow != null && row.hostRank == null) {
+                                return b;
+                            }
+                            if (row.hostRed != null && row.hostYellow == null && row.hostRank != null) {
+                                return c;
+                            }
+                            if (row.hostRed == null && row.hostYellow != null && row.hostRank != null) {
+                                return d;
+                            }
+                            if (row.hostRed != null && row.hostYellow == null && row.hostRank == null) {
+                                return e;
+                            }
+                            if (row.hostRed == null && row.hostYellow != null && row.hostRank == null) {
+                                return f;
+                            }
+                            if (row.hostRed == null && row.hostYellow == null && row.hostRank != null) {
+                                return g;
+                            }
+                            if (row.hostRed == null && row.hostYellow == null && row.hostRank == null) {
+                                return h;
+                            }
+                        }
                     },
-                    {
-                        field: 'hostRank',
-                        title: '主队排名'
-                    },
-                    {
-                        field: 'hostRed',
-                        title: '主队红牌'
-                    },
-                    {
-                        field: 'hostYellow',
-                        title: '主队黄牌'
-                    },
+                    // {
+                    //     field: 'hostRank',
+                    //     title: '主队排名'
+                    // },
+                    // {
+                    //     field: 'hostRed',
+                    //     title: '主队红牌'
+                    // },
+                    // {
+                    //     field: 'hostYellow',
+                    //     title: '主队黄牌'
+                    // },
                     {
                         field: 'overScore',
                         title: '全场比分'
                     },
                     {
                         field: 'guestTeam',
-                        title: '客队'
+                        title: '客队',
+                        formatter: function (value, row) {
+                            var a = value + '<span class=redCard>' + row.guestRed + '</span><span class=yellowCard>' + row.guestYellow + '</span><span class=leagueRank>' + row.guestRank + '</span>';
+                            var b = value + '<span class=redCard>' + row.guestRed + '</span><span class=yellowCard>' + row.guestYellow + '</span>';
+                            var c = value + '<span class=redCard>' + row.guestRed + '</span><span class=leagueRank>' + row.guestRank + '</span>';
+
+                            var d = value + '<span class=yellowCard>' + row.guestYellow + '</span><span class=leagueRank>' + row.guestRank + '</span>';
+                            var e = value + '<span class=redCard>' + row.guestRed + '</span>';
+                            var f = value + '<span class=yellowCard>' + row.guestYellow + '</span>';
+                            var g = value + '<span class=leagueRank>' + row.guestRank + '</span>';
+                            var h = value;
+                            if (row.guestRed != null && row.guestYellow != null && row.guestRank != null) {
+                                return a;
+                            }
+                            if (row.guestRed != null && row.guestYellow != null && row.guestRank == null) {
+                                return b;
+                            }
+                            if (row.guestRed != null && row.guestYellow == null && row.guestRank != null) {
+                                return c;
+                            }
+                            if (row.guestRed == null && row.guestYellow != null && row.guestRank != null) {
+                                return d;
+                            }
+                            if (row.guestRed != null && row.guestYellow == null && row.guestRank == null) {
+                                return e;
+                            }
+                            if (row.guestRed == null && row.guestYellow != null && row.guestRank == null) {
+                                return f;
+                            }
+                            if (row.guestRed == null && row.guestYellow == null && row.guestRank != null) {
+                                return g;
+                            }
+                            if (row.guestRed == null && row.guestYellow == null && row.guestRank == null) {
+                                return h;
+                            }
+                        }
                     },
-                    {
-                        field: 'guestRank',
-                        title: '客队排名'
-                    },
-                    {
-                        field: 'guestRed',
-                        title: '客队红牌'
-                    },
-                    {
-                        field: 'guestYellow',
-                        title: '客队黄牌'
-                    },
+                    // {
+                    //     field: 'guestRank',
+                    //     title: '客队排名'
+                    // },
+                    // {
+                    //     field: 'guestRed',
+                    //     title: '客队红牌'
+                    // },
+                    // {
+                    //     field: 'guestYellow',
+                    //     title: '客队黄牌'
+                    // },
                     {
                         field: 'halfScore',
                         title: '半场比分'
